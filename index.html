@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GTech Smart Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="topbar">
+      <div class="logo">
+        <div class="mark">G</div>
+        <div>
+          <b data-i18n="brand">GTech Smart Platform</b>
+          <span data-i18n="tagline">منصة ذكية لإدارة توقفات خطوط الإنتاج</span>
+        </div>
+      </div>
+      <button class="lang-btn" id="langToggle" onclick="setLang(getLang()==='ar'?'en':'ar')">EN</button>
+    </header>
+
+    <main class="auth-wrap">
+      <div class="auth-card">
+        <div class="auth-head">
+          <h1 data-i18n="brand">GTech Smart Platform</h1>
+          <p data-i18n="tagline">منصة ذكية لإدارة توقفات خطوط الإنتاج</p>
+        </div>
+
+        <div class="tabs">
+          <button id="tabLogin" class="active" data-i18n="login_tab" onclick="showTab('login')">تسجيل الدخول</button>
+          <button id="tabSignup" data-i18n="signup_tab" onclick="showTab('signup')">حساب جديد</button>
+        </div>
+
+        <!-- نموذج الدخول -->
+        <div id="loginForm">
+          <div class="field">
+            <label data-i18n="email">البريد الإلكتروني</label>
+            <input type="email" id="loginEmail" data-i18n-ph="email" />
+          </div>
+          <div class="field">
+            <label data-i18n="password">كلمة المرور</label>
+            <input type="password" id="loginPass" data-i18n-ph="password" />
+          </div>
+          <button class="btn" id="loginBtn" data-i18n="login_btn" onclick="doLogin()">دخول</button>
+        </div>
+
+        <!-- نموذج التسجيل -->
+        <div id="signupForm" class="hidden">
+          <div class="field">
+            <label data-i18n="full_name">الاسم بالكامل</label>
+            <input type="text" id="suName" data-i18n-ph="full_name" />
+          </div>
+          <div class="field">
+            <label data-i18n="factory_name">اسم المصنع</label>
+            <input type="text" id="suFactory" data-i18n-ph="factory_name" />
+          </div>
+          <div class="field">
+            <label data-i18n="email">البريد الإلكتروني</label>
+            <input type="email" id="suEmail" data-i18n-ph="email" />
+          </div>
+          <div class="field">
+            <label data-i18n="password">كلمة المرور</label>
+            <input type="password" id="suPass" data-i18n-ph="password" />
+          </div>
+          <button class="btn" id="signupBtn" data-i18n="signup_btn" onclick="doSignup()">إنشاء الحساب</button>
+        </div>
+
+        <div class="msg" id="msg"></div>
+      </div>
+    </main>
+  </div>
+
+  <!-- مكتبة Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/config.js"></script>
+  <script src="assets/app.js"></script>
+  <script>
+    // لو المستخدم مسجّل دخوله بالفعل، انقله للوحة التحكم مباشرة
+    sb.auth.getSession().then(({ data }) => {
+      if (data.session) window.location.href = "dashboard.html";
+    });
+
+    function showTab(which) {
+      const login = which === "login";
+      document.getElementById("loginForm").classList.toggle("hidden", !login);
+      document.getElementById("signupForm").classList.toggle("hidden", login);
+      document.getElementById("tabLogin").classList.toggle("active", login);
+      document.getElementById("tabSignup").classList.toggle("active", !login);
+      setMsg("");
+    }
+
+    function setMsg(text, type) {
+      const m = document.getElementById("msg");
+      m.textContent = text;
+      m.className = "msg" + (type ? " " + type : "");
+    }
+
+    async function doLogin() {
+      const email = document.getElementById("loginEmail").value.trim();
+      const pass = document.getElementById("loginPass").value;
+      if (!email || !pass) return setMsg(t("need_all"), "err");
+
+      const btn = document.getElementById("loginBtn");
+      btn.disabled = true; btn.textContent = t("login_busy");
+
+      const { error } = await sb.auth.signInWithPassword({ email, password: pass });
+      btn.disabled = false; btn.textContent = t("login_btn");
+
+      if (error) return setMsg(error.message, "err");
+      window.location.href = "dashboard.html";
+    }
+
+    async function doSignup() {
+      const full_name = document.getElementById("suName").value.trim();
+      const factory_name = document.getElementById("suFactory").value.trim();
+      const email = document.getElementById("suEmail").value.trim();
+      const pass = document.getElementById("suPass").value;
+      if (!full_name || !factory_name || !email || !pass) return setMsg(t("need_all"), "err");
+
+      const btn = document.getElementById("signupBtn");
+      btn.disabled = true; btn.textContent = t("signup_busy");
+
+      const { data, error } = await sb.auth.signUp({
+        email, password: pass,
+        options: { data: { full_name, factory_name } }
+      });
+      btn.disabled = false; btn.textContent = t("signup_btn");
+
+      if (error) return setMsg(error.message, "err");
+
+      // لو الجلسة جاهزة فوراً (تأكيد البريد معطّل) ادخل مباشرة
+      if (data.session) { window.location.href = "dashboard.html"; return; }
+      setMsg(t("signup_ok"), "ok");
+      showTab("login");
+    }
+  </script>
+</body>
+</html>

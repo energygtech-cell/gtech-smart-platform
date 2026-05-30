@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GTech Smart Platform — Dashboard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/style.css" />
+</head>
+<body>
+  <div class="container">
+    <header class="topbar">
+      <div class="logo">
+        <div class="mark">G</div>
+        <div>
+          <b data-i18n="brand">GTech Smart Platform</b>
+          <span data-i18n="dash_title">لوحة التحكم</span>
+        </div>
+      </div>
+      <button class="lang-btn" id="langToggle" onclick="setLang(getLang()==='ar'?'en':'ar')">EN</button>
+    </header>
+
+    <!-- شاشة تحميل قصيرة لحين التأكد من الجلسة -->
+    <div id="loader" class="center-load" data-i18n="loading">جارٍ التحميل...</div>
+
+    <main id="dash" class="dash hidden">
+      <section class="dash-hero">
+        <div>
+          <h2><span data-i18n="welcome">مرحباً</span> <span id="userName"></span></h2>
+          <div class="factory"><span data-i18n="factory_label">المصنع</span>: <span id="factoryName"></span></div>
+        </div>
+        <button class="logout-btn" data-i18n="logout" onclick="logout()">تسجيل الخروج</button>
+      </section>
+
+      <section class="grid">
+        <div class="tile">
+          <span class="badge" data-i18n="soon">قريباً</span>
+          <div class="ic">⚙️</div>
+          <h3 data-i18n="card_lines">خطوط الإنتاج</h3>
+          <p data-i18n="card_lines_desc">أضف خطوط الإنتاج الخاصة بمصنعك</p>
+        </div>
+        <div class="tile">
+          <span class="badge" data-i18n="soon">قريباً</span>
+          <div class="ic">⏱️</div>
+          <h3 data-i18n="card_downtime">تسجيل التوقفات</h3>
+          <p data-i18n="card_downtime_desc">سجّل توقفات كل وردية من الورديات الثلاث</p>
+        </div>
+        <div class="tile">
+          <span class="badge" data-i18n="soon">قريباً</span>
+          <div class="ic">💡</div>
+          <h3 data-i18n="card_advice">النصائح اليومية</h3>
+          <p data-i18n="card_advice_desc">نصائح ذكية يومية لتقليل التوقفات</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="assets/config.js"></script>
+  <script src="assets/app.js"></script>
+  <script>
+    (async function () {
+      const user = await requireAuth();   // يعيدك لصفحة الدخول لو غير مسجّل
+      if (!user) return;
+
+      // جلب بيانات المصنع من جدول profiles
+      const { data: profile } = await sb
+        .from("profiles")
+        .select("full_name, factory_name")
+        .eq("id", user.id)
+        .single();
+
+      document.getElementById("userName").textContent =
+        (profile && profile.full_name) ? profile.full_name : "";
+      document.getElementById("factoryName").textContent =
+        (profile && profile.factory_name) ? profile.factory_name : "—";
+
+      document.getElementById("loader").classList.add("hidden");
+      document.getElementById("dash").classList.remove("hidden");
+    })();
+  </script>
+</body>
+</html>
