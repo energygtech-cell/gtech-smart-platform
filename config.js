@@ -1,11 +1,2 @@
-/* =====================================================================
-   ⚠️  هام: غيّر القيمتين التاليتين بقيمك أنت من Supabase
-   ---------------------------------------------------------------------
-   1) SUPABASE_URL      = الـ Project URL  (https://ignfmthxmdmmyrzjlqdw.supabase.co)
-   2) SUPABASE_KEY      = الـ Publishable key (sb_publishable_Y8Cgorfd6TyhluBLia712Q_jNiaIIun)
-
-   ⚠️  لا تضع هنا أبداً مفتاح الـ secret. فقط الـ publishable.
-   ===================================================================== */
-
-const SUPABASE_URL =https://ignfmthxmdmmyrzjlqdw.supabase.co/rest/v1/
-const SUPABASE_KEY =sb_publishable_Y8Cgorfd6TyhluBLia712Q_jNiaIIun
+const SUPABASE_URL = 'https://ignfmthxmdmmyrzjlqdw.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlnbmZtdGh4bWRtbXlyempscWR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAxNjM2MzIsImV4cCI6MjA5NTczOTYzMn0.pSZIsW9h68TZ_-qwHnsrKAXgPIILzThu_TzIBXdMdRY';
