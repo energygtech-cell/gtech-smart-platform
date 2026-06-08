@@ -219,91 +219,95 @@ var supa = supabase.createClient(SUPA_URL, SUPA_KEY);
    SUPABASE AUTH & DATA FUNCTIONS
 ============================================================ */
 
-/* --- REGISTER --- */
+/* --- REGISTER (no email confirmation) --- */
 async function supaRegister(userData, machines, shifts) {
   try {
-    // 1. Create auth user
-    var authRes = await supa.auth.signUp({
-      email: userData.email,
-      password: userData.pw,
-      options: { data: { name: userData.name } }
-    });
-    if(authRes.error) return { error: authRes.error.message };
-    var uid = authRes.data.user.id;
+    /* Check if email already exists */
+    var { data: existing } = await supa.from('users').select('id').eq('email', userData.email).single();
+    if(existing) return { error: 'البريد الإلكتروني مسجّل مسبقاً' };
 
-    // 2. Insert user profile
+    /* Generate a simple user ID */
+    var userId = crypto.randomUUID ? crypto.randomUUID() : uid()+uid();
+
+    /* Save user directly to users table */
     var { error: uErr } = await supa.from('users').insert({
-      id: uid, name: userData.name, email: userData.email,
-      phone: userData.phone, company: userData.company,
-      industry: userData.industry, trial_days: 30, plan: 'trial', role: 'admin'
+      id: userId,
+      name: userData.name,
+      email: userData.email,
+      phone: userData.phone,
+      company: userData.company,
+      industry: userData.industry,
+      password_hash: btoa(userData.pw),
+      trial_days: 30,
+      plan: 'trial',
+      role: 'admin'
     });
     if(uErr) return { error: uErr.message };
 
-    // 3. Insert machines
-    var machRows = machines.map(function(m) {
-      return { user_id: uid, name: m.name, type: m.type };
-    });
-    if(machRows.length) {
-      var { error: mErr } = await supa.from('machines').insert(machRows);
+    /* Save machines */
+    if(machines.length) {
+      var mRows = machines.map(function(m) {
+        return { id: m.id, user_id: userId, name: m.name, type: m.type };
+      });
+      var { error: mErr } = await supa.from('machines').insert(mRows);
       if(mErr) return { error: mErr.message };
     }
 
-    // 4. Insert shifts
-    var shiftRows = shifts.map(function(s) {
-      return { user_id: uid, name: s.name, leader: s.leader,
-               time_from: s.timeFrom, time_to: s.timeTo, color: s.color };
-    });
-    if(shiftRows.length) {
-      var { error: sErr } = await supa.from('shifts').insert(shiftRows);
+    /* Save shifts */
+    if(shifts.length) {
+      var sRows = shifts.map(function(s) {
+        return { id: s.id, user_id: userId, name: s.name, leader: s.leader,
+                 time_from: s.timeFrom, time_to: s.timeTo, color: s.color };
+      });
+      var { error: sErr } = await supa.from('shifts').insert(sRows);
       if(sErr) return { error: sErr.message };
     }
 
-    return { uid: uid };
+    return { uid: userId };
   } catch(e) { return { error: e.message }; }
 }
 
-/* --- LOGIN --- */
+/* --- LOGIN (direct DB check, no Auth) --- */
 async function supaLogin(email, pw) {
   try {
-    var uid, authErr;
-    if(pw === '__session__') {
-      /* Use existing session */
-      var { data: { session } } = await supa.auth.getSession();
-      if(!session) return { error: 'no session' };
-      uid = session.user.id;
-    } else {
-      var authRes = await supa.auth.signInWithPassword({ email: email, password: pw });
-      if(authRes.error) return { error: authRes.error.message };
-      uid = authRes.data.user.id;
+    /* Fetch user by email */
+    var { data: user, error: uErr } = await supa.from('users')
+      .select('*').eq('email', email).single();
+    if(uErr || !user) return { error: 'البريد الإلكتروني غير موجود' };
+
+    /* Check password */
+    if(pw !== '__session__') {
+      var storedHash = user.password_hash;
+      if(storedHash !== btoa(pw)) return { error: 'كلمة المرور غير صحيحة' };
     }
 
-    // Fetch user profile
-    var { data: user, error: uErr } = await supa.from('users').select('*').eq('id', uid).single();
-    if(uErr) return { error: uErr.message };
+    /* Fetch machines */
+    var { data: machines } = await supa.from('machines')
+      .select('*').eq('user_id', user.id).order('created_at');
 
-    // Fetch machines
-    var { data: machines } = await supa.from('machines').select('*').eq('user_id', uid).order('created_at');
-
-    // Fetch shifts
-    var { data: shifts } = await supa.from('shifts').select('*').eq('user_id', uid).order('created_at');
+    /* Fetch shifts */
+    var { data: shifts } = await supa.from('shifts')
+      .select('*').eq('user_id', user.id).order('created_at');
 
     return { user, machines: machines||[], shifts: shifts||[] };
   } catch(e) { return { error: e.message }; }
 }
 
-/* --- LOAD USER DATA (faults + energy) --- */
+/* --- LOAD USER DATA --- */
 async function supaLoadData(uid) {
-  var { data: faultsData } = await supa.from('faults').select('*').eq('user_id', uid).order('created_at', { ascending: false });
-  var { data: energyData } = await supa.from('energy_readings').select('*').eq('user_id', uid).order('created_at', { ascending: false });
+  var { data: faultsData } = await supa.from('faults')
+    .select('*').eq('user_id', uid).order('created_at', { ascending: false });
+  var { data: energyData } = await supa.from('energy_readings')
+    .select('*').eq('user_id', uid).order('created_at', { ascending: false });
   return { faults: faultsData||[], energy: energyData||[] };
 }
 
 /* --- SAVE FAULT --- */
 async function supaAddFault(uid, fault) {
   var row = {
-    user_id: uid, machine_id: fault.machineId||null,
+    user_id: uid, machine_id: null,
     machine_name: fault.machineName, type_id: fault.typeId,
-    type_ar: fault.typeAr, severity: fault.severity,
+    type_ar: fault.typeAr, severity: 'medium',
     date_time: fault.dateTime, downtime_from: fault.downtimeFrom,
     downtime_to: fault.downtimeTo, status: fault.status, notes: fault.notes
   };
@@ -312,9 +316,10 @@ async function supaAddFault(uid, fault) {
   return { data };
 }
 
-/* --- UPDATE FAULT STATUS --- */
+/* --- CLOSE FAULT --- */
 async function supaCloseFault(faultId, downtimeTo) {
-  var { error } = await supa.from('faults').update({ status: 'resolved', downtime_to: downtimeTo }).eq('id', faultId);
+  var { error } = await supa.from('faults')
+    .update({ status: 'resolved', downtime_to: downtimeTo }).eq('id', faultId);
   return error ? { error: error.message } : { ok: true };
 }
 
@@ -322,7 +327,7 @@ async function supaCloseFault(faultId, downtimeTo) {
 async function supaAddEnergy(uid, reading) {
   var row = {
     user_id: uid, shift_id: reading.shiftId||null,
-    shift_name: reading.shiftName, machine_id: reading.machineId||null,
+    shift_name: reading.shiftName, machine_id: null,
     machine_name: reading.machineName, date: reading.date,
     time: reading.time, meter_reading: reading.meterReading,
     prev_reading: reading.prevReading||0, kwh: reading.kwh,
@@ -335,29 +340,27 @@ async function supaAddEnergy(uid, reading) {
 
 /* --- LOGOUT --- */
 async function supaLogout() {
-  await supa.auth.signOut();
+  /* No Supabase Auth session to clear */
+  localStorage.removeItem('gtech_user_email');
+  localStorage.removeItem('gtech_user_pw');
 }
 
 /* --- CHECK SESSION ON LOAD --- */
 async function checkSession() {
-  var { data: { session } } = await supa.auth.getSession();
-  if(session) {
-    var uid = session.user.id;
-    var loginRes = await supaLogin(session.user.email, '');
-    if(!loginRes.error && loginRes.user) {
-      var dataRes = await supaLoadData(uid);
-      applyUserSession(loginRes, dataRes);
-      return true;
-    }
+  var savedEmail = localStorage.getItem('gtech_user_email');
+  var savedPw = localStorage.getItem('gtech_user_pw');
+  if(savedEmail && savedPw) {
+    var res = await supaLogin(savedEmail, savedPw);
+    if(!res.error && res.user) return res;
   }
-  return false;
+  return null;
 }
 
 function applyUserSession(loginRes, dataRes) {
   var u = loginRes.user;
   currentUser = {
     id: u.id, name: u.name, email: u.email,
-    company: u.company, phone: u.phone||'',
+    company: u.company||'', phone: u.phone||'',
     role: u.role, trialDays: u.trial_days, plan: u.plan,
     machines: (loginRes.machines||[]).map(function(m) {
       return { id: m.id, name: m.name, type: m.type };
@@ -376,9 +379,9 @@ function applyUserSession(loginRes, dataRes) {
   energyReadings = (dataRes.energy||[]).map(function(e) {
     return { id: e.id, shiftId: e.shift_id, shiftName: e.shift_name,
              machineId: e.machine_id, machineName: e.machine_name,
-             date: e.date, time: e.time, meterReading: e.meter_reading,
-             prevReading: e.prev_reading, kwh: e.kwh,
-             production: e.production, notes: e.notes };
+             date: e.date, time: e.time, meterReading: parseFloat(e.meter_reading)||0,
+             prevReading: parseFloat(e.prev_reading)||0, kwh: parseFloat(e.kwh)||0,
+             production: e.production||0, notes: e.notes };
   });
 }
 </script>
@@ -458,24 +461,24 @@ var faultTypes=[
   '<div style="font-size:12px;color:#64748b">جاري التحقق من الجلسة...</div>'+
   '</div>';
   setTimeout(function(){
-    supa.auth.getSession().then(function(sessionRes){
-      var session=sessionRes.data&&sessionRes.data.session;
-      if(session){
-        supaLogin(session.user.email,'__session__').then(function(res){
-          if(!res.error && res.user){
+    var savedEmail=null,savedPw=null;
+      try{savedEmail=localStorage.getItem('gtech_user_email');savedPw=localStorage.getItem('gtech_user_pw');}catch(ex){}
+      if(savedEmail&&savedPw){
+        supaLogin(savedEmail,savedPw).then(function(res){
+          if(!res.error&&res.user){
             supaLoadData(res.user.id).then(function(dataRes){
               applyUserSession(res,dataRes);
               screen='app';currentPage='dashboard';
               render();
             });
           } else {
+            try{localStorage.removeItem('gtech_user_email');localStorage.removeItem('gtech_user_pw');}catch(ex){}
             setupDemoUser();render();
           }
-        });
+        }).catch(function(){setupDemoUser();render();});
       } else {
         setupDemoUser();render();
       }
-    }).catch(function(){setupDemoUser();render();});
   },300);
 })();
 
@@ -768,10 +771,12 @@ function doLogin(){
   m.innerHTML='';
   supaLogin(e.value, p.value).then(function(res){
     if(res.error){
-      m.innerHTML='<div class="msg-e">'+(lang==='ar'?'بيانات الدخول غير صحيحة':'Invalid email or password')+'</div>';
+      m.innerHTML='<div class="msg-e">'+(lang==='ar'?res.error:'Invalid email or password')+'</div>';
       if(btn){btn.disabled=false;btn.innerHTML='<i class="ti ti-login"></i> '+(lang==='ar'?'دخول':'Sign In');}
       return;
     }
+    /* Save session in localStorage */
+    try{localStorage.setItem('gtech_user_email',e.value);localStorage.setItem('gtech_user_pw',p.value);}catch(ex){}
     supaLoadData(res.user.id).then(function(dataRes){
       applyUserSession(res, dataRes);
       screen='app';currentPage='dashboard';
@@ -841,7 +846,7 @@ function renderSidebar(){
 
 function navigate(p){currentPage=p;destroyCharts();renderSidebar();renderPage();}
 function doLogout(){
-  supaLogout();
+  try{localStorage.removeItem('gtech_user_email');localStorage.removeItem('gtech_user_pw');}catch(ex){}
   screen='auth';authTab='login';authStep=1;
   currentUser=null;faults=[];energyReadings=[];
   render();
