@@ -206,7 +206,182 @@ body{-webkit-user-select:none;-moz-user-select:none;user-select:none}
 <div id="root"></div>
 <div id="toasts"></div>
 <div id="modal"></div>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+/* ============================================================
+   SUPABASE CONFIG
+============================================================ */
+var SUPA_URL = 'https://kdlvzhrynozyebazxzcb.supabase.co';
+var SUPA_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtkbHZ6aHJ5bm96eWViYXp4emNiIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODA4MTg0MjUsImV4cCI6MjA5NjM5NDQyNX0.DiKa_mMzsyi1FbHXQT4CPo8XwPepahv5UqdpC67hgz8';
+var supa = supabase.createClient(SUPA_URL, SUPA_KEY);
+
+/* ============================================================
+   SUPABASE AUTH & DATA FUNCTIONS
+============================================================ */
+
+/* --- REGISTER --- */
+async function supaRegister(userData, machines, shifts) {
+  try {
+    // 1. Create auth user
+    var authRes = await supa.auth.signUp({
+      email: userData.email,
+      password: userData.pw,
+      options: { data: { name: userData.name } }
+    });
+    if(authRes.error) return { error: authRes.error.message };
+    var uid = authRes.data.user.id;
+
+    // 2. Insert user profile
+    var { error: uErr } = await supa.from('users').insert({
+      id: uid, name: userData.name, email: userData.email,
+      phone: userData.phone, company: userData.company,
+      industry: userData.industry, trial_days: 30, plan: 'trial', role: 'admin'
+    });
+    if(uErr) return { error: uErr.message };
+
+    // 3. Insert machines
+    var machRows = machines.map(function(m) {
+      return { user_id: uid, name: m.name, type: m.type };
+    });
+    if(machRows.length) {
+      var { error: mErr } = await supa.from('machines').insert(machRows);
+      if(mErr) return { error: mErr.message };
+    }
+
+    // 4. Insert shifts
+    var shiftRows = shifts.map(function(s) {
+      return { user_id: uid, name: s.name, leader: s.leader,
+               time_from: s.timeFrom, time_to: s.timeTo, color: s.color };
+    });
+    if(shiftRows.length) {
+      var { error: sErr } = await supa.from('shifts').insert(shiftRows);
+      if(sErr) return { error: sErr.message };
+    }
+
+    return { uid: uid };
+  } catch(e) { return { error: e.message }; }
+}
+
+/* --- LOGIN --- */
+async function supaLogin(email, pw) {
+  try {
+    var uid, authErr;
+    if(pw === '__session__') {
+      /* Use existing session */
+      var { data: { session } } = await supa.auth.getSession();
+      if(!session) return { error: 'no session' };
+      uid = session.user.id;
+    } else {
+      var authRes = await supa.auth.signInWithPassword({ email: email, password: pw });
+      if(authRes.error) return { error: authRes.error.message };
+      uid = authRes.data.user.id;
+    }
+
+    // Fetch user profile
+    var { data: user, error: uErr } = await supa.from('users').select('*').eq('id', uid).single();
+    if(uErr) return { error: uErr.message };
+
+    // Fetch machines
+    var { data: machines } = await supa.from('machines').select('*').eq('user_id', uid).order('created_at');
+
+    // Fetch shifts
+    var { data: shifts } = await supa.from('shifts').select('*').eq('user_id', uid).order('created_at');
+
+    return { user, machines: machines||[], shifts: shifts||[] };
+  } catch(e) { return { error: e.message }; }
+}
+
+/* --- LOAD USER DATA (faults + energy) --- */
+async function supaLoadData(uid) {
+  var { data: faultsData } = await supa.from('faults').select('*').eq('user_id', uid).order('created_at', { ascending: false });
+  var { data: energyData } = await supa.from('energy_readings').select('*').eq('user_id', uid).order('created_at', { ascending: false });
+  return { faults: faultsData||[], energy: energyData||[] };
+}
+
+/* --- SAVE FAULT --- */
+async function supaAddFault(uid, fault) {
+  var row = {
+    user_id: uid, machine_id: fault.machineId||null,
+    machine_name: fault.machineName, type_id: fault.typeId,
+    type_ar: fault.typeAr, severity: fault.severity,
+    date_time: fault.dateTime, downtime_from: fault.downtimeFrom,
+    downtime_to: fault.downtimeTo, status: fault.status, notes: fault.notes
+  };
+  var { data, error } = await supa.from('faults').insert(row).select().single();
+  if(error) return { error: error.message };
+  return { data };
+}
+
+/* --- UPDATE FAULT STATUS --- */
+async function supaCloseFault(faultId, downtimeTo) {
+  var { error } = await supa.from('faults').update({ status: 'resolved', downtime_to: downtimeTo }).eq('id', faultId);
+  return error ? { error: error.message } : { ok: true };
+}
+
+/* --- SAVE ENERGY READING --- */
+async function supaAddEnergy(uid, reading) {
+  var row = {
+    user_id: uid, shift_id: reading.shiftId||null,
+    shift_name: reading.shiftName, machine_id: reading.machineId||null,
+    machine_name: reading.machineName, date: reading.date,
+    time: reading.time, meter_reading: reading.meterReading,
+    prev_reading: reading.prevReading||0, kwh: reading.kwh,
+    production: reading.production, notes: reading.notes||''
+  };
+  var { data, error } = await supa.from('energy_readings').insert(row).select().single();
+  if(error) return { error: error.message };
+  return { data };
+}
+
+/* --- LOGOUT --- */
+async function supaLogout() {
+  await supa.auth.signOut();
+}
+
+/* --- CHECK SESSION ON LOAD --- */
+async function checkSession() {
+  var { data: { session } } = await supa.auth.getSession();
+  if(session) {
+    var uid = session.user.id;
+    var loginRes = await supaLogin(session.user.email, '');
+    if(!loginRes.error && loginRes.user) {
+      var dataRes = await supaLoadData(uid);
+      applyUserSession(loginRes, dataRes);
+      return true;
+    }
+  }
+  return false;
+}
+
+function applyUserSession(loginRes, dataRes) {
+  var u = loginRes.user;
+  currentUser = {
+    id: u.id, name: u.name, email: u.email,
+    company: u.company, phone: u.phone||'',
+    role: u.role, trialDays: u.trial_days, plan: u.plan,
+    machines: (loginRes.machines||[]).map(function(m) {
+      return { id: m.id, name: m.name, type: m.type };
+    }),
+    shifts: (loginRes.shifts||[]).map(function(s) {
+      return { id: s.id, name: s.name, leader: s.leader,
+               timeFrom: s.time_from, timeTo: s.time_to, color: s.color };
+    })
+  };
+  faults = (dataRes.faults||[]).map(function(f) {
+    return { id: f.id, machineId: f.machine_id, machineName: f.machine_name,
+             typeId: f.type_id, typeAr: f.type_ar, severity: f.severity,
+             dateTime: f.date_time, downtimeFrom: f.downtime_from,
+             downtimeTo: f.downtime_to, status: f.status, notes: f.notes };
+  });
+  energyReadings = (dataRes.energy||[]).map(function(e) {
+    return { id: e.id, shiftId: e.shift_id, shiftName: e.shift_name,
+             machineId: e.machine_id, machineName: e.machine_name,
+             date: e.date, time: e.time, meterReading: e.meter_reading,
+             prevReading: e.prev_reading, kwh: e.kwh,
+             production: e.production, notes: e.notes };
+  });
+}
+</script>
 <script>
 /* ============================================================
    HELPERS
@@ -281,9 +456,33 @@ var faultTypes=[
 (function(){
   var h=window.location.hash;
   if(h==='#/gtech-admin'){renderAdminLoginPage();return;}
-  // demo user for testing
-  setupDemoUser();
-  render();
+  /* Show loading then check Supabase session */
+  document.getElementById('root').innerHTML=
+  '<div style="min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--bg);flex-direction:column;gap:12px">'+
+  '<div style="width:54px;height:54px;background:linear-gradient(135deg,#0891b2,#8b5cf6);border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:26px">⚙</div>'+
+  '<div style="font-size:14px;font-weight:700;color:#e2e8f0">G-Tech</div>'+
+  '<div style="font-size:12px;color:#64748b">جاري التحقق من الجلسة...</div>'+
+  '</div>';
+  setTimeout(function(){
+    supa.auth.getSession().then(function(sessionRes){
+      var session=sessionRes.data&&sessionRes.data.session;
+      if(session){
+        supaLogin(session.user.email,'__session__').then(function(res){
+          if(!res.error && res.user){
+            supaLoadData(res.user.id).then(function(dataRes){
+              applyUserSession(res,dataRes);
+              screen='app';currentPage='dashboard';
+              render();
+            });
+          } else {
+            setupDemoUser();render();
+          }
+        });
+      } else {
+        setupDemoUser();render();
+      }
+    }).catch(function(){setupDemoUser();render();});
+  },300);
 })();
 
 function setupDemoUser(){
@@ -543,25 +742,48 @@ function finishReg(){
   if(!regData.shifts.length||regData.shifts.some(function(x){return !x.name.trim();})){
     m.innerHTML='<div class="msg-e">'+(lang==='ar'?'أضف وردية واحدة على الأقل':'Add at least one shift with a name')+'</div>';return;
   }
-  currentUser={
-    name:regData.name,email:regData.email,company:regData.company,
-    phone:regData.phone,role:'admin',trialDays:30,
-    machines:regData.machines.map(function(m){return{id:m.id||uid(),name:m.name,type:m.type};}),
-    shifts:regData.shifts.map(function(s,i){return{id:s.id||uid(),name:s.name,leader:s.leader,timeFrom:s.timeFrom,timeTo:s.timeTo,color:s.color||shiftColors[i%5]};})
-  };
-  faults=[];energyReadings=[];
-  authStep=1;
-  regData={name:'',email:'',phone:'',company:'',industry:'تصنيع',pw:'',machines:[],shifts:[]};
-  screen='app';currentPage='dashboard';
-  render();showToast('مرحباً '+currentUser.name+'! حسابك جاهز 🎉','green');
+  var btn=document.querySelector('#wizardStep .btnp');
+  if(btn){btn.disabled=true;btn.innerHTML='<i class="ti ti-loader"></i> '+(lang==='ar'?'جاري الإنشاء...':'Creating...');}
+  m.innerHTML='';
+  var mList=regData.machines.map(function(mx){return{id:uid(),name:mx.name,type:mx.type};});
+  var sList=regData.shifts.map(function(s,i){return{id:uid(),name:s.name,leader:s.leader,timeFrom:s.timeFrom,timeTo:s.timeTo,color:s.color||shiftColors[i%5]};});
+  supaRegister(regData, mList, sList).then(function(res){
+    if(res.error){
+      m.innerHTML='<div class="msg-e">'+res.error+'</div>';
+      if(btn){btn.disabled=false;btn.innerHTML='<i class="ti ti-check"></i> '+(lang==='ar'?'إنشاء الحساب':'Create Account');}
+      return;
+    }
+    currentUser={
+      id:res.uid,name:regData.name,email:regData.email,company:regData.company,
+      phone:regData.phone,role:'admin',trialDays:30,plan:'trial',
+      machines:mList, shifts:sList
+    };
+    faults=[];energyReadings=[];
+    authStep=1;
+    regData={name:'',email:'',phone:'',company:'',industry:'تصنيع',pw:'',machines:[],shifts:[]};
+    screen='app';currentPage='dashboard';
+    render();showToast((lang==='ar'?'مرحباً ':'Welcome ')+currentUser.name+' 🎉','green');
+  });
 }
 
 function doLogin(){
   var e=document.getElementById('lE'),p=document.getElementById('lP'),m=document.getElementById('authMsg');
   if(!e.value||!p.value){m.innerHTML='<div class="msg-e">'+(lang==='ar'?'يرجى ملء جميع الحقول':'Fill all fields')+'</div>';return;}
-  if(p.value.length<3){m.innerHTML='<div class="msg-e">'+(lang==='ar'?'بيانات غير صحيحة':'Invalid credentials')+'</div>';return;}
-  screen='app';currentPage='dashboard';
-  render();showToast((lang==='ar'?'أهلاً بك ':'Welcome ')+currentUser.name,'green');
+  var btn=document.querySelector('.auth-card .btnp');
+  if(btn){btn.disabled=true;btn.innerHTML='<i class="ti ti-loader"></i> '+(lang==='ar'?'جاري الدخول...':'Signing in...');}
+  m.innerHTML='';
+  supaLogin(e.value, p.value).then(function(res){
+    if(res.error){
+      m.innerHTML='<div class="msg-e">'+(lang==='ar'?'بيانات الدخول غير صحيحة':'Invalid email or password')+'</div>';
+      if(btn){btn.disabled=false;btn.innerHTML='<i class="ti ti-login"></i> '+(lang==='ar'?'دخول':'Sign In');}
+      return;
+    }
+    supaLoadData(res.user.id).then(function(dataRes){
+      applyUserSession(res, dataRes);
+      screen='app';currentPage='dashboard';
+      render();showToast((lang==='ar'?'أهلاً بك ':'Welcome ')+currentUser.name,'green');
+    });
+  });
 }
 
 function switchTab(t){authTab=t;authStep=1;renderAuth();}
@@ -624,7 +846,12 @@ function renderSidebar(){
 }
 
 function navigate(p){currentPage=p;destroyCharts();renderSidebar();renderPage();}
-function doLogout(){screen='auth';authTab='login';authStep=1;render();}
+function doLogout(){
+  supaLogout();
+  screen='auth';authTab='login';authStep=1;
+  currentUser=null;faults=[];energyReadings=[];
+  render();
+}
 function openAdminPage(){window.location.hash='#/gtech-admin';renderAdminLoginPage();}
 function setLang(l){lang=l;renderApp();}
 
@@ -850,10 +1077,27 @@ function submitFault(){
     downtimeTo:dtEl?dtEl.value.replace('T',' '):'',
     status:stEl?stEl.value:'open',notes:noEl?noEl.value:''
   };
-  faults.push(newF);
-  selSev='';
-  showToast('تم تسجيل العطل في سجل الأعطال ✓','green');
-  navigate('faultLog');
+  if(currentUser && currentUser.id){
+    var sbtn=document.querySelector('.card > .btnp');
+    if(sbtn){sbtn.disabled=true;sbtn.innerHTML='<i class="ti ti-loader"></i> جاري الحفظ...';}
+    supaAddFault(currentUser.id, newF).then(function(res){
+      if(res.error){
+        showToast('خطأ في الحفظ: '+res.error,'red');
+        if(sbtn){sbtn.disabled=false;sbtn.innerHTML='<i class="ti ti-send"></i> حفظ وإرسال للسجل';}
+        return;
+      }
+      if(res.data) newF.id=res.data.id;
+      faults.push(newF);
+      selSev='';
+      showToast('تم حفظ العطل في قاعدة البيانات ✓','green');
+      navigate('faultLog');
+    });
+  } else {
+    faults.push(newF);
+    selSev='';
+    showToast('تم تسجيل العطل ✓','green');
+    navigate('faultLog');
+  }
 }
 
 /* ============================================================
@@ -961,9 +1205,19 @@ function clearFilter(){
 
 function closeFault(id){
   var f=faults.find(function(x){return x.id===id;});
-  if(f){f.status='resolved';if(!f.downtimeTo)f.downtimeTo=fmtDT();}
+  if(!f) return;
+  var endTime=fmtDT();
+  f.status='resolved';
+  if(!f.downtimeTo) f.downtimeTo=endTime;
+  if(currentUser && currentUser.id){
+    supaCloseFault(id, f.downtimeTo).then(function(res){
+      if(res.error) showToast('خطأ في التحديث: '+res.error,'red');
+      else showToast('تم إغلاق العطل وحفظه في قاعدة البيانات ✓','green');
+    });
+  } else {
+    showToast('تم إغلاق العطل وتسجيل وقت الانتهاء','green');
+  }
   renderSidebar();applyFilter();
-  showToast('تم إغلاق العطل وتسجيل وقت الانتهاء','green');
 }
 
 /* ============================================================
@@ -1214,17 +1468,35 @@ function submitEnergy(){
   var shift=currentUser.shifts.find(function(s){return s.id===shiftEl.value;});
   var machine=currentUser.machines.find(function(m){return m.id===machEl.value;});
   var prod=parseInt(prodEl?prodEl.value:0)||0;
-  energyReadings.push({
+  var newReading={
     id:uid(),shiftId:shiftEl.value,shiftName:shift?shift.name:'',
     machineId:machEl.value,machineName:machine?machine.name:'',
     date:dateEl.value,time:timeEl?timeEl.value:fmtTime(),
     meterReading:meter,prevReading:_prevRead||0,
     kwh:parseFloat(kwh.toFixed(2)),production:prod,
     notes:notesEl?notesEl.value:''
-  });
-  closeModal();
-  showToast('تم تسجيل قراءة العداد · استهلاك: '+kwh.toFixed(2)+' kWh','green');
-  navigate('energy');
+  };
+  if(currentUser && currentUser.id){
+    var saveBtn=document.querySelector('.modal-box .btnp');
+    if(saveBtn){saveBtn.disabled=true;saveBtn.innerHTML='<i class="ti ti-loader"></i> جاري الحفظ...';}
+    supaAddEnergy(currentUser.id, newReading).then(function(res){
+      if(res.error){
+        showToast('خطأ في الحفظ: '+res.error,'red');
+        if(saveBtn){saveBtn.disabled=false;saveBtn.innerHTML='<i class="ti ti-check"></i> حفظ قراءة العداد';}
+        return;
+      }
+      if(res.data) newReading.id=res.data.id;
+      energyReadings.push(newReading);
+      closeModal();
+      showToast('تم حفظ القراءة في قاعدة البيانات · '+kwh.toFixed(2)+' kWh','green');
+      navigate('energy');
+    });
+  } else {
+    energyReadings.push(newReading);
+    closeModal();
+    showToast('تم تسجيل قراءة العداد · استهلاك: '+kwh.toFixed(2)+' kWh','green');
+    navigate('energy');
+  }
 }
 
 /* ============================================================
