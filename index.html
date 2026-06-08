@@ -437,16 +437,10 @@ var clients=[
 
 /* fault type catalogue */
 var faultTypes=[
-  {id:'overheating',ar:'ارتفاع درجة الحرارة',en:'Overheating'},
-  {id:'pressure',ar:'انخفاض الضغط',en:'Low Pressure'},
-  {id:'vibration',ar:'اهتزاز غير طبيعي',en:'Abnormal Vibration'},
-  {id:'electrical',ar:'عطل كهربائي',en:'Electrical Fault'},
-  {id:'sensor',ar:'خطأ في الحساس',en:'Sensor Error'},
-  {id:'leak',ar:'تسرب زيت / سائل',en:'Oil/Fluid Leak'},
-  {id:'noise',ar:'صوت غير طبيعي',en:'Abnormal Noise'},
-  {id:'shutdown',ar:'إيقاف مفاجئ',en:'Sudden Shutdown'},
-  {id:'speed',ar:'انحراف في السرعة',en:'Speed Deviation'},
-  {id:'quality',ar:'خلل في جودة الإنتاج',en:'Quality Defect'},
+  {id:'electrical',ar:'عطل كهربائي',en:'Electrical'},
+  {id:'mechanical',ar:'عطل ميكانيكي',en:'Mechanical'},
+  {id:'operational',ar:'عطل تشغيل',en:'Operational'},
+  {id:'raw_material',ar:'مشكلة مواد خام',en:'Raw Material'},
   {id:'other',ar:'أخرى',en:'Other'},
 ];
 
@@ -981,72 +975,43 @@ function renderAddFault(){
   var ct=document.getElementById('ct');
   var u=currentUser;
   var nowDT=fmtDT();
-
   var machineOpts=u.machines.map(function(m){
     return '<option value="'+m.id+'">'+m.name+' ('+m.type+')</option>';
   }).join('');
-
   var typeOpts=faultTypes.map(function(ft){
     return '<option value="'+ft.id+'">'+ft.ar+'</option>';
   }).join('');
-
   ct.innerHTML=
   '<div class="ph"><div><div class="ph-title">تسجيل عطل جديد</div>'+
-  '<div class="ph-sub">التاريخ يُسجَّل تلقائياً — زمن التوقف من/إلى</div></div></div>'+
+  '<div class="ph-sub">التاريخ تلقائي · يُحفظ في سجل الأعطال والتوقفات</div></div></div>'+
   '<div class="card">'+
-
-  '<div class="frow" style="margin-bottom:4px">'+
-  /* machine */
-  '<div class="fg"><label class="fl"><i class="ti ti-cpu" style="font-size:12px;margin-left:3px"></i>الماكينة / خط الإنتاج *</label>'+
-  '<select class="ftype-sel" id="fMach"><option value="">-- اختر --</option>'+machineOpts+'</select></div>'+
-  /* type dropdown */
-  '<div class="fg"><label class="fl"><i class="ti ti-category" style="font-size:12px;margin-left:3px"></i>نوع العطل *</label>'+
+  '<div class="frow" style="margin-bottom:12px">'+
+  '<div class="fg"><label class="fl"><i class="ti ti-cpu" style="font-size:12px;margin-left:3px"></i>الماكينة *</label>'+
+  '<select class="ftype-sel" id="fMach"><option value="">-- اختر الماكينة --</option>'+machineOpts+'</select></div>'+
+  '<div class="fg"><label class="fl"><i class="ti ti-list" style="font-size:12px;margin-left:3px"></i>نوع العطل *</label>'+
   '<select class="ftype-sel" id="fType"><option value="">-- اختر نوع العطل --</option>'+typeOpts+'</select></div>'+
   '</div>'+
-
-  /* severity */
-  '<div style="font-size:11px;font-weight:700;color:var(--txt2);margin-bottom:5px">درجة الخطورة *</div>'+
-  '<div class="sev-grid">'+
-  '<button class="sev-btn '+(selSev==='critical'?'s-critical':'')+'" onclick="selS(\'critical\')"><i class="ti ti-alert-octagon"></i><br>حرج</button>'+
-  '<button class="sev-btn '+(selSev==='high'?'s-high':'')+'" onclick="selS(\'high\')"><i class="ti ti-alert-triangle"></i><br>عالٍ</button>'+
-  '<button class="sev-btn '+(selSev==='medium'?'s-medium':'')+'" onclick="selS(\'medium\')"><i class="ti ti-info-circle"></i><br>متوسط</button>'+
-  '<button class="sev-btn '+(selSev==='low'?'s-low':'')+'" onclick="selS(\'low\')"><i class="ti ti-check-circle"></i><br>منخفض</button>'+
-  '</div>'+
-
-  /* auto date display */
-  '<div style="background:rgba(0,200,224,.07);border:1px solid rgba(0,200,224,.2);border-radius:7px;padding:8px 12px;margin-bottom:10px;font-size:11px;direction:rtl;display:flex;align-items:center;gap:6px">'+
+  '<div style="background:rgba(0,200,224,.07);border:1px solid rgba(0,200,224,.2);border-radius:7px;padding:8px 12px;margin-bottom:12px;font-size:11px;direction:rtl;display:flex;align-items:center;gap:6px">'+
   '<i class="ti ti-calendar-check" style="color:var(--acc)"></i>'+
-  'تاريخ ووقت التسجيل: <strong style="color:var(--acc)">'+nowDT+'</strong> (تلقائي)</div>'+
-
-  /* downtime */
+  'تاريخ ووقت التسجيل: <strong style="color:var(--acc)">'+nowDT+'</strong></div>'+
   '<div class="dt-box">'+
   '<div style="font-size:11px;font-weight:700;color:var(--acc);margin-bottom:8px"><i class="ti ti-clock-stop" style="margin-left:4px"></i>زمن التوقف (من → إلى)</div>'+
   '<div class="frow">'+
-  '<div class="fg" style="margin:0"><label class="fl">بداية التوقف *</label>'+
+  '<div class="fg" style="margin:0"><label class="fl">بداية التوقف</label>'+
   '<input class="fi ltr" type="datetime-local" id="dtF" value="'+nowDT.replace(' ','T')+'" oninput="updDT()"></div>'+
-  '<div class="fg" style="margin:0"><label class="fl">نهاية التوقف (اتركه فارغاً إن لم ينته)</label>'+
+  '<div class="fg" style="margin:0"><label class="fl">نهاية التوقف (فارغ إن لم ينته)</label>'+
   '<input class="fi ltr" type="datetime-local" id="dtT" oninput="updDT()"></div>'+
   '</div>'+
   '<div id="dtRes" class="dt-calc"></div>'+
   '</div>'+
-
-  '<div class="fg" style="margin-top:10px"><label class="fl">ملاحظات إضافية</label>'+
+  '<div class="fg" style="margin-top:12px"><label class="fl">ملاحظات</label>'+
   '<textarea class="fi" id="fNotes" rows="2" style="resize:none" placeholder="أي معلومات مفيدة..."></textarea></div>'+
-
-  '<div class="frow" style="margin-bottom:10px;margin-top:4px">'+
-  '<div class="fg" style="margin:0"><label class="fl">الحالة الأولية</label>'+
-  '<select class="ftype-sel" id="fStat">'+
-  '<option value="open">مفتوح</option><option value="inprogress">جارٍ المعالجة</option>'+
-  '</select></div>'+
-  '<div></div></div>'+
-
   '<div id="fMsg"></div>'+
-  '<div style="display:flex;gap:8px">'+
+  '<div style="display:flex;gap:8px;margin-top:10px">'+
   '<button class="btnp" style="flex:2" onclick="submitFault()"><i class="ti ti-send"></i> حفظ وإرسال للسجل</button>'+
-  '<button class="btno" style="flex:1;justify-content:center" onclick="navigate(\'faultLog\')">السجل ←</button>'+
+  '<button class="btno" style="flex:1;justify-content:center" onclick="navigate('faultLog')">السجل ←</button>'+
   '</div></div>';
 }
-
 function selS(v){selSev=v;renderAddFault();}
 
 function updDT(){
@@ -1060,49 +1025,63 @@ function updDT(){
 }
 
 function submitFault(){
-  var mEl=document.getElementById('fMach'),tEl=document.getElementById('fType'),
-      dfEl=document.getElementById('dtF'),dtEl=document.getElementById('dtT'),
-      noEl=document.getElementById('fNotes'),stEl=document.getElementById('fStat');
+  var mEl=document.getElementById('fMach');
+  var tEl=document.getElementById('fType');
+  var dfEl=document.getElementById('dtF');
+  var dtEl=document.getElementById('dtT');
+  var noEl=document.getElementById('fNotes');
   var msg=document.getElementById('fMsg');
-  if(!mEl.value||!tEl.value||!selSev){
-    msg.innerHTML='<div class="msg-e">يرجى اختيار الماكينة، نوع العطل، ودرجة الخطورة</div>';return;
+  if(!mEl||!mEl.value||!tEl||!tEl.value){
+    msg.innerHTML='<div class="msg-e">يرجى اختيار الماكينة ونوع العطل</div>';return;
   }
   var machine=currentUser.machines.find(function(m){return m.id===mEl.value;});
   var type=faultTypes.find(function(t){return t.id===tEl.value;});
+  var dtFrom=dfEl&&dfEl.value?dfEl.value.replace('T',' '):'';
+  var dtTo=dtEl&&dtEl.value?dtEl.value.replace('T',' '):'';
+  var dtCalc=calcDT(dtFrom,dtTo);
   var newF={
     id:uid(),machineId:mEl.value,machineName:machine?machine.name:'',
-    typeId:tEl.value,typeAr:type?type.ar:'',
-    severity:selSev,dateTime:fmtDT(),
-    downtimeFrom:dfEl?dfEl.value.replace('T',' '):'',
-    downtimeTo:dtEl?dtEl.value.replace('T',' '):'',
-    status:stEl?stEl.value:'open',notes:noEl?noEl.value:''
+    typeId:tEl.value,typeAr:type?type.ar:'',severity:'medium',
+    dateTime:fmtDT(),downtimeFrom:dtFrom,downtimeTo:dtTo,
+    status:'open',notes:noEl?noEl.value:''
   };
-  if(currentUser && currentUser.id){
-    var sbtn=document.querySelector('.card > .btnp');
-    if(sbtn){sbtn.disabled=true;sbtn.innerHTML='<i class="ti ti-loader"></i> جاري الحفظ...';}
-    supaAddFault(currentUser.id, newF).then(function(res){
+  var btn=document.querySelector('#ct .btnp');
+  if(btn){btn.disabled=true;btn.innerHTML='<i class="ti ti-loader"></i> جاري الحفظ...';}
+  if(currentUser&&currentUser.id){
+    supa.from('faults').insert({
+      user_id:currentUser.id,machine_id:null,
+      machine_name:newF.machineName,type_id:newF.typeId,type_ar:newF.typeAr,
+      severity:'medium',date_time:newF.dateTime,downtime_from:newF.downtimeFrom,
+      downtime_to:newF.downtimeTo,status:'open',notes:newF.notes
+    }).select().single().then(function(res){
       if(res.error){
-        showToast('خطأ في الحفظ: '+res.error,'red');
-        if(sbtn){sbtn.disabled=false;sbtn.innerHTML='<i class="ti ti-send"></i> حفظ وإرسال للسجل';}
+        msg.innerHTML='<div class="msg-e">خطأ: '+res.error.message+'</div>';
+        if(btn){btn.disabled=false;btn.innerHTML='<i class="ti ti-send"></i> حفظ وإرسال للسجل';}
         return;
       }
       if(res.data) newF.id=res.data.id;
-      faults.push(newF);
-      selSev='';
-      showToast('تم حفظ العطل في قاعدة البيانات ✓','green');
+      faults.unshift(newF);
+      if(dtFrom){
+        supa.from('downtime_logs').insert({
+          line_id:null,production_log_id:null,
+          start_time:new Date(dtFrom).toISOString(),
+          end_time:dtTo?new Date(dtTo).toISOString():null,
+          duration_minutes:dtCalc?dtCalc.minutes:0,
+          reason_category:newF.typeAr,
+          comments:(newF.machineName+(newF.notes?' - '+newF.notes:'')).trim()
+        }).then(function(){});
+      }
+      showToast('تم حفظ العطل ✓ · '+newF.typeAr+' — '+newF.machineName,'green');
       navigate('faultLog');
     });
   } else {
-    faults.push(newF);
-    selSev='';
+    faults.unshift(newF);
     showToast('تم تسجيل العطل ✓','green');
     navigate('faultLog');
   }
 }
 
-/* ============================================================
-   FAULT LOG with FILTERS
-============================================================ */
+
 function renderFaultLog(){
   var ct=document.getElementById('ct');
   var u=currentUser;
