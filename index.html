@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>G-Tech Smart Factory Platform</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<title>G-Tech Smart Factory</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
@@ -25,181 +24,181 @@ body{background:var(--bg);color:var(--txt);font-family:'Cairo',sans-serif;font-s
 .hidden{display:none!important}
 input,select,textarea,button{font-family:'Cairo',sans-serif}
 button{cursor:pointer}
-::-webkit-scrollbar{width:4px}
-::-webkit-scrollbar-thumb{background:var(--bdr2);border-radius:2px}
+::-webkit-scrollbar{width:4px}::-webkit-scrollbar-thumb{background:var(--bdr2);border-radius:2px}
 
-/* AUTH */
-.auth-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--bg);padding:20px}
-.auth-card{background:var(--bg2);border:1px solid var(--bdr);border-radius:16px;width:100%;max-width:440px;padding:32px}
-.auth-logo{text-align:center;margin-bottom:24px}
-.auth-logo-icon{width:60px;height:60px;background:linear-gradient(135deg,var(--acc2),var(--purple));border-radius:14px;display:inline-flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:10px}
-.auth-logo h1{font-size:22px;font-weight:800;color:var(--txt)}
-.auth-logo p{font-size:12px;color:var(--txt2);margin-top:3px}
-.auth-tabs{display:flex;background:var(--bg3);border-radius:10px;padding:3px;margin-bottom:22px}
-.auth-tab{flex:1;padding:9px;text-align:center;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;color:var(--txt2);border:none;background:transparent;transition:all .2s}
+/* ===== AUTH ===== */
+.auth-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--bg);padding:16px}
+.auth-card{background:var(--bg2);border:1px solid var(--bdr);border-radius:16px;width:100%;max-width:480px;padding:28px}
+.auth-logo{text-align:center;margin-bottom:20px}
+.auth-logo-icon{width:56px;height:56px;background:linear-gradient(135deg,var(--acc2),var(--purple));border-radius:14px;display:inline-flex;align-items:center;justify-content:center;font-size:26px;margin-bottom:8px}
+.auth-logo h1{font-size:20px;font-weight:800}
+.auth-logo p{font-size:11px;color:var(--txt2);margin-top:2px}
+.auth-tabs{display:flex;background:var(--bg3);border-radius:10px;padding:3px;margin-bottom:20px}
+.auth-tab{flex:1;padding:8px;text-align:center;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;color:var(--txt2);border:none;background:transparent;transition:all .2s}
 .auth-tab.active{background:var(--acc2);color:#fff}
-.form-group{margin-bottom:13px}
-.form-label{display:block;font-size:12px;color:var(--txt2);margin-bottom:5px;font-weight:500}
-.form-input{width:100%;background:var(--bg3);border:1px solid var(--bdr);border-radius:8px;padding:9px 12px;color:var(--txt);font-size:13px;outline:none;transition:border .2s}
-.form-input:focus{border-color:var(--acc)}
-.form-input.ltr{direction:ltr;text-align:left}
-.form-select{width:100%;background:var(--bg3);border:1px solid var(--bdr);border-radius:8px;padding:9px 12px;color:var(--txt);font-size:13px;outline:none;transition:border .2s}
-.form-select:focus{border-color:var(--acc)}
-.btn-primary{width:100%;background:var(--acc2);border:none;border-radius:8px;padding:11px;color:#fff;font-size:14px;font-weight:700;cursor:pointer;transition:opacity .2s;display:flex;align-items:center;justify-content:center;gap:8px}
-.btn-primary:hover{opacity:.9}
-.btn-primary:disabled{opacity:.5;cursor:not-allowed}
-.btn-outline{background:transparent;border:1px solid var(--bdr2);border-radius:8px;padding:7px 14px;color:var(--txt2);font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:6px}
-.btn-outline:hover{border-color:var(--acc);color:var(--acc)}
-.btn-sm{padding:5px 10px!important;font-size:11px!important;border-radius:6px!important}
-.btn-green{background:var(--gd);border-color:var(--green);color:var(--gl)!important}
-.btn-red{background:var(--rd);border-color:var(--red);color:var(--rl)!important}
-.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.form-row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}
-.form-check{display:flex;align-items:flex-start;gap:8px;font-size:11px;color:var(--txt2);cursor:pointer}
-.form-check input{margin-top:2px;accent-color:var(--acc);cursor:pointer}
-.trial-info{background:rgba(0,200,224,.08);border:1px solid rgba(0,200,224,.2);border-radius:8px;padding:10px 12px;margin-top:14px;font-size:11px;color:var(--acc);display:flex;align-items:center;gap:6px}
-.msg-error{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);border-radius:6px;padding:8px 12px;font-size:11px;color:var(--red);margin-bottom:10px}
-.msg-success{background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.25);border-radius:6px;padding:8px 12px;font-size:11px;color:var(--green);margin-bottom:10px}
-.divider{text-align:center;color:var(--txt3);font-size:11px;margin:14px 0;position:relative}
-.divider::before,.divider::after{content:'';position:absolute;top:50%;width:42%;height:1px;background:var(--bdr)}
-.divider::before{left:0}.divider::after{right:0}
-.auth-lang-bar{display:flex;justify-content:flex-end;margin-bottom:14px;gap:5px;align-items:center}
-.auth-lang-btn{padding:4px 13px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;border:1px solid var(--bdr2);background:transparent;color:var(--txt2);transition:all .2s;font-family:'Cairo',sans-serif}
-.auth-lang-btn.active{background:var(--acc2);border-color:var(--acc2);color:#fff}
-.auth-lang-btn:hover{border-color:var(--acc);color:var(--acc)}
+.lang-bar{display:flex;justify-content:flex-end;margin-bottom:14px;gap:5px;align-items:center}
+.lbtn2{padding:4px 12px;border-radius:20px;font-size:11px;font-weight:700;cursor:pointer;border:1px solid var(--bdr2);background:transparent;color:var(--txt2);transition:all .2s;font-family:'Cairo',sans-serif}
+.lbtn2.active{background:var(--acc2);border-color:var(--acc2);color:#fff}
+.step-indicator{display:flex;align-items:center;gap:0;margin-bottom:20px;direction:ltr}
+.step-dot{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0;transition:all .3s}
+.step-dot.done{background:var(--green);color:#fff}
+.step-dot.active{background:var(--acc2);color:#fff}
+.step-dot.todo{background:var(--bg3);color:var(--txt3);border:1px solid var(--bdr)}
+.step-line{flex:1;height:2px;background:var(--bdr)}
+.step-line.done{background:var(--green)}
+.fg{margin-bottom:12px}
+.fl{display:block;font-size:11px;color:var(--txt2);margin-bottom:4px;font-weight:600}
+.fi{width:100%;background:var(--bg3);border:1px solid var(--bdr);border-radius:8px;padding:9px 11px;color:var(--txt);font-size:13px;outline:none;transition:border .2s;font-family:'Cairo',sans-serif}
+.fi:focus{border-color:var(--acc)}
+.fi.ltr{direction:ltr;text-align:left}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.frow3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
+.fcheck{display:flex;align-items:center;gap:7px;font-size:11px;color:var(--txt2);cursor:pointer}
+.fcheck input{accent-color:var(--acc)}
+.btnp{width:100%;background:var(--acc2);border:none;border-radius:8px;padding:11px;color:#fff;font-size:13px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:7px;transition:opacity .2s}
+.btnp:hover{opacity:.9}
+.btnp:disabled{opacity:.5;cursor:not-allowed}
+.btno{background:transparent;border:1px solid var(--bdr2);border-radius:7px;padding:7px 13px;color:var(--txt2);font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:5px}
+.btno:hover{border-color:var(--acc);color:var(--acc)}
+.bsm{padding:5px 10px!important;font-size:11px!important;border-radius:6px!important}
+.msg-e{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);border-radius:6px;padding:8px 12px;font-size:11px;color:var(--red);margin-bottom:10px}
+.msg-s{background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.25);border-radius:6px;padding:8px 12px;font-size:11px;color:var(--green);margin-bottom:10px}
+.trial-info{background:rgba(0,200,224,.07);border:1px solid rgba(0,200,224,.2);border-radius:8px;padding:9px 12px;margin-top:12px;font-size:11px;color:var(--acc);display:flex;align-items:center;gap:6px}
 
-/* APP */
+/* machine/shift builder */
+.machine-builder{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+.machine-row{background:var(--bg3);border:1px solid var(--bdr);border-radius:8px;padding:10px 12px;display:flex;align-items:center;gap:8px;direction:rtl}
+.shift-builder{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+.shift-row{background:var(--bg3);border:1px solid var(--bdr);border-radius:8px;padding:10px 12px;direction:rtl}
+.add-btn{background:rgba(0,200,224,.08);border:1px dashed rgba(0,200,224,.3);border-radius:8px;padding:9px;text-align:center;cursor:pointer;font-size:12px;color:var(--acc);transition:all .2s;margin-top:4px}
+.add-btn:hover{background:rgba(0,200,224,.14)}
+.remove-btn{width:24px;height:24px;border-radius:50%;border:none;background:rgba(239,68,68,.15);color:var(--red);font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+
+/* ===== APP ===== */
 .app{display:flex;flex-direction:column;min-height:100vh}
-.trial-bar{background:var(--cd);padding:7px 16px;display:flex;align-items:center;gap:10px;font-size:11px;justify-content:space-between;flex-shrink:0}
-.trial-pill{background:rgba(255,255,255,.2);color:#fff;border-radius:10px;padding:2px 10px;font-size:10px;font-weight:700}
-.topbar{background:var(--bg2);border-bottom:1px solid var(--bdr);height:52px;display:flex;align-items:center;padding:0 16px;gap:12px;flex-shrink:0}
+.trial-bar{background:var(--cd);padding:6px 16px;display:flex;align-items:center;justify-content:space-between;font-size:11px;flex-shrink:0}
+.topbar{background:var(--bg2);border-bottom:1px solid var(--bdr);height:50px;display:flex;align-items:center;padding:0 14px;gap:10px;flex-shrink:0}
 .logo-sm{display:flex;align-items:center;gap:8px}
-.logo-icon-sm{width:32px;height:32px;background:linear-gradient(135deg,var(--acc2),var(--purple));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.logo-icon-sm{width:30px;height:30px;background:linear-gradient(135deg,var(--acc2),var(--purple));border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
 .spacer{flex:1}
 .lang-pill{display:flex;background:var(--bg3);border:1px solid var(--bdr);border-radius:20px;padding:2px;gap:1px}
-.lbtn{padding:3px 10px;border-radius:16px;font-size:11px;font-weight:700;border:none;background:transparent;color:var(--txt2);cursor:pointer;transition:all .2s}
+.lbtn{padding:3px 9px;border-radius:16px;font-size:11px;font-weight:700;border:none;background:transparent;color:var(--txt2);cursor:pointer;transition:all .2s}
 .lbtn.active{background:var(--acc2);color:#fff}
-.top-btn{width:30px;height:30px;border-radius:7px;border:1px solid var(--bdr);background:transparent;color:var(--txt2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;transition:all .2s;position:relative}
-.top-btn:hover{border-color:var(--acc);color:var(--acc)}
+.tbtn{width:30px;height:30px;border-radius:7px;border:1px solid var(--bdr);background:transparent;color:var(--txt2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:15px;transition:all .2s;position:relative}
+.tbtn:hover{border-color:var(--acc);color:var(--acc)}
 .notif-b::after{content:'';position:absolute;top:3px;right:3px;width:7px;height:7px;background:var(--red);border-radius:50%;border:1px solid var(--bg2)}
 .avatar{width:30px;height:30px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--purple));display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;cursor:pointer;color:#fff;flex-shrink:0}
-.app-body{display:flex;flex:1;overflow:hidden;height:calc(100vh - 52px)}
-.sidebar{width:195px;background:var(--bg2);border-left:1px solid var(--bdr);display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto}
-.sb-sec{padding:12px 10px 3px;font-size:9px;color:var(--txt3);font-weight:700;letter-spacing:.8px}
-.nav-item{display:flex;align-items:center;gap:9px;padding:8px 12px;margin:1px 5px;border-radius:7px;cursor:pointer;color:var(--txt2);font-size:12px;transition:all .2s;user-select:none;direction:rtl}
+.app-body{display:flex;flex:1;overflow:hidden;height:calc(100vh - 50px)}
+.sidebar{width:190px;background:var(--bg2);border-left:1px solid var(--bdr);display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto}
+.sb-sec{padding:10px 10px 3px;font-size:9px;color:var(--txt3);font-weight:700;letter-spacing:.8px}
+.nav-item{display:flex;align-items:center;gap:8px;padding:8px 11px;margin:1px 5px;border-radius:7px;cursor:pointer;color:var(--txt2);font-size:12px;transition:all .2s;user-select:none;direction:rtl}
 .nav-item:hover{background:var(--bg3);color:var(--txt)}
 .nav-item.active{background:var(--bg4);color:var(--acc);border:1px solid rgba(0,200,224,.15)}
 .nav-item i{font-size:15px;flex-shrink:0}
 .nbadge{margin-right:auto;background:var(--red);color:#fff;border-radius:8px;padding:1px 5px;font-size:9px;font-weight:700}
-.sb-bottom{margin-top:auto;padding:10px 5px;border-top:1px solid var(--bdr)}
-.content{flex:1;overflow-y:auto;background:var(--bg);padding:16px}
+.sb-bottom{margin-top:auto;padding:8px 5px;border-top:1px solid var(--bdr)}
+.content{flex:1;overflow-y:auto;background:var(--bg);padding:14px}
 
-/* PAGE */
-.ph{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;direction:rtl}
-.ph-title{font-size:17px;font-weight:800;color:var(--txt)}
+/* page */
+.ph{display:flex;align-items:center;justify-content:space-between;margin-bottom:13px;direction:rtl}
+.ph-title{font-size:16px;font-weight:800}
 .ph-sub{font-size:11px;color:var(--txt2);margin-top:1px}
-.ph-actions{display:flex;gap:8px}
+.ph-actions{display:flex;gap:7px}
 
-/* STAT */
-.sg{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
-.sg3{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
-.sc{background:var(--bg2);border:1px solid var(--bdr);border-radius:12px;padding:12px;direction:rtl;transition:border .2s;cursor:pointer}
+/* stats */
+.sg{display:grid;grid-template-columns:repeat(4,1fr);gap:9px;margin-bottom:13px}
+.sg3{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin-bottom:13px}
+.sc{background:var(--bg2);border:1px solid var(--bdr);border-radius:11px;padding:11px;direction:rtl;transition:border .2s;cursor:pointer}
 .sc:hover{border-color:var(--bdr2)}
-.sc-icon{width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:15px;margin-bottom:7px}
+.sc-icon{width:31px;height:31px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:15px;margin-bottom:6px}
 .sc-lbl{font-size:10px;color:var(--txt2);margin-bottom:3px}
-.sc-val{font-size:20px;font-weight:800;color:var(--txt);line-height:1}
+.sc-val{font-size:20px;font-weight:800;line-height:1}
 .sc-ch{font-size:10px;margin-top:3px}
 
-/* CARDS */
-.card{background:var(--bg2);border:1px solid var(--bdr);border-radius:12px;padding:13px;margin-bottom:12px}
-.card-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:11px;direction:rtl}
-.card-title{font-size:13px;font-weight:700}
+/* cards */
+.card{background:var(--bg2);border:1px solid var(--bdr);border-radius:11px;padding:12px;margin-bottom:11px}
+.card-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;direction:rtl}
+.card-title{font-size:12px;font-weight:700}
 .card-act{font-size:11px;color:var(--acc);cursor:pointer}
-.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:11px}
 .g3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
-.g4{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
 
-/* BADGE */
+/* badge */
 .badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700}
-.b-red{background:var(--rd);color:var(--rl)}
-.b-amber{background:var(--ad);color:var(--al)}
-.b-blue{background:var(--bd);color:var(--bl)}
-.b-green{background:var(--gd);color:var(--gl)}
-.b-purple{background:var(--pd);color:var(--pl)}
-.b-cyan{background:var(--cd);color:var(--cl)}
+.b-red{background:var(--rd);color:var(--rl)}.b-amber{background:var(--ad);color:var(--al)}
+.b-blue{background:var(--bd);color:var(--bl)}.b-green{background:var(--gd);color:var(--gl)}
+.b-purple{background:var(--pd);color:var(--pl)}.b-cyan{background:var(--cd);color:var(--cl)}
 
-/* TABLE */
+/* table */
 .tbl-wrap{overflow-x:auto}
 .tbl{width:100%;border-collapse:collapse;font-size:12px;direction:rtl}
-.tbl th{text-align:right;padding:8px 10px;font-size:10px;color:var(--txt3);font-weight:700;border-bottom:1px solid var(--bdr);text-transform:uppercase;letter-spacing:.3px;white-space:nowrap}
-.tbl td{padding:8px 10px;border-bottom:1px solid rgba(30,53,88,.4);color:var(--txt2);vertical-align:middle}
+.tbl th{text-align:right;padding:7px 9px;font-size:10px;color:var(--txt3);font-weight:700;border-bottom:1px solid var(--bdr);white-space:nowrap}
+.tbl td{padding:8px 9px;border-bottom:1px solid rgba(30,53,88,.4);color:var(--txt2);vertical-align:middle}
 .tbl tr:last-child td{border-bottom:none}
-.tbl tr:hover td{background:rgba(30,53,88,.25)}
+.tbl tr:hover td{background:rgba(30,53,88,.2)}
 
-/* FAULT FEED */
-.ff-item{display:flex;align-items:center;gap:9px;padding:8px 10px;background:var(--bg3);border:1px solid var(--bdr);border-radius:8px;direction:rtl;margin-bottom:6px;animation:slideIn .3s ease}
+/* fault form */
+.ftype-sel{width:100%;background:var(--bg3);border:1px solid var(--bdr);border-radius:8px;padding:9px 11px;color:var(--txt);font-size:13px;outline:none;transition:border .2s;font-family:'Cairo',sans-serif}
+.ftype-sel:focus{border-color:var(--acc)}
+.sev-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:7px;margin:6px 0 11px}
+.sev-btn{padding:9px 4px;border:1px solid var(--bdr);background:var(--bg3);border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;text-align:center;color:var(--txt2);transition:all .2s}
+.sev-btn.s-critical{border-color:var(--red);background:rgba(239,68,68,.1);color:var(--red)}
+.sev-btn.s-high{border-color:var(--amber);background:rgba(245,158,11,.1);color:var(--amber)}
+.sev-btn.s-medium{border-color:var(--blue);background:rgba(59,130,246,.1);color:var(--blue)}
+.sev-btn.s-low{border-color:var(--green);background:rgba(16,185,129,.1);color:var(--green)}
+.dt-box{background:var(--bg3);border:1px solid var(--bdr);border-radius:8px;padding:11px;margin-top:8px}
+.dt-calc{background:rgba(0,200,224,.08);border:1px solid rgba(0,200,224,.2);border-radius:6px;padding:8px 12px;font-size:13px;font-weight:700;color:var(--acc);text-align:center;margin-top:8px;display:none}
+
+/* filter bar */
+.filter-bar{display:flex;gap:8px;align-items:center;direction:rtl;flex-wrap:wrap;margin-bottom:11px;background:var(--bg2);border:1px solid var(--bdr);border-radius:9px;padding:10px 12px}
+.fi-sm{background:var(--bg3);border:1px solid var(--bdr);border-radius:7px;padding:6px 10px;color:var(--txt);font-size:12px;outline:none;font-family:'Cairo',sans-serif}
+.fi-sm:focus{border-color:var(--acc)}
+.fi-sm.ltr{direction:ltr}
+
+/* ff item */
+.ff-item{display:flex;align-items:center;gap:8px;padding:8px 10px;background:var(--bg3);border:1px solid var(--bdr);border-radius:8px;direction:rtl;margin-bottom:5px;animation:slideIn .3s ease}
 @keyframes slideIn{from{opacity:0;transform:translateX(10px)}to{opacity:1;transform:translateX(0)}}
-.ff-icon{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+.ff-icon{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0}
 .ff-info{flex:1;min-width:0}
 .ff-title{font-size:12px;font-weight:700;color:var(--txt);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ff-sub{font-size:10px;color:var(--txt2)}
 .live-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:blink 1.5s infinite;flex-shrink:0;display:inline-block}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
 
-/* FAULT FORM */
-.ftype-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:6px 0 12px}
-.ftype-card{background:var(--bg3);border:1px solid var(--bdr);border-radius:8px;padding:10px 6px;text-align:center;cursor:pointer;transition:all .2s;font-size:11px;color:var(--txt2)}
-.ftype-card:hover{border-color:var(--bdr2);color:var(--txt)}
-.ftype-card.selected{border-color:var(--acc);background:rgba(0,200,224,.08);color:var(--acc)}
-.ftype-card i{font-size:22px;display:block;margin-bottom:4px}
-.sev-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:6px 0 12px}
-.sev-btn{padding:9px 4px;border:1px solid var(--bdr);background:var(--bg3);border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;text-align:center;color:var(--txt2);transition:all .2s}
-.sev-btn.s-critical{border-color:var(--red);background:rgba(239,68,68,.1);color:var(--red)}
-.sev-btn.s-high{border-color:var(--amber);background:rgba(245,158,11,.1);color:var(--amber)}
-.sev-btn.s-medium{border-color:var(--blue);background:rgba(59,130,246,.1);color:var(--blue)}
-.sev-btn.s-low{border-color:var(--green);background:rgba(16,185,129,.1);color:var(--green)}
-
-/* DOWNTIME */
-.dt-box{background:var(--bg3);border:1px solid var(--bdr);border-radius:8px;padding:12px;margin-top:8px}
-.dt-calc{background:rgba(0,200,224,.08);border:1px solid rgba(0,200,224,.2);border-radius:6px;padding:8px 12px;font-size:13px;font-weight:700;color:var(--acc);text-align:center;margin-top:8px}
-
-/* ENERGY */
-.shift-card{background:var(--bg3);border:1px solid var(--bdr);border-radius:10px;padding:12px;direction:rtl;transition:border .2s}
+/* energy */
+.shift-card{background:var(--bg3);border:1px solid var(--bdr);border-radius:10px;padding:11px;direction:rtl;transition:border .2s}
 .shift-card:hover{border-color:var(--bdr2)}
-.shift-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
-.shift-badge{padding:3px 10px;border-radius:12px;font-size:11px;font-weight:700}
-.eff-bar{height:8px;background:var(--bg);border-radius:4px;overflow:hidden;margin-top:4px}
+.eff-bar{height:7px;background:var(--bg);border-radius:4px;overflow:hidden;margin-top:3px}
 .eff-fill{height:100%;border-radius:4px;transition:width .6s}
-.team-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.energy-alert{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);border-radius:9px;padding:12px 14px;margin-bottom:12px;direction:rtl;display:flex;align-items:flex-start;gap:10px}
+.energy-alert-pending{background:rgba(245,158,11,.1);border:1px solid rgba(245,158,11,.3);border-radius:9px;padding:12px 14px;margin-bottom:12px;direction:rtl;display:flex;align-items:flex-start;gap:10px}
 
-/* MODAL */
+/* modal */
 .modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.65);display:flex;align-items:center;justify-content:center;z-index:200}
-.modal-box{background:var(--bg2);border:1px solid var(--bdr2);border-radius:14px;padding:22px;width:92%;max-width:460px;direction:rtl;max-height:90vh;overflow-y:auto}
-.modal-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+.modal-box{background:var(--bg2);border:1px solid var(--bdr2);border-radius:13px;padding:20px;width:92%;max-width:460px;direction:rtl;max-height:90vh;overflow-y:auto}
+.modal-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
 
-/* ADMIN PAGE (separate) */
+/* toast */
+#toasts{position:fixed;bottom:14px;left:14px;z-index:300;display:flex;flex-direction:column;gap:5px}
+.toast{background:var(--bg2);border:1px solid var(--bdr2);border-radius:8px;padding:9px 14px;font-size:12px;display:flex;align-items:center;gap:7px;direction:rtl;animation:slideIn .3s ease}
+
+/* chat */
+.chat-box{display:flex;flex-direction:column;height:250px}
+.chat-msgs{flex:1;overflow-y:auto;padding:8px;display:flex;flex-direction:column;gap:7px}
+.chat-msg{padding:9px 11px;border-radius:10px;font-size:12px;line-height:1.7;max-width:88%;white-space:pre-wrap}
+.chat-msg.bot{background:var(--bg3);border:1px solid var(--bdr);align-self:flex-end;direction:rtl;text-align:right}
+.chat-msg.user{background:var(--bd);align-self:flex-start;direction:rtl}
+.chat-input-row{display:flex;gap:7px;padding-top:8px;border-top:1px solid var(--bdr)}
+
+/* admin */
 .admin-page{min-height:100vh;background:var(--bg);font-family:'Cairo',sans-serif;direction:rtl}
-.admin-topbar{background:var(--purple);padding:12px 20px;display:flex;align-items:center;justify-content:space-between}
-.admin-body{padding:20px;max-width:1200px;margin:0 auto}
-.client-card{background:var(--bg3);border:1px solid var(--bdr);border-radius:10px;padding:12px;direction:rtl;cursor:pointer;transition:border .2s;margin-bottom:10px}
+.admin-topbar{background:var(--purple);padding:11px 18px;display:flex;align-items:center;justify-content:space-between}
+.client-card{background:var(--bg3);border:1px solid var(--bdr);border-radius:10px;padding:11px;direction:rtl;cursor:pointer;transition:border .2s;margin-bottom:9px}
 .client-card:hover{border-color:var(--bdr2)}
-.cc-av{width:36px;height:36px;border-radius:8px;background:var(--bg4);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:var(--acc);flex-shrink:0;border:1px solid var(--bdr)}
+.cc-av{width:34px;height:34px;border-radius:8px;background:var(--bg4);display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;color:var(--acc);flex-shrink:0;border:1px solid var(--bdr)}
 .pbar-w{height:4px;background:var(--bg);border-radius:2px;overflow:hidden;margin-top:3px}
 .pbar{height:100%;border-radius:2px}
 
-/* TOAST */
-#toasts{position:fixed;bottom:16px;left:16px;z-index:300;display:flex;flex-direction:column;gap:6px}
-.toast{background:var(--bg2);border:1px solid var(--bdr2);border-radius:8px;padding:10px 16px;font-size:12px;display:flex;align-items:center;gap:8px;direction:rtl;animation:slideIn .3s ease}
-
-/* CHAT */
-.chat-box{display:flex;flex-direction:column;height:260px}
-.chat-msgs{flex:1;overflow-y:auto;padding:8px;display:flex;flex-direction:column;gap:8px}
-.chat-msg{padding:10px 12px;border-radius:10px;font-size:12px;line-height:1.7;max-width:88%;white-space:pre-wrap}
-.chat-msg.bot{background:var(--bg3);border:1px solid var(--bdr);align-self:flex-end;direction:rtl;text-align:right}
-.chat-msg.user{background:var(--bd);align-self:flex-start;direction:rtl}
-.chat-input-row{display:flex;gap:8px;padding-top:8px;border-top:1px solid var(--bdr)}
-
-/* PROTECTION */
 body{-webkit-user-select:none;-moz-user-select:none;user-select:none}
 </style>
 </head>
@@ -207,209 +206,388 @@ body{-webkit-user-select:none;-moz-user-select:none;user-select:none}
 <div id="root"></div>
 <div id="toasts"></div>
 <div id="modal"></div>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 <script>
-/* ========== HELPERS ========== */
-function now(){ return new Date(); }
-function fmtDate(d){ return d.getFullYear()+'-'+(d.getMonth()<9?'0':'')+(d.getMonth()+1)+'-'+(d.getDate()<10?'0':'')+d.getDate(); }
-function fmtTime(d){ return (d.getHours()<10?'0':'')+d.getHours()+':'+(d.getMinutes()<10?'0':'')+d.getMinutes(); }
-function fmtDateTime(d){ return fmtDate(d)+' '+fmtTime(d); }
-function calcDowntime(from,to){
+/* ============================================================
+   HELPERS
+============================================================ */
+function now(){return new Date();}
+function fmtDate(d){var D=d||new Date();return D.getFullYear()+'-'+zp(D.getMonth()+1)+'-'+zp(D.getDate());}
+function fmtTime(d){var D=d||new Date();return zp(D.getHours())+':'+zp(D.getMinutes());}
+function fmtDT(d){return fmtDate(d)+' '+fmtTime(d);}
+function zp(n){return n<10?'0'+n:String(n);}
+function calcDT(from,to){
   if(!from||!to) return null;
-  var a=new Date(from), b=new Date(to);
+  var a=new Date(from.replace(' ','T')),b=new Date(to.replace(' ','T'));
   if(isNaN(a)||isNaN(b)||b<=a) return null;
-  var diff=Math.round((b-a)/60000);
-  var h=Math.floor(diff/60), m=diff%60;
-  return {minutes:diff, label:(h>0?h+' ساعة ':'')+m+' دقيقة'};
+  var m=Math.round((b-a)/60000);
+  return{minutes:m,label:(Math.floor(m/60)>0?Math.floor(m/60)+' س ':'')+m%60+' د'};
 }
+function uid(){return Date.now()+Math.random().toString(36).slice(2,6);}
 
-/* ========== STATE ========== */
-var lang='ar', screen='auth', authTab='login', currentUser=null, currentPage='dashboard';
-var charts={}, selType='', selSev='';
+/* ============================================================
+   STATE
+============================================================ */
+var lang='ar';
+var screen='auth'; // auth | app | admin
+var authStep=1;    // 1=credentials 2=machines 3=shifts
+var authTab='login';
+var currentUser=null;
+var currentPage='dashboard';
+var charts={};
+var selSev='';
 
-/* FAULTS */
-var faults=[
-  {id:1,type:'mechanical',typeAr:'ميكانيكي',title:'ارتفاع حرارة المحرك',machine:'CNC A1',machineAr:'ماكينة CNC أ1',severity:'critical',
-   dateTime:'2026-06-08 08:24',downtimeFrom:'2026-06-08 08:20',downtimeTo:'2026-06-08 10:45',status:'resolved',notes:'تنظيف الفلتر'},
-  {id:2,type:'hydraulic',typeAr:'هيدروليك',title:'انخفاض ضغط الهيدروليك',machine:'Press B2',machineAr:'مكبس ب2',severity:'high',
-   dateTime:'2026-06-08 09:55',downtimeFrom:'2026-06-08 09:50',downtimeTo:'',status:'open',notes:''},
-  {id:3,type:'electrical',typeAr:'كهربائي',title:'خطأ في الحساس',machine:'Conveyor',machineAr:'خط النقل',severity:'medium',
-   dateTime:'2026-06-08 11:30',downtimeFrom:'2026-06-08 11:25',downtimeTo:'2026-06-08 12:10',status:'inprogress',notes:''},
-];
+/* reg wizard temp data */
+var regData={
+  name:'',email:'',phone:'',company:'',industry:'تصنيع',pw:'',
+  machines:[],   // [{id,name,type}]
+  shifts:[]      // [{id,name,leader,timeFrom,timeTo,color}]
+};
 
-/* ENERGY - shifts */
-var shiftConfig={teams:2,shiftsPerDay:3};
-var energyLogs=[
-  {id:1,date:'2026-06-07',team:1,shift:'A',shiftName:'صباحي',timeFrom:'06:00',timeTo:'14:00',machine:'CNC A1',kwh:42.5,production:220,notes:''},
-  {id:2,date:'2026-06-07',team:1,shift:'B',shiftName:'مسائي',timeFrom:'14:00',timeTo:'22:00',machine:'CNC A1',kwh:38.2,production:195,notes:''},
-  {id:3,date:'2026-06-07',team:2,shift:'A',shiftName:'صباحي',timeFrom:'06:00',timeTo:'14:00',machine:'Press B2',kwh:29.1,production:310,notes:''},
-  {id:4,date:'2026-06-08',team:1,shift:'A',shiftName:'صباحي',timeFrom:'06:00',timeTo:'14:00',machine:'CNC A1',kwh:44.8,production:235,notes:''},
-  {id:5,date:'2026-06-08',team:2,shift:'A',shiftName:'صباحي',timeFrom:'06:00',timeTo:'14:00',machine:'Press B2',kwh:31.5,production:290,notes:''},
-];
+/* faults */
+var faults=[];
 
-/* CLIENTS (admin only) */
+/* energy meter readings */
+/* each entry = {id, shiftId, shiftName, machineId, machineName, date, time, meterReading, prevReading, kwh, production, enteredBy} */
+var energyReadings=[];
+
+/* pending shift start entries that need meter reading */
+/* when a shift starts, we flag it. User MUST enter meter reading to "open" it */
+
 var clients=[
   {id:1,nameAr:'شركة أعمال الفولاذ',email:'ops@steelworks.com',phone:'+966501234567',companyAr:'أعمال الفولاذ',trialDays:23,status:'active',machines:2,faultsToday:3,oee:87,lastLogin:'منذ دقيقتين',plan:'trial'},
   {id:2,nameAr:'مصنع قطع السيارات',email:'info@autoparts.com',phone:'+966509876543',companyAr:'قطع السيارات',trialDays:0,status:'active',machines:2,faultsToday:1,oee:91,lastLogin:'منذ ساعة',plan:'paid'},
   {id:3,nameAr:'المصنع الكيميائي',email:'safety@chemicala.com',phone:'+966551234890',companyAr:'الكيمياء',trialDays:5,status:'warning',machines:1,faultsToday:7,oee:72,lastLogin:'منذ 3 ساعات',plan:'trial'},
-  {id:4,nameAr:'مطحنة النسيج',email:'mgr@textileb.com',phone:'+966512345678',companyAr:'النسيج',trialDays:0,status:'active',machines:2,faultsToday:2,oee:84,lastLogin:'متصل الآن',plan:'paid'},
 ];
 
-/* ========== CHECK ADMIN ROUTE ========== */
+/* fault type catalogue */
+var faultTypes=[
+  {id:'overheating',ar:'ارتفاع درجة الحرارة',en:'Overheating'},
+  {id:'pressure',ar:'انخفاض الضغط',en:'Low Pressure'},
+  {id:'vibration',ar:'اهتزاز غير طبيعي',en:'Abnormal Vibration'},
+  {id:'electrical',ar:'عطل كهربائي',en:'Electrical Fault'},
+  {id:'sensor',ar:'خطأ في الحساس',en:'Sensor Error'},
+  {id:'leak',ar:'تسرب زيت / سائل',en:'Oil/Fluid Leak'},
+  {id:'noise',ar:'صوت غير طبيعي',en:'Abnormal Noise'},
+  {id:'shutdown',ar:'إيقاف مفاجئ',en:'Sudden Shutdown'},
+  {id:'speed',ar:'انحراف في السرعة',en:'Speed Deviation'},
+  {id:'quality',ar:'خلل في جودة الإنتاج',en:'Quality Defect'},
+  {id:'other',ar:'أخرى',en:'Other'},
+];
+
+/* ============================================================
+   INIT
+============================================================ */
 (function(){
-  var path=window.location.pathname;
-  if(path.indexOf('gtech-admin')>-1 || window.location.hash==='#/gtech-admin'){
-    renderAdminLoginPage(); return;
-  }
+  var h=window.location.hash;
+  if(h==='#/gtech-admin'){renderAdminLoginPage();return;}
+  // demo user for testing
+  setupDemoUser();
   render();
 })();
 
-/* ========== RENDER ========== */
+function setupDemoUser(){
+  currentUser={
+    name:'أحمد طارق',email:'ahmed@gtech.com',company:'مصنع G-Tech الذكي',
+    phone:'+966501234567',role:'engineer',trialDays:23,
+    machines:[
+      {id:'m1',name:'ماكينة CNC أ1',type:'CNC'},
+      {id:'m2',name:'مكبس هيدروليكي ب2',type:'Hydraulic Press'},
+    ],
+    shifts:[
+      {id:'s1',name:'صباحي',leader:'أحمد علي',timeFrom:'06:00',timeTo:'14:00',color:'#00c8e0'},
+      {id:'s2',name:'مسائي',leader:'محمد حسن',timeFrom:'14:00',timeTo:'22:00',color:'#8b5cf6'},
+      {id:'s3',name:'ليلي',leader:'كريم خالد',timeFrom:'22:00',timeTo:'06:00',color:'#10b981'},
+    ]
+  };
+  // demo faults
+  faults=[
+    {id:'f1',machineId:'m1',machineName:'ماكينة CNC أ1',typeId:'overheating',typeAr:'ارتفاع درجة الحرارة',
+     severity:'critical',dateTime:'2026-06-08 08:24',downtimeFrom:'2026-06-08 08:20',downtimeTo:'2026-06-08 10:45',status:'resolved',notes:'تنظيف الفلتر'},
+    {id:'f2',machineId:'m2',machineName:'مكبس هيدروليكي ب2',typeId:'pressure',typeAr:'انخفاض الضغط',
+     severity:'high',dateTime:'2026-06-08 09:55',downtimeFrom:'2026-06-08 09:50',downtimeTo:'',status:'open',notes:''},
+    {id:'f3',machineId:'m1',machineName:'ماكينة CNC أ1',typeId:'sensor',typeAr:'خطأ في الحساس',
+     severity:'medium',dateTime:'2026-06-08 11:30',downtimeFrom:'2026-06-08 11:25',downtimeTo:'2026-06-08 12:10',status:'inprogress',notes:''},
+  ];
+  // demo energy
+  energyReadings=[
+    {id:'e1',shiftId:'s1',shiftName:'صباحي',machineId:'m1',machineName:'ماكينة CNC أ1',
+     date:'2026-06-07',time:'06:02',meterReading:1240.5,prevReading:1198.2,kwh:42.3,production:220},
+    {id:'e2',shiftId:'s2',shiftName:'مسائي',machineId:'m1',machineName:'ماكينة CNC أ1',
+     date:'2026-06-07',time:'14:03',meterReading:1278.7,prevReading:1240.5,kwh:38.2,production:195},
+    {id:'e3',shiftId:'s1',shiftName:'صباحي',machineId:'m2',machineName:'مكبس هيدروليكي ب2',
+     date:'2026-06-07',time:'06:05',meterReading:880.1,prevReading:851.0,kwh:29.1,production:310},
+    {id:'e4',shiftId:'s1',shiftName:'صباحي',machineId:'m1',machineName:'ماكينة CNC أ1',
+     date:'2026-06-08',time:'06:01',meterReading:1323.5,prevReading:1278.7,kwh:44.8,production:235},
+  ];
+}
+
+/* ============================================================
+   RENDER ROOT
+============================================================ */
 function render(){
   destroyCharts();
   if(screen==='auth') renderAuth();
   else renderApp();
 }
 
-/* ========== AUTH ========== */
+/* ============================================================
+   AUTH — 3-STEP WIZARD
+============================================================ */
 function renderAuth(){
-  var isAr=lang==='ar';
-  var dir=isAr?'rtl':'ltr';
-  var L={
-    subtitle:    isAr?'منصة المصنع الذكي':'Smart Factory Platform',
-    loginTab:    isAr?'تسجيل الدخول':'Login',
-    registerTab: isAr?'إنشاء حساب':'Register',
-    trialNote:   isAr?'تجربة مجانية 30 يوم — لا يلزم بطاقة ائتمان':'30-Day Free Trial — No credit card required',
-  };
+  var isAr=lang==='ar'; var dir=isAr?'rtl':'ltr';
+  var L=authLabels(isAr);
+  var isLogin=authTab==='login';
   document.getElementById('root').innerHTML=
   '<div class="auth-wrap"><div class="auth-card" style="direction:'+dir+'">'+
-  '<div class="auth-lang-bar" style="direction:ltr">'+
-  '<span style="font-size:10px;color:var(--txt3);margin-left:6px">🌐</span>'+
-  '<button class="auth-lang-btn '+(isAr?'active':'')+'" onclick="setAuthLang(\'ar\')">العربية</button>'+
-  '<button class="auth-lang-btn '+(!isAr?'active':'')+'" onclick="setAuthLang(\'en\')">English</button>'+
+  /* lang toggle */
+  '<div class="lang-bar" style="direction:ltr">'+
+  '<span style="font-size:9px;color:var(--txt3)">🌐</span>'+
+  '<button class="lbtn2 '+(isAr?'active':'')+'" onclick="setAL(\'ar\')">العربية</button>'+
+  '<button class="lbtn2 '+(!isAr?'active':'')+'" onclick="setAL(\'en\')">English</button>'+
   '</div>'+
-  '<div class="auth-logo">'+
-  '<div class="auth-logo-icon">⚙</div>'+
-  '<h1>G-Tech</h1>'+
-  '<p>'+L.subtitle+'</p>'+
-  '</div>'+
+  /* logo */
+  '<div class="auth-logo"><div class="auth-logo-icon">⚙</div><h1>G-Tech</h1>'+
+  '<p>'+(isAr?'منصة المصنع الذكي':'Smart Factory Platform')+'</p></div>'+
+  /* tabs */
   '<div class="auth-tabs">'+
-  '<button class="auth-tab '+(authTab==='login'?'active':'')+'" onclick="switchTab(\'login\')">'+L.loginTab+'</button>'+
-  '<button class="auth-tab '+(authTab==='register'?'active':'')+'" onclick="switchTab(\'register\')">'+L.registerTab+'</button>'+
+  '<button class="auth-tab '+(isLogin?'active':'')+'" onclick="switchTab(\'login\')">'+L.loginTab+'</button>'+
+  '<button class="auth-tab '+(!isLogin?'active':'')+'" onclick="switchTab(\'register\')">'+L.regTab+'</button>'+
   '</div>'+
   '<div id="authMsg"></div>'+
-  (authTab==='login'?buildLoginForm():buildRegForm())+
-  '<div class="trial-info"><i class="ti ti-clock" style="font-size:14px"></i> '+L.trialNote+'</div>'+
+  (isLogin ? buildLoginForm(L) : buildRegWizard(L))+
+  '<div class="trial-info"><i class="ti ti-clock" style="font-size:13px"></i> '+L.trialNote+'</div>'+
   '</div></div>';
+  if(!isLogin) initRegWizard();
 }
 
-function setAuthLang(l){ lang=l; renderAuth(); }
-
-function buildLoginForm(){
-  var isAr=lang==='ar';
-  var L={
-    email:    isAr?'البريد الإلكتروني':'Email Address',
-    pw:       isAr?'كلمة المرور':'Password',
-    remember: isAr?'تذكرني':'Remember me',
-    forgot:   isAr?'نسيت كلمة المرور؟':'Forgot password?',
-    login:    isAr?'دخول':'Sign In',
-    noAcc:    isAr?'ليس لديك حساب؟':'No account yet?',
-    reg:      isAr?'إنشاء حساب':'Register',
-  };
-  return '<div class="form-group"><label class="form-label">'+L.email+'</label>'+
-  '<input class="form-input ltr" id="lE" type="email" placeholder="you@company.com" value="ahmed@gtech.com"></div>'+
-  '<div class="form-group"><label class="form-label">'+L.pw+'</label>'+
-  '<input class="form-input ltr" id="lP" type="password" value="123456"></div>'+
-  '<div style="display:flex;justify-content:space-between;margin-bottom:14px">'+
-  '<label class="form-check"><input type="checkbox" checked> '+L.remember+'</label>'+
-  '<span style="font-size:11px;color:var(--acc);cursor:pointer">'+L.forgot+'</span></div>'+
-  '<button class="btn-primary" onclick="doLogin()"><i class="ti ti-login"></i> '+L.login+'</button>'+
-  '<div style="text-align:center;margin-top:10px;font-size:11px;color:var(--txt2)">'+L.noAcc+' '+
-  '<span style="color:var(--acc);cursor:pointer" onclick="switchTab(\'register\')">'+L.reg+'</span></div>';
-}
-
-function buildRegForm(){
-  var isAr=lang==='ar';
-  var L={
-    name:      isAr?'الاسم الكامل':'Full Name',
-    phone:     isAr?'رقم الموبايل':'Mobile Number',
-    email:     isAr?'البريد الإلكتروني':'Email Address',
-    company:   isAr?'اسم الشركة / المصنع':'Company / Factory Name',
-    industry:  isAr?'نوع الصناعة':'Industry Type',
+function authLabels(isAr){
+  return {
+    loginTab:  isAr?'تسجيل الدخول':'Login',
+    regTab:    isAr?'إنشاء حساب':'Register',
+    trialNote: isAr?'تجربة مجانية 30 يوم — بلا بطاقة ائتمان':'30-Day Free Trial — No credit card required',
+    email:     isAr?'البريد الإلكتروني':'Email',
     pw:        isAr?'كلمة المرور':'Password',
-    mfg:       isAr?'تصنيع':'Manufacturing',
-    food:      isAr?'غذاء وشراب':'Food & Beverage',
-    chem:      isAr?'كيمياء':'Chemical',
-    auto:      isAr?'سيارات':'Automotive',
-    other:     isAr?'أخرى':'Other',
-    agree:     isAr?'أوافق على الشروط والأحكام':'I agree to Terms & Conditions',
-    btn:       isAr?'إنشاء حساب مجاني':'Create Free Account',
-    haveAcc:   isAr?'لديك حساب؟':'Already have an account?',
-    loginLink: isAr?'تسجيل الدخول':'Login',
-    namePh:    isAr?'أحمد محمد':'John Smith',
-    compPh:    isAr?'اسم مصنعك':'Your factory name',
-    pwPh:      isAr?'6 أحرف+':'Min 6 characters',
+    remember:  isAr?'تذكرني':'Remember me',
+    forgot:    isAr?'نسيت كلمة المرور؟':'Forgot password?',
+    loginBtn:  isAr?'دخول':'Sign In',
+    noAcc:     isAr?'ليس لديك حساب؟':"No account?",
+    name:      isAr?'الاسم الكامل':'Full Name',
+    phone:     isAr?'رقم الموبايل':'Mobile',
+    company:   isAr?'اسم الشركة / المصنع':'Company / Factory',
+    industry:  isAr?'نوع الصناعة':'Industry',
+    regBtn:    isAr?'إنشاء حساب مجاني':'Create Free Account',
+    haveAcc:   isAr?'لديك حساب؟':'Have account?',
+    step1:     isAr?'بيانات الحساب':'Account Info',
+    step2:     isAr?'الماكينات':'Machines',
+    step3:     isAr?'الورديات':'Shifts',
+    addMachine:isAr?'+ إضافة ماكينة':'+ Add Machine',
+    addShift:  isAr?'+ إضافة وردية':'+ Add Shift',
+    machineName:isAr?'اسم الماكينة':'Machine Name',
+    machineType:isAr?'النوع':'Type',
+    shiftName: isAr?'اسم الوردية':'Shift Name',
+    leader:    isAr?'قائد الوردية':'Shift Leader',
+    from:      isAr?'من':'From',
+    to:        isAr?'إلى':'To',
+    next:      isAr?'التالي ←':'Next →',
+    back:      isAr?'→ رجوع':'← Back',
+    finish:    isAr?'إنشاء الحساب':'Create Account',
+    agree:     isAr?'أوافق على الشروط':'I agree to Terms',
+    machineMin:isAr?'أضف ماكينة واحدة على الأقل':'Add at least one machine',
+    shiftMin:  isAr?'أضف وردية واحدة على الأقل':'Add at least one shift',
   };
-  return '<div class="form-row">'+
-  '<div class="form-group"><label class="form-label">'+L.name+' *</label><input class="form-input" id="rN" placeholder="'+L.namePh+'"></div>'+
-  '<div class="form-group"><label class="form-label">'+L.phone+' *</label><input class="form-input ltr" id="rPh" placeholder="+966 5X XXX"></div>'+
-  '</div>'+
-  '<div class="form-group"><label class="form-label">'+L.email+' *</label><input class="form-input ltr" id="rE" type="email" placeholder="you@company.com"></div>'+
-  '<div class="form-group"><label class="form-label">'+L.company+' *</label><input class="form-input" id="rC" placeholder="'+L.compPh+'"></div>'+
-  '<div class="form-row">'+
-  '<div class="form-group"><label class="form-label">'+L.industry+'</label>'+
-  '<select class="form-select" id="rT">'+
-  '<option>'+L.mfg+'</option><option>'+L.food+'</option>'+
-  '<option>'+L.chem+'</option><option>'+L.auto+'</option><option>'+L.other+'</option>'+
-  '</select></div>'+
-  '<div class="form-group"><label class="form-label">'+L.pw+' *</label><input class="form-input ltr" id="rPw" type="password" placeholder="'+L.pwPh+'"></div>'+
-  '</div>'+
-  '<label class="form-check" style="margin-bottom:14px"><input type="checkbox" id="rT2"> '+L.agree+'</label>'+
-  '<button class="btn-primary" onclick="doRegister()"><i class="ti ti-user-plus"></i> '+L.btn+'</button>'+
-  '<div style="text-align:center;margin-top:10px;font-size:11px;color:var(--txt2)">'+L.haveAcc+' '+
-  '<span style="color:var(--acc);cursor:pointer" onclick="switchTab(\'login\')">'+L.loginLink+'</span></div>';
 }
-function switchTab(t){ authTab=t; renderAuth(); }
+
+function buildLoginForm(L){
+  return '<div class="fg"><label class="fl">'+L.email+'</label>'+
+  '<input class="fi ltr" id="lE" type="email" value="ahmed@gtech.com"></div>'+
+  '<div class="fg"><label class="fl">'+L.pw+'</label>'+
+  '<input class="fi ltr" id="lP" type="password" value="123456"></div>'+
+  '<div style="display:flex;justify-content:space-between;margin-bottom:14px">'+
+  '<label class="fcheck"><input type="checkbox" checked> '+L.remember+'</label>'+
+  '<span style="font-size:11px;color:var(--acc);cursor:pointer">'+L.forgot+'</span></div>'+
+  '<button class="btnp" onclick="doLogin()"><i class="ti ti-login"></i> '+L.loginBtn+'</button>'+
+  '<div style="text-align:center;margin-top:9px;font-size:11px;color:var(--txt2)">'+L.noAcc+' '+
+  '<span style="color:var(--acc);cursor:pointer" onclick="switchTab(\'register\')">'+L.regTab+'</span></div>'+
+  '<div style="text-align:center;margin-top:8px">'+
+  '<span style="font-size:11px;color:var(--purple);cursor:pointer" onclick="openAdminPage()">'+
+  '<i class="ti ti-shield-lock" style="font-size:12px"></i> '+(lang==='ar'?'لوحة الإدارة':'Admin Panel')+'</span></div>';
+}
+
+function buildRegWizard(L){
+  var steps=[L.step1,L.step2,L.step3];
+  var dots=steps.map(function(s,i){
+    var cls=i+1<authStep?'done':i+1===authStep?'active':'todo';
+    var line=(i<2)?'<div class="step-line '+(i+1<authStep?'done':'')+'"></div>':'';
+    return '<div class="step-dot '+cls+'">'+(i+1<authStep?'✓':i+1)+'</div>'+line;
+  }).join('');
+  return '<div class="step-indicator">'+dots+'</div>'+
+  '<div id="wizardStep"></div>';
+}
+
+function initRegWizard(){
+  var el=document.getElementById('wizardStep'); if(!el) return;
+  var L=authLabels(lang==='ar');
+  if(authStep===1) renderStep1(L);
+  else if(authStep===2) renderStep2(L);
+  else renderStep3(L);
+}
+
+function renderStep1(L){
+  var el=document.getElementById('wizardStep');
+  el.innerHTML=
+  '<div class="frow">'+
+  '<div class="fg"><label class="fl">'+L.name+' *</label><input class="fi" id="rN" value="'+regData.name+'" placeholder="'+(lang==='ar'?'أحمد محمد':'John Smith')+'"></div>'+
+  '<div class="fg"><label class="fl">'+L.phone+' *</label><input class="fi ltr" id="rPh" value="'+regData.phone+'" placeholder="+966 5X XXX"></div>'+
+  '</div>'+
+  '<div class="fg"><label class="fl">'+L.email+' *</label><input class="fi ltr" id="rE" type="email" value="'+regData.email+'" placeholder="you@company.com"></div>'+
+  '<div class="fg"><label class="fl">'+L.company+' *</label><input class="fi" id="rC" value="'+regData.company+'" placeholder="'+(lang==='ar'?'اسم مصنعك':'Your factory')+'"></div>'+
+  '<div class="frow">'+
+  '<div class="fg"><label class="fl">'+L.industry+'</label>'+
+  '<select class="fi" id="rInd">'+['تصنيع','غذاء وشراب','كيمياء','سيارات','أخرى'].map(function(o){return '<option '+(regData.industry===o?'selected':'')+'>'+o+'</option>';}).join('')+'</select></div>'+
+  '<div class="fg"><label class="fl">'+L.pw+' *</label><input class="fi ltr" id="rPw" type="password" value="'+regData.pw+'" placeholder="6+"></div>'+
+  '</div>'+
+  '<label class="fcheck" style="margin-bottom:13px"><input type="checkbox" id="rTm" '+(regData.agreed?'checked':'')+' style="accent-color:var(--acc)"> '+L.agree+'</label>'+
+  '<button class="btnp" onclick="step1Next()" style="background:var(--acc2)"><i class="ti ti-arrow-left"></i> '+L.next+'</button>';
+}
+
+function step1Next(){
+  var n=document.getElementById('rN'),e=document.getElementById('rE'),
+      c=document.getElementById('rC'),p=document.getElementById('rPh'),
+      pw=document.getElementById('rPw'),tm=document.getElementById('rTm');
+  var m=document.getElementById('authMsg');
+  if(!n.value||!e.value||!c.value||!p.value||!pw.value){m.innerHTML='<div class="msg-e">'+(lang==='ar'?'يرجى ملء جميع الحقول *':'Please fill all required fields')+'</div>';return;}
+  if(!tm.checked){m.innerHTML='<div class="msg-e">'+(lang==='ar'?'يجب الموافقة على الشروط':'Please accept Terms')+'</div>';return;}
+  regData.name=n.value;regData.email=e.value;regData.company=c.value;
+  regData.phone=p.value;regData.pw=pw.value;regData.agreed=true;
+  regData.industry=document.getElementById('rInd').value;
+  m.innerHTML='';authStep=2;renderAuth();
+}
+
+function renderStep2(L){
+  var el=document.getElementById('wizardStep');
+  var rows=regData.machines.map(function(m,i){
+    return '<div class="machine-row">'+
+    '<i class="ti ti-cpu" style="color:var(--acc);font-size:16px;flex-shrink:0"></i>'+
+    '<input class="fi" style="flex:2" value="'+m.name+'" placeholder="'+(lang==='ar'?'اسم الماكينة':'Machine name')+'" onchange="regData.machines['+i+'].name=this.value">'+
+    '<select class="fi" style="flex:1" onchange="regData.machines['+i+'].type=this.value">'+
+    ['CNC','Hydraulic Press','Conveyor','Pump','Compressor','Lathe','Milling','Other'].map(function(t){return '<option '+(m.type===t?'selected':'')+'>'+t+'</option>';}).join('')+
+    '</select>'+
+    '<button class="remove-btn" onclick="removeMachine('+i+')">×</button>'+
+    '</div>';
+  }).join('');
+  el.innerHTML=
+  '<div style="font-size:12px;color:var(--txt2);margin-bottom:8px">'+(lang==='ar'?'حدد عدد الماكينات وخطوط الإنتاج التي لديك:':'Define your machines and production lines:')+'</div>'+
+  '<div class="machine-builder" id="machineBuilder">'+rows+'</div>'+
+  '<div class="add-btn" onclick="addMachineRow()"><i class="ti ti-plus"></i> '+L.addMachine+'</div>'+
+  '<div style="display:flex;gap:8px;margin-top:14px">'+
+  '<button class="btno" onclick="authStep=1;renderAuth()"><i class="ti ti-arrow-right"></i> '+L.back+'</button>'+
+  '<button class="btnp" onclick="step2Next()" style="flex:1"><i class="ti ti-arrow-left"></i> '+L.next+'</button>'+
+  '</div>';
+}
+
+function addMachineRow(){
+  regData.machines.push({id:uid(),name:'',type:'CNC'});
+  initRegWizard();
+}
+function removeMachine(i){regData.machines.splice(i,1);initRegWizard();}
+
+function step2Next(){
+  var m=document.getElementById('authMsg');
+  if(!regData.machines.length||regData.machines.some(function(x){return !x.name.trim();})){
+    m.innerHTML='<div class="msg-e">'+(lang==='ar'?'أضف ماكينة واحدة على الأقل وأدخل اسمها':'Add at least one machine with a name')+'</div>';return;
+  }
+  m.innerHTML='';authStep=3;renderAuth();
+}
+
+var shiftColors=['#00c8e0','#8b5cf6','#10b981','#f59e0b','#ef4444'];
+
+function renderStep3(L){
+  var el=document.getElementById('wizardStep');
+  var rows=regData.shifts.map(function(s,i){
+    return '<div class="shift-row">'+
+    '<div class="frow" style="margin-bottom:7px">'+
+    '<div class="fg" style="margin:0"><label class="fl">'+L.shiftName+'</label>'+
+    '<input class="fi" value="'+s.name+'" placeholder="'+(lang==='ar'?'صباحي':'Morning')+'" onchange="regData.shifts['+i+'].name=this.value"></div>'+
+    '<div class="fg" style="margin:0"><label class="fl">'+L.leader+'</label>'+
+    '<input class="fi" value="'+s.leader+'" placeholder="'+(lang==='ar'?'اسم القائد':'Leader name')+'" onchange="regData.shifts['+i+'].leader=this.value"></div>'+
+    '</div>'+
+    '<div class="frow" style="align-items:center">'+
+    '<div class="fg" style="margin:0"><label class="fl">'+L.from+'</label>'+
+    '<input class="fi ltr" type="time" value="'+s.timeFrom+'" onchange="regData.shifts['+i+'].timeFrom=this.value"></div>'+
+    '<div class="fg" style="margin:0"><label class="fl">'+L.to+'</label>'+
+    '<input class="fi ltr" type="time" value="'+s.timeTo+'" onchange="regData.shifts['+i+'].timeTo=this.value"></div>'+
+    '<div style="display:flex;align-items:flex-end;padding-bottom:2px">'+
+    '<button class="remove-btn" onclick="removeShift('+i+')">×</button></div>'+
+    '</div>'+
+    '</div>';
+  }).join('');
+  el.innerHTML=
+  '<div style="font-size:12px;color:var(--txt2);margin-bottom:8px">'+(lang==='ar'?'حدد الورديات وقادتها:':'Define your shifts and their leaders:')+'</div>'+
+  '<div class="shift-builder" id="shiftBuilder">'+rows+'</div>'+
+  '<div class="add-btn" onclick="addShiftRow()"><i class="ti ti-plus"></i> '+L.addShift+'</div>'+
+  '<div style="display:flex;gap:8px;margin-top:14px">'+
+  '<button class="btno" onclick="authStep=2;renderAuth()"><i class="ti ti-arrow-right"></i> '+L.back+'</button>'+
+  '<button class="btnp" onclick="finishReg()" style="flex:1;background:var(--green)"><i class="ti ti-check"></i> '+L.finish+'</button>'+
+  '</div>';
+}
+
+function addShiftRow(){
+  regData.shifts.push({id:uid(),name:'',leader:'',timeFrom:'06:00',timeTo:'14:00',color:shiftColors[regData.shifts.length%5]});
+  initRegWizard();
+}
+function removeShift(i){regData.shifts.splice(i,1);initRegWizard();}
+
+function finishReg(){
+  var m=document.getElementById('authMsg');
+  if(!regData.shifts.length||regData.shifts.some(function(x){return !x.name.trim();})){
+    m.innerHTML='<div class="msg-e">'+(lang==='ar'?'أضف وردية واحدة على الأقل':'Add at least one shift with a name')+'</div>';return;
+  }
+  currentUser={
+    name:regData.name,email:regData.email,company:regData.company,
+    phone:regData.phone,role:'admin',trialDays:30,
+    machines:regData.machines.map(function(m){return{id:m.id||uid(),name:m.name,type:m.type};}),
+    shifts:regData.shifts.map(function(s,i){return{id:s.id||uid(),name:s.name,leader:s.leader,timeFrom:s.timeFrom,timeTo:s.timeTo,color:s.color||shiftColors[i%5]};})
+  };
+  faults=[];energyReadings=[];
+  authStep=1;
+  regData={name:'',email:'',phone:'',company:'',industry:'تصنيع',pw:'',machines:[],shifts:[]};
+  screen='app';currentPage='dashboard';
+  render();showToast('مرحباً '+currentUser.name+'! حسابك جاهز 🎉','green');
+}
 
 function doLogin(){
-  var e=document.getElementById('lE'), p=document.getElementById('lP'), m=document.getElementById('authMsg');
-  if(!e.value||!p.value){m.innerHTML='<div class="msg-error">يرجى ملء جميع الحقول</div>';return;}
-  if(p.value.length<3){m.innerHTML='<div class="msg-error">بيانات الدخول غير صحيحة</div>';return;}
-  currentUser={name:'أحمد طارق',email:e.value,company:'مصنع G-Tech الذكي',phone:'+966501234567',role:'engineer',trialDays:23};
-  screen='app'; currentPage='dashboard';
-  render(); showToast('أهلاً بك أحمد! التطبيق جاهز','green');
+  var e=document.getElementById('lE'),p=document.getElementById('lP'),m=document.getElementById('authMsg');
+  if(!e.value||!p.value){m.innerHTML='<div class="msg-e">'+(lang==='ar'?'يرجى ملء جميع الحقول':'Fill all fields')+'</div>';return;}
+  if(p.value.length<3){m.innerHTML='<div class="msg-e">'+(lang==='ar'?'بيانات غير صحيحة':'Invalid credentials')+'</div>';return;}
+  screen='app';currentPage='dashboard';
+  render();showToast((lang==='ar'?'أهلاً بك ':'Welcome ')+currentUser.name,'green');
 }
 
-function doRegister(){
-  var n=document.getElementById('rN'),e=document.getElementById('rE'),c=document.getElementById('rC'),
-      ph=document.getElementById('rPh'),pw=document.getElementById('rPw'),tm=document.getElementById('rT2');
-  var m=document.getElementById('authMsg');
-  if(!n.value||!e.value||!c.value||!ph.value||!pw.value){m.innerHTML='<div class="msg-error">يرجى ملء جميع الحقول المطلوبة *</div>';return;}
-  if(!tm.checked){m.innerHTML='<div class="msg-error">يجب الموافقة على الشروط والأحكام</div>';return;}
-  currentUser={name:n.value,email:e.value,company:c.value,phone:ph.value,role:'admin',trialDays:30};
-  screen='app'; currentPage='dashboard';
-  render(); showToast('تم إنشاء حسابك! مرحباً بك في G-Tech','green');
-}
+function switchTab(t){authTab=t;authStep=1;renderAuth();}
+function setAL(l){lang=l;renderAuth();}
 
-/* ========== APP ========== */
+/* ============================================================
+   APP SHELL
+============================================================ */
 function renderApp(){
   var root=document.getElementById('root');
-  var trialBar=currentUser&&currentUser.trialDays?
-  '<div class="trial-bar"><div style="display:flex;align-items:center;gap:8px">'+
-  '<span class="trial-pill">'+currentUser.trialDays+' يوم</span>'+
-  '<span>متبقية من نسختك التجريبية المجانية</span></div>'+
-  '<span style="color:#cffafe;cursor:pointer;font-size:11px;font-weight:700">ترقية الآن ←</span></div>':'';
+  var bar=currentUser&&currentUser.trialDays?
+    '<div class="trial-bar"><div style="display:flex;align-items:center;gap:7px">'+
+    '<span style="background:rgba(255,255,255,.2);color:#fff;border-radius:10px;padding:1px 9px;font-size:10px;font-weight:700">'+currentUser.trialDays+' يوم</span>'+
+    '<span>متبقية من نسختك التجريبية</span></div>'+
+    '<span style="color:#cffafe;cursor:pointer;font-size:11px;font-weight:700">ترقية الآن ←</span></div>':'';
 
-  root.innerHTML=trialBar+
+  root.innerHTML=bar+
   '<div class="app">'+
   '<div class="topbar">'+
   '<div class="logo-sm"><div class="logo-icon-sm">⚙</div>'+
-  '<div><div style="font-size:13px;font-weight:800">G-Tech</div><div style="font-size:9px;color:var(--txt2)">Smart Factory</div></div></div>'+
+  '<div><div style="font-size:12px;font-weight:800">G-Tech</div><div style="font-size:9px;color:var(--txt2)">'+(currentUser?currentUser.company:'')+'</div></div></div>'+
   '<div class="spacer"></div>'+
-  '<div class="lang-pill"><button class="lbtn active">عر</button><button class="lbtn">EN</button></div>'+
-  '<div class="top-btn notif-b"><i class="ti ti-bell"></i></div>'+
-  '<div class="top-btn" onclick="navigate(\'settings\')"><i class="ti ti-settings"></i></div>'+
+  '<div class="lang-pill"><button class="lbtn '+(lang==='ar'?'active':'')+'" onclick="setLang(\'ar\')">عر</button>'+
+  '<button class="lbtn '+(lang==='en'?'active':'')+'" onclick="setLang(\'en\')">EN</button></div>'+
+  '<div class="tbtn notif-b"><i class="ti ti-bell"></i></div>'+
+  '<div class="tbtn" onclick="navigate(\'settings\')"><i class="ti ti-settings"></i></div>'+
   '<div class="avatar" onclick="navigate(\'settings\')">'+(currentUser?currentUser.name.charAt(0):'U')+'</div>'+
   '</div>'+
   '<div class="app-body">'+
@@ -417,30 +595,26 @@ function renderApp(){
   '<main class="content" id="ct"></main>'+
   '</div></div>';
 
-  renderSidebar(); renderPage();
+  renderSidebar();renderPage();
 }
 
 function renderSidebar(){
-  var sb=document.getElementById('sb'); if(!sb) return;
+  var sb=document.getElementById('sb');if(!sb)return;
   var items=[
-    {id:'dashboard',icon:'ti-layout-dashboard'},
-    {id:'addFault',icon:'ti-alert-triangle',badge:faults.filter(function(f){return f.status==='open';}).length},
-    {id:'faultLog',icon:'ti-list'},
-    {id:'machines',icon:'ti-cpu'},
-    {id:'maintenance',icon:'ti-tool'},
-    {id:'energy',icon:'ti-bolt'},
-    {id:'reports',icon:'ti-file-analytics'},
-    {id:'support',icon:'ti-robot'},
+    {id:'dashboard',icon:'ti-layout-dashboard',label:'لوحة التحكم'},
+    {id:'addFault',icon:'ti-alert-triangle',label:'تسجيل عطل',badge:faults.filter(function(f){return f.status==='open';}).length||null},
+    {id:'faultLog',icon:'ti-list',label:'سجل الأعطال'},
+    {id:'machines',icon:'ti-cpu',label:'الماكينات'},
+    {id:'energy',icon:'ti-bolt',label:'قراءات الطاقة'},
+    {id:'reports',icon:'ti-file-analytics',label:'التقارير'},
+    {id:'support',icon:'ti-robot',label:'الدعم الذكي'},
   ];
-  var labels={dashboard:'لوحة التحكم',addFault:'إضافة عطل',faultLog:'سجل الأعطال',
-    machines:'الماكينات',maintenance:'الصيانة',energy:'الطاقة والورديات',
-    reports:'التقارير',support:'الدعم الذكي',settings:'الإعدادات'};
-  var h='<div class="sb-sec">القائمة الرئيسية</div>';
+  var h='<div class="sb-sec">القائمة</div>';
   items.forEach(function(item){
     var active=currentPage===item.id?'active':'';
     var badge=item.badge?'<span class="nbadge">'+item.badge+'</span>':'';
     h+='<div class="nav-item '+active+'" onclick="navigate(\''+item.id+'\')">'+
-       '<i class="ti '+item.icon+'"></i><span>'+labels[item.id]+'</span>'+badge+'</div>';
+       '<i class="ti '+item.icon+'"></i><span>'+item.label+'</span>'+badge+'</div>';
   });
   h+='<div class="sb-bottom">'+
      '<div class="nav-item" style="color:var(--txt3);font-size:11px" onclick="openAdminPage()">'+
@@ -449,146 +623,162 @@ function renderSidebar(){
   sb.innerHTML=h;
 }
 
-function navigate(p){ currentPage=p; destroyCharts(); renderSidebar(); renderPage(); }
-function doLogout(){ screen='auth'; authTab='login'; currentUser=null; render(); }
-function openAdminPage(){ window.location.hash='#/gtech-admin'; renderAdminLoginPage(); }
+function navigate(p){currentPage=p;destroyCharts();renderSidebar();renderPage();}
+function doLogout(){screen='auth';authTab='login';authStep=1;render();}
+function openAdminPage(){window.location.hash='#/gtech-admin';renderAdminLoginPage();}
+function setLang(l){lang=l;renderApp();}
 
 function renderPage(){
-  var ct=document.getElementById('ct'); if(!ct) return;
-  ct.innerHTML='';
+  var ct=document.getElementById('ct');if(!ct)return;ct.innerHTML='';
   var map={dashboard:renderDashboard,addFault:renderAddFault,faultLog:renderFaultLog,
-    machines:renderMachines,maintenance:renderMaintenance,energy:renderEnergy,
-    reports:renderReports,support:renderSupport,settings:renderSettings};
-  if(map[currentPage]) map[currentPage]();
+    machines:renderMachines,energy:renderEnergy,reports:renderReports,
+    support:renderSupport,settings:renderSettings};
+  if(map[currentPage])map[currentPage]();
   else ct.innerHTML='<div style="padding:20px;color:var(--txt2)">قريباً...</div>';
 }
 
-/* ========== DASHBOARD ========== */
+/* ============================================================
+   DASHBOARD
+============================================================ */
 function renderDashboard(){
   var ct=document.getElementById('ct');
+  var u=currentUser;
   var openF=faults.filter(function(f){return f.status==='open';}).length;
   var critF=faults.filter(function(f){return f.severity==='critical'&&f.status==='open';}).length;
-  var totalKwh=energyLogs.filter(function(e){return e.date===fmtDate(now());}).reduce(function(a,b){return a+b.kwh;},0);
+  var todayKwh=energyReadings.filter(function(e){return e.date===fmtDate();}).reduce(function(a,b){return a+b.kwh;},0);
+  var totalDT=faults.reduce(function(a,f){var d=calcDT(f.downtimeFrom,f.downtimeTo);return a+(d?d.minutes:0);},0);
 
   ct.innerHTML=
-  '<div class="ph"><div><div class="ph-title">لوحة التحكم</div><div class="ph-sub">نظرة عامة · '+fmtDate(now())+'</div></div>'+
+  '<div class="ph"><div><div class="ph-title">لوحة التحكم</div>'+
+  '<div class="ph-sub">'+fmtDate()+' · '+u.company+'</div></div>'+
   '<div class="ph-actions">'+
-  '<button class="btn-outline btn-sm" onclick="navigate(\'addFault\')"><i class="ti ti-plus"></i> إضافة عطل</button>'+
-  '<button class="btn-outline btn-sm" style="background:var(--acc2);border-color:var(--acc2);color:#fff" onclick="showReportModal()"><i class="ti ti-download"></i> تقرير</button>'+
+  '<button class="btno bsm" onclick="navigate(\'addFault\')"><i class="ti ti-plus"></i> تسجيل عطل</button>'+
+  '<button class="btno bsm" style="background:var(--acc2);border-color:var(--acc2);color:#fff" onclick="showReportModal()"><i class="ti ti-download"></i> تقرير</button>'+
   '</div></div>'+
+
   '<div class="sg">'+
   mkStat('ti-alert-triangle','red','أعطال مفتوحة',openF,'اليوم','up')+
-  mkStat('ti-cpu','blue','ماكينات نشطة','2','100%','up')+
-  mkStat('ti-alert-octagon','amber','تنبيهات حرجة',critF,critF>1?'خطر!':'تحت السيطرة',critF>1?'up':'down')+
-  mkStat('ti-bolt','green','طاقة اليوم',totalKwh.toFixed(1)+' kWh','الوردية الحالية','up')+
+  mkStat('ti-cpu','blue','ماكينات',u.machines.length,(u.machines.length>0?'نشطة':'لا توجد'),'up')+
+  mkStat('ti-clock-stop','amber','إجمالي التوقف',totalDT+' د','هذا الأسبوع','up')+
+  mkStat('ti-bolt','green','طاقة اليوم',todayKwh.toFixed(1)+' kWh','مسجّل','up')+
   '</div>'+
-  '<div class="g2">'+
-  '<div>'+
-  '<div style="font-size:12px;font-weight:700;margin-bottom:8px;direction:rtl;display:flex;align-items:center;gap:6px">'+
-  '<span class="live-dot"></span> آخر الأعطال المسجلة</div>'+
-  '<div id="liveFeed"></div>'+
-  '<button class="btn-outline btn-sm" style="width:100%;justify-content:center;margin-top:4px" onclick="navigate(\'faultLog\')">عرض السجل الكامل ('+faults.length+') ←</button>'+
-  '</div>'+
-  '<div>'+
-  '<div style="font-size:12px;font-weight:700;margin-bottom:8px;direction:rtl">كفاءة الورديات — اليوم</div>'+
-  '<div id="shiftSummary"></div>'+
-  '</div></div>'+
-  '<div class="card" style="margin-top:12px">'+
-  '<div class="card-hdr"><div class="card-title">توزيع الأعطال حسب النوع (هذا الأسبوع)</div></div>'+
-  '<div style="height:130px;position:relative"><canvas id="ftChart" role="img" aria-label="Fault types chart">بيانات الأعطال</canvas></div>'+
-  '</div>';
 
+  /* shift summary */
+  '<div class="card">'+
+  '<div class="card-hdr"><div class="card-title"><span class="live-dot"></span> ملخص الورديات</div>'+
+  '<span class="card-act" onclick="navigate(\'energy\')">سجل الطاقة</span></div>'+
+  '<div class="g3" id="shiftDash"></div>'+
+  '</div>'+
+
+  '<div class="g2">'+
+  /* live faults */
+  '<div>'+
+  '<div style="font-size:12px;font-weight:700;margin-bottom:7px;direction:rtl;display:flex;align-items:center;gap:5px">'+
+  '<span class="live-dot"></span> آخر الأعطال</div>'+
+  '<div id="liveFeed"></div>'+
+  '<button class="btno bsm" style="width:100%;justify-content:center;margin-top:4px" onclick="navigate(\'faultLog\')">السجل الكامل ('+faults.length+') ←</button>'+
+  '</div>'+
+  /* OEE chart */
+  '<div>'+
+  '<div style="font-size:12px;font-weight:700;margin-bottom:7px;direction:rtl">كفاءة الطاقة (وحدة/kWh)</div>'+
+  '<div style="height:155px;position:relative"><canvas id="effChart" role="img" aria-label="efficiency chart">بيانات الكفاءة</canvas></div>'+
+  '</div></div>';
+
+  buildShiftDash();
   buildLiveFeed();
-  buildShiftSummary();
-  setTimeout(buildDashCharts,80);
+  setTimeout(buildEffChart,80);
 }
 
-function buildLiveFeed(){
-  var el=document.getElementById('liveFeed'); if(!el) return;
-  var recent=faults.slice(-4).reverse();
-  var sb={critical:'rgba(239,68,68,.15)',high:'rgba(245,158,11,.15)',medium:'rgba(59,130,246,.15)',low:'rgba(16,185,129,.15)'};
-  var sc={critical:'#ef4444',high:'#f59e0b',medium:'#3b82f6',low:'#10b981'};
-  var bMap={critical:'b-red',high:'b-amber',medium:'b-blue',low:'b-green'};
-  var stMap={open:'مفتوح',inprogress:'جارٍ',resolved:'محلول'};
-  el.innerHTML=recent.map(function(f){
-    var dt=calcDowntime(f.downtimeFrom,f.downtimeTo);
-    return '<div class="ff-item">'+
-    '<div class="ff-icon" style="background:'+sb[f.severity]+';color:'+sc[f.severity]+'"><i class="ti ti-alert-triangle"></i></div>'+
-    '<div class="ff-info"><div class="ff-title">'+f.title+'</div>'+
-    '<div class="ff-sub">'+f.machineAr+' · '+f.dateTime+(dt?' · توقف: '+dt.label:'')+'</div></div>'+
-    '<span class="badge '+bMap[f.severity]+'">'+f.severity+'</span>'+
+function buildShiftDash(){
+  var el=document.getElementById('shiftDash');if(!el)return;
+  var u=currentUser;
+  el.innerHTML=u.shifts.map(function(s){
+    var todayLogs=energyReadings.filter(function(e){return e.shiftId===s.id&&e.date===fmtDate();});
+    var kwh=todayLogs.reduce(function(a,b){return a+b.kwh;},0);
+    var prod=todayLogs.reduce(function(a,b){return a+b.production;},0);
+    var eff=kwh>0?(prod/kwh).toFixed(1):'-';
+    return '<div class="shift-card">'+
+    '<div style="display:flex;align-items:center;gap:6px;margin-bottom:7px">'+
+    '<div style="width:9px;height:9px;border-radius:50%;background:'+s.color+';flex-shrink:0"></div>'+
+    '<div style="font-size:12px;font-weight:700">'+s.name+'</div>'+
+    '</div>'+
+    '<div style="font-size:10px;color:var(--txt3);margin-bottom:6px"><i class="ti ti-user" style="font-size:11px"></i> '+s.leader+' · '+s.timeFrom+' - '+s.timeTo+'</div>'+
+    '<div style="display:flex;gap:10px;font-size:11px;margin-bottom:6px">'+
+    '<div style="text-align:center"><div style="font-size:16px;font-weight:800;color:'+s.color+'">'+kwh.toFixed(1)+'</div><div style="color:var(--txt3);font-size:9px">kWh</div></div>'+
+    '<div style="text-align:center"><div style="font-size:16px;font-weight:800">'+prod+'</div><div style="color:var(--txt3);font-size:9px">وحدة</div></div>'+
+    '<div style="text-align:center"><div style="font-size:16px;font-weight:800;color:var(--green)">'+eff+'</div><div style="color:var(--txt3);font-size:9px">كفاءة</div></div>'+
+    '</div>'+
+    '<div class="eff-bar"><div class="eff-fill" style="width:'+Math.min((parseFloat(eff)||0)*10,100)+'%;background:'+s.color+'"></div></div>'+
     '</div>';
   }).join('');
 }
 
-function buildShiftSummary(){
-  var el=document.getElementById('shiftSummary'); if(!el) return;
-  var today=fmtDate(now());
-  var todayLogs=energyLogs.filter(function(e){return e.date===today;});
-  if(!todayLogs.length){el.innerHTML='<div style="color:var(--txt3);font-size:12px;padding:10px;text-align:center">لا توجد ورديات مسجلة اليوم</div>';return;}
-  var teams={};
-  todayLogs.forEach(function(l){
-    var k='فريق '+l.team+' - '+l.shiftName;
-    if(!teams[k]) teams[k]={kwh:0,prod:0,team:l.team,shift:l.shiftName};
-    teams[k].kwh+=l.kwh; teams[k].prod+=l.production;
-  });
-  var tColors=['#00c8e0','#8b5cf6','#10b981'];
-  var html='';
-  Object.keys(teams).forEach(function(k,i){
-    var t=teams[k];
-    var eff=t.prod>0?Math.round(t.prod/(t.kwh)*10)/10:0;
-    html+='<div class="ff-item" style="margin-bottom:6px">'+
-    '<div class="team-dot" style="background:'+tColors[i%3]+';margin:0 4px"></div>'+
-    '<div class="ff-info"><div class="ff-title">'+k+'</div>'+
-    '<div class="ff-sub">'+t.kwh.toFixed(1)+' kWh · '+t.prod+' وحدة</div></div>'+
-    '<div style="text-align:left;font-size:11px">'+
-    '<div style="color:var(--green);font-weight:700">'+eff+' و/kWh</div>'+
-    '<div style="color:var(--txt3)">كفاءة</div></div>'+
-    '</div>';
-  });
-  el.innerHTML=html;
+function buildLiveFeed(){
+  var el=document.getElementById('liveFeed');if(!el)return;
+  var recent=faults.slice(-4).reverse();
+  var sbg={critical:'rgba(239,68,68,.15)',high:'rgba(245,158,11,.15)',medium:'rgba(59,130,246,.15)',low:'rgba(16,185,129,.15)'};
+  var scl={critical:'#ef4444',high:'#f59e0b',medium:'#3b82f6',low:'#10b981'};
+  var bc={critical:'b-red',high:'b-amber',medium:'b-blue',low:'b-green'};
+  if(!recent.length){el.innerHTML='<div style="padding:12px;text-align:center;color:var(--txt3);font-size:12px">لا توجد أعطال مسجلة</div>';return;}
+  el.innerHTML=recent.map(function(f){
+    var dt=calcDT(f.downtimeFrom,f.downtimeTo);
+    return '<div class="ff-item">'+
+    '<div class="ff-icon" style="background:'+sbg[f.severity]+';color:'+scl[f.severity]+'"><i class="ti ti-alert-triangle"></i></div>'+
+    '<div class="ff-info"><div class="ff-title">'+f.typeAr+'</div>'+
+    '<div class="ff-sub">'+f.machineName+' · '+f.dateTime+(dt?' · '+dt.label:'')+'</div></div>'+
+    '<span class="badge '+bc[f.severity]+'">'+f.severity+'</span></div>';
+  }).join('');
 }
 
-function buildDashCharts(){
-  var fc=document.getElementById('ftChart');
-  if(fc){
-    var types={mechanical:0,hydraulic:0,electrical:0,thermal:0,sensor:0};
-    faults.forEach(function(f){if(types[f.type]!==undefined)types[f.type]++;});
-    charts.ft=new Chart(fc,{type:'bar',data:{
-      labels:['ميكانيكي','هيدروليك','كهربائي','حراري','حساسات'],
-      datasets:[{data:[types.mechanical,types.hydraulic,types.electrical,types.thermal,types.sensor],
-        backgroundColor:['#ef4444','#f59e0b','#3b82f6','#8b5cf6','#10b981'],borderRadius:4}]
-    },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-      scales:{x:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#64748b',font:{size:9}}},
-              y:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#64748b',font:{size:9},stepSize:1}}}}});
-  }
+function buildEffChart(){
+  var el=document.getElementById('effChart');if(!el)return;
+  var labels=[],vals=[];
+  var u=currentUser;
+  u.shifts.forEach(function(s){
+    var logs=energyReadings.filter(function(e){return e.shiftId===s.id;});
+    var kwh=logs.reduce(function(a,b){return a+b.kwh;},0);
+    var prod=logs.reduce(function(a,b){return a+b.production;},0);
+    labels.push(s.name);vals.push(kwh>0?parseFloat((prod/kwh).toFixed(2)):0);
+  });
+  charts.eff=new Chart(el,{type:'bar',data:{labels:labels,datasets:[{data:vals,
+    backgroundColor:u.shifts.map(function(s){return s.color;}),borderRadius:5}]},
+    options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+    scales:{x:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#64748b',font:{size:10}}},
+            y:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#64748b',font:{size:10}}}}}});
 }
 
-/* ========== ADD FAULT ========== */
+/* ============================================================
+   ADD FAULT
+============================================================ */
 function renderAddFault(){
   var ct=document.getElementById('ct');
-  var nowDT=fmtDateTime(now());
-  var types=[
-    {id:'mechanical',icon:'ti-settings',label:'ميكانيكي'},
-    {id:'electrical',icon:'ti-bolt',label:'كهربائي'},
-    {id:'hydraulic',icon:'ti-droplet',label:'هيدروليك'},
-    {id:'thermal',icon:'ti-temperature',label:'حراري'},
-    {id:'sensor',icon:'ti-wifi',label:'حساسات'},
-    {id:'structural',icon:'ti-building',label:'هيكلي'},
-  ];
+  var u=currentUser;
+  var nowDT=fmtDT();
+
+  var machineOpts=u.machines.map(function(m){
+    return '<option value="'+m.id+'">'+m.name+' ('+m.type+')</option>';
+  }).join('');
+
+  var typeOpts=faultTypes.map(function(ft){
+    return '<option value="'+ft.id+'">'+ft.ar+'</option>';
+  }).join('');
+
   ct.innerHTML=
   '<div class="ph"><div><div class="ph-title">تسجيل عطل جديد</div>'+
-  '<div class="ph-sub">التاريخ والوقت يُسجَّل تلقائياً عند الإرسال</div></div></div>'+
+  '<div class="ph-sub">التاريخ يُسجَّل تلقائياً — زمن التوقف من/إلى</div></div></div>'+
   '<div class="card">'+
 
-  '<!-- نوع العطل -->'+
-  '<div style="font-size:12px;font-weight:700;color:var(--txt2);margin-bottom:6px">1. نوع العطل *</div>'+
-  '<div class="ftype-grid">'+
-  types.map(function(tp){return '<div class="ftype-card '+(selType===tp.id?'selected':'')+'" onclick="selT(\''+tp.id+'\')"><i class="ti '+tp.icon+'"></i>'+tp.label+'</div>';}).join('')+
+  '<div class="frow" style="margin-bottom:4px">'+
+  /* machine */
+  '<div class="fg"><label class="fl"><i class="ti ti-cpu" style="font-size:12px;margin-left:3px"></i>الماكينة / خط الإنتاج *</label>'+
+  '<select class="ftype-sel" id="fMach"><option value="">-- اختر --</option>'+machineOpts+'</select></div>'+
+  /* type dropdown */
+  '<div class="fg"><label class="fl"><i class="ti ti-category" style="font-size:12px;margin-left:3px"></i>نوع العطل *</label>'+
+  '<select class="ftype-sel" id="fType"><option value="">-- اختر نوع العطل --</option>'+typeOpts+'</select></div>'+
   '</div>'+
 
-  '<!-- درجة الخطورة -->'+
-  '<div style="font-size:12px;font-weight:700;color:var(--txt2);margin-bottom:6px">2. درجة الخطورة *</div>'+
+  /* severity */
+  '<div style="font-size:11px;font-weight:700;color:var(--txt2);margin-bottom:5px">درجة الخطورة *</div>'+
   '<div class="sev-grid">'+
   '<button class="sev-btn '+(selSev==='critical'?'s-critical':'')+'" onclick="selS(\'critical\')"><i class="ti ti-alert-octagon"></i><br>حرج</button>'+
   '<button class="sev-btn '+(selSev==='high'?'s-high':'')+'" onclick="selS(\'high\')"><i class="ti ti-alert-triangle"></i><br>عالٍ</button>'+
@@ -596,703 +786,688 @@ function renderAddFault(){
   '<button class="sev-btn '+(selSev==='low'?'s-low':'')+'" onclick="selS(\'low\')"><i class="ti ti-check-circle"></i><br>منخفض</button>'+
   '</div>'+
 
-  '<!-- الماكينة والحالة -->'+
-  '<div class="form-row" style="margin-bottom:12px">'+
-  '<div class="form-group"><label class="form-label">3. الماكينة *</label>'+
-  '<select class="form-select" id="fMachine">'+
-  '<option value="CNC A1">ماكينة CNC أ1</option>'+
-  '<option value="Press B2">مكبس هيدروليكي ب2</option>'+
-  '<option value="Conveyor">خط النقل</option>'+
-  '</select></div>'+
-  '<div class="form-group"><label class="form-label">الحالة الأولية</label>'+
-  '<select class="form-select" id="fStatus">'+
-  '<option value="open">مفتوح</option>'+
-  '<option value="inprogress">جارٍ المعالجة</option>'+
-  '</select></div>'+
-  '</div>'+
+  /* auto date display */
+  '<div style="background:rgba(0,200,224,.07);border:1px solid rgba(0,200,224,.2);border-radius:7px;padding:8px 12px;margin-bottom:10px;font-size:11px;direction:rtl;display:flex;align-items:center;gap:6px">'+
+  '<i class="ti ti-calendar-check" style="color:var(--acc)"></i>'+
+  'تاريخ ووقت التسجيل: <strong style="color:var(--acc)">'+nowDT+'</strong> (تلقائي)</div>'+
 
-  '<!-- وصف العطل -->'+
-  '<div class="form-group"><label class="form-label">4. وصف العطل *</label>'+
-  '<input class="form-input" id="fTitle" placeholder="وصف مختصر وواضح للعطل..."></div>'+
-
-  '<!-- وقت التوقف -->'+
+  /* downtime */
   '<div class="dt-box">'+
-  '<div style="font-size:12px;font-weight:700;color:var(--acc);margin-bottom:10px"><i class="ti ti-clock-stop" style="margin-left:5px"></i>5. زمن التوقف (من → إلى)</div>'+
-  '<div class="form-row">'+
-  '<div class="form-group"><label class="form-label">بداية التوقف *</label>'+
-  '<input class="form-input ltr" type="datetime-local" id="dtFrom" value="'+nowDT.replace(' ','T')+'" oninput="updateDTCalc()"></div>'+
-  '<div class="form-group"><label class="form-label">نهاية التوقف (اتركه فارغاً إذا لم ينته)</label>'+
-  '<input class="form-input ltr" type="datetime-local" id="dtTo" oninput="updateDTCalc()"></div>'+
+  '<div style="font-size:11px;font-weight:700;color:var(--acc);margin-bottom:8px"><i class="ti ti-clock-stop" style="margin-left:4px"></i>زمن التوقف (من → إلى)</div>'+
+  '<div class="frow">'+
+  '<div class="fg" style="margin:0"><label class="fl">بداية التوقف *</label>'+
+  '<input class="fi ltr" type="datetime-local" id="dtF" value="'+nowDT.replace(' ','T')+'" oninput="updDT()"></div>'+
+  '<div class="fg" style="margin:0"><label class="fl">نهاية التوقف (اتركه فارغاً إن لم ينته)</label>'+
+  '<input class="fi ltr" type="datetime-local" id="dtT" oninput="updDT()"></div>'+
   '</div>'+
-  '<div id="dtCalcResult" class="dt-calc" style="display:none"></div>'+
+  '<div id="dtRes" class="dt-calc"></div>'+
   '</div>'+
 
-  '<!-- ملاحظات -->'+
-  '<div class="form-group" style="margin-top:12px"><label class="form-label">ملاحظات إضافية</label>'+
-  '<textarea class="form-input" id="fNotes" rows="2" style="resize:none" placeholder="أي معلومات مفيدة..."></textarea></div>'+
+  '<div class="fg" style="margin-top:10px"><label class="fl">ملاحظات إضافية</label>'+
+  '<textarea class="fi" id="fNotes" rows="2" style="resize:none" placeholder="أي معلومات مفيدة..."></textarea></div>'+
+
+  '<div class="frow" style="margin-bottom:10px;margin-top:4px">'+
+  '<div class="fg" style="margin:0"><label class="fl">الحالة الأولية</label>'+
+  '<select class="ftype-sel" id="fStat">'+
+  '<option value="open">مفتوح</option><option value="inprogress">جارٍ المعالجة</option>'+
+  '</select></div>'+
+  '<div></div></div>'+
 
   '<div id="fMsg"></div>'+
-  '<div style="display:flex;gap:8px;margin-top:10px">'+
-  '<button class="btn-primary" style="flex:2" onclick="submitFault()"><i class="ti ti-send"></i> حفظ وإرسال العطل</button>'+
-  '<button class="btn-outline" style="flex:1;justify-content:center" onclick="navigate(\'faultLog\')">سجل الأعطال</button>'+
+  '<div style="display:flex;gap:8px">'+
+  '<button class="btnp" style="flex:2" onclick="submitFault()"><i class="ti ti-send"></i> حفظ وإرسال للسجل</button>'+
+  '<button class="btno" style="flex:1;justify-content:center" onclick="navigate(\'faultLog\')">السجل ←</button>'+
   '</div></div>';
 }
 
-function selT(v){ selType=v; renderAddFault(); }
-function selS(v){ selSev=v; renderAddFault(); }
+function selS(v){selSev=v;renderAddFault();}
 
-function updateDTCalc(){
-  var from=document.getElementById('dtFrom');
-  var to=document.getElementById('dtTo');
-  var res=document.getElementById('dtCalcResult');
-  if(!from||!to||!res) return;
-  if(from.value && to.value){
-    var dt=calcDowntime(from.value.replace('T',' '),to.value.replace('T',' '));
-    if(dt){
-      res.style.display='block';
-      res.innerHTML='<i class="ti ti-clock" style="margin-left:6px"></i>مدة التوقف: <strong>'+dt.label+'</strong> ('+dt.minutes+' دقيقة)';
-    } else {
-      res.style.display='block';
-      res.innerHTML='<span style="color:var(--red)">⚠ تاريخ النهاية يجب أن يكون بعد البداية</span>';
-    }
-  } else {
-    res.style.display='none';
-  }
+function updDT(){
+  var f=document.getElementById('dtF'),t=document.getElementById('dtT'),r=document.getElementById('dtRes');
+  if(!f||!t||!r)return;
+  if(f.value&&t.value){
+    var d=calcDT(f.value.replace('T',' '),t.value.replace('T',' '));
+    if(d){r.style.display='block';r.innerHTML='<i class="ti ti-clock"></i> مدة التوقف: <strong>'+d.label+'</strong> ('+d.minutes+' دقيقة)';}
+    else{r.style.display='block';r.innerHTML='<span style="color:var(--red)">⚠ تاريخ النهاية يجب أن يكون بعد البداية</span>';}
+  }else r.style.display='none';
 }
 
 function submitFault(){
-  var tEl=document.getElementById('fTitle');
-  var mEl=document.getElementById('fMachine');
-  var sEl=document.getElementById('fStatus');
-  var nEl=document.getElementById('fNotes');
-  var dtF=document.getElementById('dtFrom');
-  var dtT=document.getElementById('dtTo');
+  var mEl=document.getElementById('fMach'),tEl=document.getElementById('fType'),
+      dfEl=document.getElementById('dtF'),dtEl=document.getElementById('dtT'),
+      noEl=document.getElementById('fNotes'),stEl=document.getElementById('fStat');
   var msg=document.getElementById('fMsg');
-  if(!selType||!selSev||!tEl||!tEl.value.trim()){
-    if(msg) msg.innerHTML='<div class="msg-error">يرجى تحديد نوع العطل والخطورة وإدخال وصف</div>';
-    return;
+  if(!mEl.value||!tEl.value||!selSev){
+    msg.innerHTML='<div class="msg-e">يرجى اختيار الماكينة، نوع العطل، ودرجة الخطورة</div>';return;
   }
-  var nowDT=fmtDateTime(now());
-  var dtFrom=dtF&&dtF.value?dtF.value.replace('T',' '):'';
-  var dtTo=dtT&&dtT.value?dtT.value.replace('T',' '):'';
-  var typeArMap={mechanical:'ميكانيكي',electrical:'كهربائي',hydraulic:'هيدروليك',thermal:'حراري',sensor:'حساسات',structural:'هيكلي'};
-  var mVal=mEl?mEl.value:'CNC A1';
-  var mArMap={'CNC A1':'ماكينة CNC أ1','Press B2':'مكبس هيدروليكي ب2','Conveyor':'خط النقل'};
-  var newFault={
-    id:faults.length+1,
-    type:selType, typeAr:typeArMap[selType]||selType,
-    title:tEl.value.trim(),
-    machine:mVal, machineAr:mArMap[mVal]||mVal,
-    severity:selSev,
-    dateTime:nowDT,
-    downtimeFrom:dtFrom,
-    downtimeTo:dtTo,
-    status:sEl?sEl.value:'open',
-    notes:nEl?nEl.value:''
+  var machine=currentUser.machines.find(function(m){return m.id===mEl.value;});
+  var type=faultTypes.find(function(t){return t.id===tEl.value;});
+  var newF={
+    id:uid(),machineId:mEl.value,machineName:machine?machine.name:'',
+    typeId:tEl.value,typeAr:type?type.ar:'',
+    severity:selSev,dateTime:fmtDT(),
+    downtimeFrom:dfEl?dfEl.value.replace('T',' '):'',
+    downtimeTo:dtEl?dtEl.value.replace('T',' '):'',
+    status:stEl?stEl.value:'open',notes:noEl?noEl.value:''
   };
-  faults.push(newFault);
-  selType=''; selSev='';
-  showToast('تم تسجيل العطل بتاريخ '+nowDT+' وإضافته للداش بورد','green');
-  navigate('dashboard');
+  faults.push(newF);
+  selSev='';
+  showToast('تم تسجيل العطل في سجل الأعطال ✓','green');
+  navigate('faultLog');
 }
 
-/* ========== FAULT LOG ========== */
+/* ============================================================
+   FAULT LOG with FILTERS
+============================================================ */
 function renderFaultLog(){
   var ct=document.getElementById('ct');
-  var bMap={critical:'b-red',high:'b-amber',medium:'b-blue',low:'b-green'};
-  var stMap={open:'<span class="badge b-red">مفتوح</span>',inprogress:'<span class="badge b-amber">جارٍ</span>',resolved:'<span class="badge b-green">محلول</span>'};
+  var u=currentUser;
+  var machOpts='<option value="">كل الماكينات</option>'+
+    u.machines.map(function(m){return '<option value="'+m.id+'">'+m.name+'</option>';}).join('');
+  var typeOpts='<option value="">كل الأنواع</option>'+
+    faultTypes.map(function(t){return '<option value="'+t.id+'">'+t.ar+'</option>';}).join('');
+
   ct.innerHTML=
   '<div class="ph"><div><div class="ph-title">سجل الأعطال</div>'+
-  '<div class="ph-sub">'+faults.length+' عطل مسجل</div></div>'+
-  '<button class="btn-outline btn-sm" style="background:var(--acc2);border-color:var(--acc2);color:#fff" onclick="navigate(\'addFault\')">'+
-  '<i class="ti ti-plus"></i> إضافة عطل</button></div>'+
-  '<div class="card"><div class="tbl-wrap"><table class="tbl">'+
-  '<thead><tr>'+
-  '<th style="width:22%">وصف العطل</th>'+
-  '<th style="width:12%">النوع</th>'+
-  '<th style="width:14%">الماكينة</th>'+
-  '<th style="width:10%">الخطورة</th>'+
-  '<th style="width:16%">التاريخ والوقت</th>'+
-  '<th style="width:14%">زمن التوقف</th>'+
-  '<th style="width:12%">الحالة</th>'+
-  '</tr></thead><tbody>'+
-  faults.slice().reverse().map(function(f){
-    var dt=calcDowntime(f.downtimeFrom,f.downtimeTo);
-    var dtCell=dt?'<span style="color:var(--amber);font-size:11px">'+dt.label+'</span>':
-               (f.downtimeFrom?'<span style="color:var(--red);font-size:10px">جارٍ…</span>':
-               '<span style="color:var(--txt3);font-size:10px">—</span>');
-    return '<tr>'+
-    '<td style="color:var(--txt);font-weight:700">'+f.title+'</td>'+
-    '<td><span class="badge b-blue">'+f.typeAr+'</span></td>'+
-    '<td style="color:var(--txt2);font-size:11px">'+f.machineAr+'</td>'+
-    '<td><span class="badge '+bMap[f.severity]+'">'+f.severity+'</span></td>'+
-    '<td style="color:var(--txt3);font-size:11px;direction:ltr;text-align:right">'+f.dateTime+'</td>'+
-    '<td>'+dtCell+'</td>'+
-    '<td>'+(stMap[f.status]||f.status)+'</td>'+
-    '</tr>';
-  }).join('')+
-  '</tbody></table></div></div>';
-}
+  '<div class="ph-sub" id="faultCount">'+faults.length+' عطل مسجل</div></div>'+
+  '<button class="btno bsm" style="background:var(--acc2);border-color:var(--acc2);color:#fff" onclick="navigate(\'addFault\')">'+
+  '<i class="ti ti-plus"></i> تسجيل عطل</button></div>'+
 
-/* ========== MACHINES ========== */
-function renderMachines(){
-  var ct=document.getElementById('ct');
-  ct.innerHTML=
-  '<div class="ph"><div class="ph-title">الماكينات</div>'+
-  '<button class="btn-outline btn-sm"><i class="ti ti-plus"></i> إضافة ماكينة (2/2)</button></div>'+
-  '<div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.25);border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:11px;color:var(--amber);direction:rtl">'+
-  '<i class="ti ti-lock"></i> وصلت للحد الأقصى (2 ماكينة) في الخطة التجريبية — قم بالترقية للمزيد</div>'+
-  '<div class="g2">'+
-  mkMachCard('CNC Machine A1','ماكينة CNC أ1','running',87,42.3)+
-  mkMachCard('Hydraulic Press B2','مكبس هيدروليكي ب2','idle',71,28.7)+
-  '</div>';
-}
-
-function mkMachCard(n,na,st,oee,energy){
-  var stC=st==='running'?'var(--green)':'var(--amber)';
-  var stL=st==='running'?'تشغيل':'خمول';
-  var oC=oee>=85?'var(--green)':oee>=70?'var(--amber)':'var(--red)';
-  var mF=faults.filter(function(f){return f.machine===n;}).length;
-  return '<div class="card" style="direction:rtl">'+
-  '<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">'+
-  '<div style="width:38px;height:38px;background:var(--bg3);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:20px">⚙</div>'+
-  '<div><div style="font-size:13px;font-weight:700">'+na+'</div>'+
-  '<div style="font-size:10px;color:'+stC+';display:flex;align-items:center;gap:4px"><span class="live-dot" style="background:'+stC+'"></span>'+stL+'</div></div></div>'+
-  '<div class="g3" style="margin-bottom:12px;text-align:center;font-size:11px">'+
-  '<div style="background:var(--bg3);border-radius:7px;padding:8px"><div style="font-size:18px;font-weight:800;color:'+oC+'">'+oee+'%</div><div style="color:var(--txt3)">OEE</div></div>'+
-  '<div style="background:var(--bg3);border-radius:7px;padding:8px"><div style="font-size:18px;font-weight:800;color:var(--amber)">'+energy+'</div><div style="color:var(--txt3)">kWh</div></div>'+
-  '<div style="background:var(--bg3);border-radius:7px;padding:8px"><div style="font-size:18px;font-weight:800;color:'+(mF>0?'var(--red)':'var(--green)')+'">'+mF+'</div><div style="color:var(--txt3)">أعطال</div></div>'+
+  /* filters */
+  '<div class="filter-bar">'+
+  '<div style="font-size:11px;color:var(--txt3);white-space:nowrap"><i class="ti ti-filter" style="font-size:13px"></i> فلتر:</div>'+
+  '<input class="fi-sm ltr" type="date" id="flDate" placeholder="التاريخ" onchange="applyFilter()">'+
+  '<select class="fi-sm" id="flMach" onchange="applyFilter()">'+machOpts+'</select>'+
+  '<select class="fi-sm" id="flType" onchange="applyFilter()">'+typeOpts+'</select>'+
+  '<select class="fi-sm" id="flSev" onchange="applyFilter()">'+
+  '<option value="">كل الخطورة</option><option value="critical">حرج</option>'+
+  '<option value="high">عالٍ</option><option value="medium">متوسط</option><option value="low">منخفض</option>'+
+  '</select>'+
+  '<select class="fi-sm" id="flSort" onchange="applyFilter()">'+
+  '<option value="newest">الأحدث أولاً</option>'+
+  '<option value="oldest">الأقدم أولاً</option>'+
+  '<option value="longest">أطول توقف أولاً</option>'+
+  '</select>'+
+  '<button class="btno bsm" onclick="clearFilter()"><i class="ti ti-x"></i> مسح</button>'+
   '</div>'+
-  '<div style="display:flex;gap:6px">'+
-  '<button class="btn-outline btn-sm" style="flex:1;justify-content:center" onclick="showReportModal()"><i class="ti ti-download"></i> تقرير</button>'+
-  '<button class="btn-outline btn-sm" style="flex:1;justify-content:center" onclick="navigate(\'support\')"><i class="ti ti-robot"></i> AI</button>'+
+
+  '<div class="card" style="padding:0;overflow:hidden">'+
+  '<div class="tbl-wrap" id="faultTableWrap">'+
+  buildFaultTable(faults)+
   '</div></div>';
 }
 
-/* ========== MAINTENANCE ========== */
-function renderMaintenance(){
-  var ct=document.getElementById('ct');
-  ct.innerHTML=
-  '<div class="ph"><div class="ph-title">الصيانة الوقائية</div>'+
-  '<button class="btn-outline btn-sm" style="background:var(--acc2);border-color:var(--acc2);color:#fff"><i class="ti ti-calendar-plus"></i> جدولة صيانة</button></div>'+
-  '<div class="card"><div class="tbl-wrap"><table class="tbl">'+
-  '<thead><tr><th>الماكينة</th><th>النوع</th><th>التاريخ</th><th>المسؤول</th><th>الحالة</th></tr></thead><tbody>'+
-  '<tr><td style="color:var(--txt);font-weight:700">ماكينة CNC أ1</td><td><span class="badge b-blue">وقائية</span></td><td style="color:var(--amber)">2026-06-20</td><td style="color:var(--txt2)">أحمد</td><td><span class="badge b-amber">معلق</span></td></tr>'+
-  '<tr><td style="color:var(--txt);font-weight:700">مكبس هيدروليكي ب2</td><td><span class="badge b-cyan">تشحيم</span></td><td style="color:var(--amber)">2026-06-25</td><td style="color:var(--txt2)">سارة</td><td><span class="badge b-blue">جارٍ</span></td></tr>'+
-  '<tr><td style="color:var(--txt);font-weight:700">خط النقل</td><td><span class="badge b-purple">معايرة</span></td><td style="color:var(--amber)">2026-07-01</td><td style="color:var(--txt2)">كريم</td><td><span class="badge b-amber">معلق</span></td></tr>'+
-  '</tbody></table></div></div>';
+function buildFaultTable(list){
+  var bc={critical:'b-red',high:'b-amber',medium:'b-blue',low:'b-green'};
+  var stMap={open:'<span class="badge b-red">مفتوح</span>',
+             inprogress:'<span class="badge b-amber">جارٍ</span>',
+             resolved:'<span class="badge b-green">محلول</span>'};
+  if(!list.length) return '<div style="padding:20px;text-align:center;color:var(--txt3);font-size:12px">لا توجد نتائج</div>';
+  return '<table class="tbl"><thead><tr>'+
+  '<th style="width:18%">الماكينة</th>'+
+  '<th style="width:20%">نوع العطل</th>'+
+  '<th style="width:10%">الخطورة</th>'+
+  '<th style="width:18%">التاريخ والوقت</th>'+
+  '<th style="width:17%">زمن التوقف</th>'+
+  '<th style="width:10%">الحالة</th>'+
+  '<th style="width:7%"></th>'+
+  '</tr></thead><tbody>'+
+  list.map(function(f){
+    var dt=calcDT(f.downtimeFrom,f.downtimeTo);
+    var dtCell=dt?'<span style="color:var(--amber);font-weight:700">'+dt.label+'</span>':
+               (f.downtimeFrom&&!f.downtimeTo?'<span style="color:var(--red);font-size:10px">جارٍ التوقف…</span>':'<span style="color:var(--txt3)">—</span>');
+    return '<tr>'+
+    '<td style="color:var(--txt);font-weight:700;font-size:11px">'+f.machineName+'</td>'+
+    '<td><span class="badge b-blue">'+f.typeAr+'</span></td>'+
+    '<td><span class="badge '+bc[f.severity]+'">'+f.severity+'</span></td>'+
+    '<td style="color:var(--txt3);font-size:10px;direction:ltr;text-align:right">'+f.dateTime+'</td>'+
+    '<td>'+dtCell+'</td>'+
+    '<td>'+(stMap[f.status]||f.status)+'</td>'+
+    '<td><button class="btno bsm" onclick="closeFault(\''+f.id+'\')" title="إغلاق العطل" style="padding:3px 7px"><i class="ti ti-check"></i></button></td>'+
+    '</tr>';
+  }).join('')+'</tbody></table>';
 }
 
-/* ========== ENERGY ========== */
+function applyFilter(){
+  var date=document.getElementById('flDate').value;
+  var mach=document.getElementById('flMach').value;
+  var type=document.getElementById('flType').value;
+  var sev=document.getElementById('flSev').value;
+  var sort=document.getElementById('flSort').value;
+  var list=faults.filter(function(f){
+    if(date&&!f.dateTime.startsWith(date))return false;
+    if(mach&&f.machineId!==mach)return false;
+    if(type&&f.typeId!==type)return false;
+    if(sev&&f.severity!==sev)return false;
+    return true;
+  });
+  if(sort==='oldest')list=list.slice().sort(function(a,b){return a.dateTime>b.dateTime?1:-1;});
+  else if(sort==='longest')list=list.slice().sort(function(a,b){
+    var da=calcDT(a.downtimeFrom,a.downtimeTo),db=calcDT(b.downtimeFrom,b.downtimeTo);
+    return (db?db.minutes:0)-(da?da.minutes:0);
+  });
+  else list=list.slice().reverse();
+  var el=document.getElementById('faultTableWrap');
+  if(el)el.innerHTML=buildFaultTable(list);
+  var cnt=document.getElementById('faultCount');
+  if(cnt)cnt.textContent=list.length+' عطل / الإجمالي: '+faults.length;
+}
+
+function clearFilter(){
+  ['flDate','flMach','flType','flSev'].forEach(function(id){var el=document.getElementById(id);if(el)el.value='';});
+  var sort=document.getElementById('flSort');if(sort)sort.value='newest';
+  applyFilter();
+}
+
+function closeFault(id){
+  var f=faults.find(function(x){return x.id===id;});
+  if(f){f.status='resolved';if(!f.downtimeTo)f.downtimeTo=fmtDT();}
+  renderSidebar();applyFilter();
+  showToast('تم إغلاق العطل وتسجيل وقت الانتهاء','green');
+}
+
+/* ============================================================
+   MACHINES
+============================================================ */
+function renderMachines(){
+  var ct=document.getElementById('ct');
+  var u=currentUser;
+  ct.innerHTML=
+  '<div class="ph"><div class="ph-title">الماكينات وخطوط الإنتاج</div>'+
+  '<span style="font-size:11px;color:var(--amber)"><i class="ti ti-lock"></i> الحد الأقصى في الخطة التجريبية: '+u.machines.length+'/'+Math.max(u.machines.length,2)+'</span></div>'+
+  '<div class="g2">'+
+  u.machines.map(function(m){
+    var mFaults=faults.filter(function(f){return f.machineId===m.id;});
+    var openF=mFaults.filter(function(f){return f.status==='open';}).length;
+    var totalDT=mFaults.reduce(function(a,f){var d=calcDT(f.downtimeFrom,f.downtimeTo);return a+(d?d.minutes:0);},0);
+    var mEnergy=energyReadings.filter(function(e){return e.machineId===m.id&&e.date===fmtDate();});
+    var kwh=mEnergy.reduce(function(a,b){return a+b.kwh;},0);
+    return '<div class="card" style="direction:rtl">'+
+    '<div style="display:flex;align-items:center;gap:9px;margin-bottom:10px">'+
+    '<div style="width:36px;height:36px;background:var(--bg3);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px">⚙</div>'+
+    '<div><div style="font-size:13px;font-weight:700">'+m.name+'</div>'+
+    '<div style="font-size:10px;color:var(--txt2)">'+m.type+'</div></div></div>'+
+    '<div class="g3" style="text-align:center;font-size:10px;margin-bottom:10px">'+
+    '<div style="background:var(--bg3);border-radius:7px;padding:7px"><div style="font-size:16px;font-weight:800;color:'+(openF>0?'var(--red)':'var(--green)')+'">'+openF+'</div><div style="color:var(--txt3)">أعطال مفتوحة</div></div>'+
+    '<div style="background:var(--bg3);border-radius:7px;padding:7px"><div style="font-size:16px;font-weight:800;color:var(--amber)">'+totalDT+'</div><div style="color:var(--txt3)">د توقف</div></div>'+
+    '<div style="background:var(--bg3);border-radius:7px;padding:7px"><div style="font-size:16px;font-weight:800;color:var(--blue)">'+kwh.toFixed(1)+'</div><div style="color:var(--txt3)">kWh اليوم</div></div>'+
+    '</div>'+
+    '<div style="display:flex;gap:6px">'+
+    '<button class="btno bsm" style="flex:1;justify-content:center" onclick="showReportModal()"><i class="ti ti-download"></i> تقرير</button>'+
+    '<button class="btno bsm" style="flex:1;justify-content:center" onclick="navigate(\'support\')"><i class="ti ti-robot"></i> AI</button>'+
+    '</div></div>';
+  }).join('')+
+  '</div>';
+}
+
+/* ============================================================
+   ENERGY — METER READING PER SHIFT
+============================================================ */
 function renderEnergy(){
   var ct=document.getElementById('ct');
-  ct.innerHTML=
-  '<div class="ph"><div><div class="ph-title">الطاقة والورديات</div>'+
-  '<div class="ph-sub">تتبع الاستهلاك اليومي لكل وردية وفريق</div></div>'+
-  '<button class="btn-outline btn-sm" style="background:var(--acc2);border-color:var(--acc2);color:#fff" onclick="showAddEnergyModal()">'+
-  '<i class="ti ti-plus"></i> تسجيل استهلاك وردية</button></div>'+
+  var u=currentUser;
 
-  '<!-- إعداد الفرق والورديات -->'+
-  '<div class="card" style="direction:rtl">'+
-  '<div class="card-hdr"><div class="card-title"><i class="ti ti-settings" style="margin-left:5px;color:var(--acc)"></i>إعداد الفرق والورديات</div></div>'+
-  '<div class="form-row-3">'+
-  '<div class="form-group"><label class="form-label">عدد الفرق</label>'+
-  '<select class="form-select" id="teamsCount" onchange="updateShiftConfig()">'+
-  '<option value="1" '+(shiftConfig.teams===1?'selected':'')+'>فريق واحد</option>'+
-  '<option value="2" '+(shiftConfig.teams===2?'selected':'')+'>فريقان</option>'+
-  '<option value="3" '+(shiftConfig.teams===3?'selected':'')+'>ثلاثة فرق</option>'+
-  '</select></div>'+
-  '<div class="form-group"><label class="form-label">عدد الورديات يومياً</label>'+
-  '<select class="form-select" id="shiftsCount" onchange="updateShiftConfig()">'+
-  '<option value="1" '+(shiftConfig.shiftsPerDay===1?'selected':'')+'>وردية واحدة</option>'+
-  '<option value="2" '+(shiftConfig.shiftsPerDay===2?'selected':'')+'>وردية صباحية + مسائية</option>'+
-  '<option value="3" '+(shiftConfig.shiftsPerDay===3?'selected':'')+'>3 ورديات (24 ساعة)</option>'+
-  '</select></div>'+
-  '<div class="form-group"><label class="form-label">التاريخ للعرض</label>'+
-  '<input class="form-input ltr" type="date" id="energyDate" value="'+fmtDate(now())+'" onchange="renderEnergyTable()"></div>'+
-  '</div></div>'+
+  /* Check if any shift started today but has no reading entered yet */
+  var pendingShifts=[];
+  var nowH=now().getHours()*60+now().getMinutes();
+  u.shifts.forEach(function(s){
+    var fh=parseInt(s.timeFrom.split(':')[0])*60+parseInt(s.timeFrom.split(':')[1]);
+    /* shift that started within last 90 min and has no today reading */
+    var todayHasReading=energyReadings.some(function(e){return e.shiftId===s.id&&e.date===fmtDate();});
+    var diff=(nowH-fh+1440)%1440;
+    if(diff<=90&&!todayHasReading) pendingShifts.push(s);
+  });
 
-  '<!-- ملخص الورديات اليوم -->'+
-  '<div id="shiftCardsArea"></div>'+
-
-  '<!-- جدول السجلات -->'+
-  '<div class="card">'+
-  '<div class="card-hdr"><div class="card-title">سجل استهلاك الطاقة</div>'+
-  '<span class="card-act" onclick="showAddEnergyModal()"><i class="ti ti-plus"></i> إضافة</span></div>'+
-  '<div id="energyTableArea"></div>'+
-  '</div>'+
-
-  '<!-- مخطط الطاقة -->'+
-  '<div class="card">'+
-  '<div class="card-hdr"><div class="card-title">استهلاك الطاقة بالأيام</div></div>'+
-  '<div style="height:170px;position:relative"><canvas id="energyChart" role="img" aria-label="Energy chart">بيانات الطاقة</canvas></div>'+
-  '</div>';
-
-  renderShiftCards();
-  renderEnergyTable();
-  setTimeout(renderEnergyChart,80);
-}
-
-function updateShiftConfig(){
-  var t=document.getElementById('teamsCount');
-  var s=document.getElementById('shiftsCount');
-  if(t) shiftConfig.teams=parseInt(t.value);
-  if(s) shiftConfig.shiftsPerDay=parseInt(s.value);
-  renderShiftCards();
-}
-
-function renderShiftCards(){
-  var el=document.getElementById('shiftCardsArea'); if(!el) return;
-  var dateEl=document.getElementById('energyDate');
-  var date=dateEl?dateEl.value:fmtDate(now());
-  var dayLogs=energyLogs.filter(function(e){return e.date===date;});
-  var tColors=['#00c8e0','#8b5cf6','#10b981'];
-  var shiftNames={1:['صباحي'],2:['صباحي','مسائي'],3:['صباحي','مسائي','ليلي']};
-  var sNames=shiftNames[shiftConfig.shiftsPerDay]||['صباحي'];
-
-  var html='<div style="margin-bottom:12px"><div class="g'+Math.min(shiftConfig.teams*shiftConfig.shiftsPerDay,4)+' " style="display:grid;grid-template-columns:repeat('+Math.min(shiftConfig.teams*shiftConfig.shiftsPerDay,3)+',1fr);gap:10px;margin-bottom:12px">';
-  for(var t=1;t<=shiftConfig.teams;t++){
-    sNames.forEach(function(sn,si){
-      var logs=dayLogs.filter(function(l){return l.team===t&&l.shiftName===sn;});
-      var kwh=logs.reduce(function(a,b){return a+b.kwh;},0);
-      var prod=logs.reduce(function(a,b){return a+b.production;},0);
-      var eff=kwh>0?(prod/kwh).toFixed(1):'-';
-      var color=tColors[(t-1)%3];
-      html+='<div class="shift-card">'+
-      '<div class="shift-header">'+
-      '<div style="font-size:12px;font-weight:700;color:var(--txt)">فريق '+t+' · '+sn+'</div>'+
-      '<span class="shift-badge" style="background:rgba(0,0,0,.3);color:'+color+';border:1px solid '+color+'">'+
-      (logs.length?'مسجّل':'لم يُسجَّل')+'</span></div>'+
-      '<div style="display:flex;gap:16px;font-size:11px;margin-bottom:8px">'+
-      '<div><div style="color:var(--txt3)">الطاقة</div><div style="font-size:16px;font-weight:800;color:'+color+'">'+kwh.toFixed(1)+'</div><div style="color:var(--txt3);font-size:9px">kWh</div></div>'+
-      '<div><div style="color:var(--txt3)">الإنتاج</div><div style="font-size:16px;font-weight:800">'+prod+'</div><div style="color:var(--txt3);font-size:9px">وحدة</div></div>'+
-      '<div><div style="color:var(--txt3)">الكفاءة</div><div style="font-size:16px;font-weight:800;color:var(--green)">'+eff+'</div><div style="color:var(--txt3);font-size:9px">و/kWh</div></div>'+
-      '</div>'+
-      '<div style="font-size:9px;color:var(--txt3);margin-bottom:3px">كفاءة الطاقة</div>'+
-      '<div class="eff-bar"><div class="eff-fill" style="width:'+Math.min(parseFloat(eff)*10||0,100)+'%;background:'+color+'"></div></div>'+
-      '<button class="btn-outline btn-sm" style="width:100%;justify-content:center;margin-top:8px" onclick="showAddEnergyModal('+t+',\''+sn+'\')">'+
-      '<i class="ti ti-plus"></i> '+(logs.length?'تعديل / إضافة':'تسجيل الاستهلاك')+'</button>'+
-      '</div>';
-    });
+  var alertHtml='';
+  if(pendingShifts.length){
+    alertHtml='<div class="energy-alert">'+
+    '<i class="ti ti-alert-triangle" style="color:var(--red);font-size:20px;flex-shrink:0;margin-top:2px"></i>'+
+    '<div><div style="font-weight:700;color:var(--red);margin-bottom:4px">⚠ تسجيل عداد الوردية إلزامي!</div>'+
+    '<div style="font-size:12px;color:var(--txt2)">الورديات التالية بدأت ولم يُسجَّل قراءة العداد بعد:</div>'+
+    '<div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:7px">'+
+    pendingShifts.map(function(s){
+      return '<button class="btno bsm" style="color:var(--red);border-color:var(--red)" onclick="showEnergyModal(\''+s.id+'\')">'+
+      '<i class="ti ti-bolt"></i> تسجيل وردية '+s.name+'</button>';
+    }).join('')+
+    '</div></div></div>';
   }
-  html+='</div></div>';
-  el.innerHTML=html;
-}
 
-function renderEnergyTable(){
-  var el=document.getElementById('energyTableArea'); if(!el) return;
-  var dateEl=document.getElementById('energyDate');
-  var date=dateEl?dateEl.value:'';
-  var logs=date?energyLogs.filter(function(e){return e.date===date;}):energyLogs;
-  if(!logs.length){el.innerHTML='<div style="padding:16px;text-align:center;color:var(--txt3);font-size:12px">لا توجد سجلات لهذا التاريخ</div>';return;}
-  el.innerHTML='<div class="tbl-wrap"><table class="tbl">'+
-  '<thead><tr><th>التاريخ</th><th>الفريق</th><th>الوردية</th><th>من</th><th>إلى</th><th>الماكينة</th><th>الطاقة kWh</th><th>الإنتاج</th><th>الكفاءة</th></tr></thead><tbody>'+
-  logs.map(function(l){
-    var eff=l.kwh>0?(l.production/l.kwh).toFixed(1):'-';
-    var effColor=parseFloat(eff)>=6?'var(--green)':parseFloat(eff)>=4?'var(--amber)':'var(--red)';
+  /* Build shift cards */
+  var shiftCards=u.shifts.map(function(s){
+    var logs=energyReadings.filter(function(e){return e.shiftId===s.id;}).slice(-5).reverse();
+    var todayLog=energyReadings.filter(function(e){return e.shiftId===s.id&&e.date===fmtDate();});
+    var kwh=todayLog.reduce(function(a,b){return a+b.kwh;},0);
+    var prod=todayLog.reduce(function(a,b){return a+b.production;},0);
+    var eff=kwh>0?(prod/kwh).toFixed(2):'-';
+    var hasToday=todayLog.length>0;
+    return '<div class="shift-card">'+
+    '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">'+
+    '<div style="display:flex;align-items:center;gap:6px">'+
+    '<div style="width:10px;height:10px;border-radius:50%;background:'+s.color+'"></div>'+
+    '<div style="font-size:12px;font-weight:700">'+s.name+'</div>'+
+    '</div>'+
+    (hasToday?'<span class="badge b-green">مسجّل اليوم</span>':'<span class="badge b-red">لم يُسجَّل</span>')+
+    '</div>'+
+    '<div style="font-size:10px;color:var(--txt3);margin-bottom:8px"><i class="ti ti-user" style="font-size:11px"></i> '+s.leader+' · '+s.timeFrom+'-'+s.timeTo+'</div>'+
+    '<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:5px;text-align:center;font-size:10px;margin-bottom:8px">'+
+    '<div style="background:var(--bg2);border-radius:6px;padding:5px"><div style="font-size:14px;font-weight:800;color:'+s.color+'">'+kwh.toFixed(1)+'</div><div style="color:var(--txt3)">kWh</div></div>'+
+    '<div style="background:var(--bg2);border-radius:6px;padding:5px"><div style="font-size:14px;font-weight:800">'+prod+'</div><div style="color:var(--txt3)">وحدة</div></div>'+
+    '<div style="background:var(--bg2);border-radius:6px;padding:5px"><div style="font-size:14px;font-weight:800;color:var(--green)">'+eff+'</div><div style="color:var(--txt3)">كفاءة</div></div>'+
+    '</div>'+
+    '<button class="btno bsm" style="width:100%;justify-content:center;border-color:'+s.color+';color:'+s.color+'" onclick="showEnergyModal(\''+s.id+'\')">'+
+    '<i class="ti ti-plus"></i> تسجيل قراءة العداد</button>'+
+    '</div>';
+  }).join('');
+
+  /* History table */
+  var histRows=energyReadings.slice().reverse().slice(0,20).map(function(e){
+    var eff=e.kwh>0?(e.production/e.kwh).toFixed(2):'-';
+    var effColor=parseFloat(eff)>=6?'var(--green)':parseFloat(eff)>=3?'var(--amber)':'var(--red)';
     return '<tr>'+
-    '<td style="direction:ltr;text-align:right;font-size:11px">'+l.date+'</td>'+
-    '<td><span class="badge b-blue">فريق '+l.team+'</span></td>'+
-    '<td><span class="badge b-cyan">'+l.shiftName+'</span></td>'+
-    '<td style="direction:ltr;text-align:right;font-size:11px;color:var(--txt2)">'+l.timeFrom+'</td>'+
-    '<td style="direction:ltr;text-align:right;font-size:11px;color:var(--txt2)">'+l.timeTo+'</td>'+
-    '<td style="color:var(--txt2);font-size:11px">'+l.machine+'</td>'+
-    '<td style="font-weight:700;color:var(--amber)">'+l.kwh.toFixed(1)+'</td>'+
-    '<td style="font-weight:700">'+l.production+'</td>'+
-    '<td style="font-weight:700;color:'+effColor+'">'+eff+'</td>'+
+    '<td style="color:var(--txt3);font-size:10px;direction:ltr;text-align:right">'+e.date+'</td>'+
+    '<td style="font-size:10px">'+e.time+'</td>'+
+    '<td><span class="badge b-blue" style="font-size:9px">'+e.shiftName+'</span></td>'+
+    '<td style="color:var(--txt2);font-size:11px">'+e.machineName+'</td>'+
+    '<td style="color:var(--txt3);font-size:10px;direction:ltr">'+e.prevReading.toFixed(1)+'</td>'+
+    '<td style="color:var(--txt);font-weight:700;font-size:10px;direction:ltr">'+e.meterReading.toFixed(1)+'</td>'+
+    '<td style="color:var(--amber);font-weight:700">'+e.kwh.toFixed(1)+'</td>'+
+    '<td style="font-weight:700">'+e.production+'</td>'+
+    '<td style="color:'+effColor+';font-weight:700">'+eff+'</td>'+
     '</tr>';
-  }).join('')+
-  '</tbody></table></div>';
+  }).join('');
+
+  ct.innerHTML=
+  '<div class="ph"><div><div class="ph-title">قراءات الطاقة والورديات</div>'+
+  '<div class="ph-sub">قراءة العداد إلزامية عند بداية كل وردية</div></div>'+
+  '<button class="btno bsm" style="background:var(--acc2);border-color:var(--acc2);color:#fff" onclick="showEnergyModal(\'\')">'+
+  '<i class="ti ti-plus"></i> تسجيل قراءة</button></div>'+
+
+  alertHtml+
+
+  '<div class="g3" style="margin-bottom:12px">'+shiftCards+'</div>'+
+
+  '<div class="card">'+
+  '<div class="card-hdr"><div class="card-title">سجل القراءات (آخر 20)</div>'+
+  '<span class="card-act" onclick="showEnergyModal(\'\')"><i class="ti ti-plus"></i> إضافة</span></div>'+
+  '<div class="tbl-wrap"><table class="tbl">'+
+  '<thead><tr><th>التاريخ</th><th>الوقت</th><th>الوردية</th><th>الماكينة</th>'+
+  '<th>القراءة السابقة</th><th>القراءة الحالية</th><th>kWh</th><th>الإنتاج</th><th>الكفاءة</th></tr></thead>'+
+  '<tbody>'+(histRows||'<tr><td colspan="9" style="text-align:center;padding:16px;color:var(--txt3)">لا توجد قراءات مسجّلة</td></tr>')+'</tbody>'+
+  '</table></div></div>';
 }
 
-function renderEnergyChart(){
-  var el=document.getElementById('energyChart'); if(!el) return;
-  var days={};
-  energyLogs.forEach(function(l){
-    if(!days[l.date]) days[l.date]={kwh:0,prod:0};
-    days[l.date].kwh+=l.kwh;
-    days[l.date].prod+=l.production;
-  });
-  var labels=Object.keys(days).sort();
-  var kwhData=labels.map(function(d){return parseFloat(days[d].kwh.toFixed(1));});
-  charts.energy=new Chart(el,{type:'bar',data:{
-    labels:labels,
-    datasets:[{label:'kWh',data:kwhData,backgroundColor:'rgba(0,200,224,.7)',borderRadius:4}]
-  },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
-    scales:{x:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#64748b',font:{size:9}}},
-            y:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#64748b',font:{size:9}}}}}});
-}
+function showEnergyModal(shiftId){
+  var u=currentUser;
+  var shift=shiftId?u.shifts.find(function(s){return s.id===shiftId;}):null;
 
-function showAddEnergyModal(teamNum,shiftName){
-  var nowD=fmtDate(now());
-  var sOptions='';
-  var sNames={1:['صباحي'],2:['صباحي','مسائي'],3:['صباحي','مسائي','ليلي']};
-  var times={صباحي:['06:00','14:00'],مسائي:['14:00','22:00'],ليلي:['22:00','06:00']};
-  (sNames[shiftConfig.shiftsPerDay]||['صباحي']).forEach(function(s){
-    sOptions+='<option value="'+s+'" '+(shiftName===s?'selected':'')+'>'+s+'</option>';
-  });
-  var tOptions='';
-  for(var i=1;i<=shiftConfig.teams;i++){
-    tOptions+='<option value="'+i+'" '+(teamNum===i?'selected':'')+'>فريق '+i+'</option>';
-  }
+  /* get last reading for this shift/machine to show as prev */
+  var shiftOpts=u.shifts.map(function(s){return '<option value="'+s.id+'" '+(shiftId===s.id?'selected':'')+'>'+s.name+' ('+s.leader+')</option>';}).join('');
+  var machOpts=u.machines.map(function(m){return '<option value="'+m.id+'">'+m.name+'</option>';}).join('');
+
   document.getElementById('modal').innerHTML=
   '<div class="modal-bg" onclick="closeMBg(event)">'+
   '<div class="modal-box">'+
-  '<div class="modal-hdr"><div style="font-size:14px;font-weight:700"><i class="ti ti-bolt" style="color:var(--amber);margin-left:6px"></i>تسجيل استهلاك وردية</div>'+
-  '<button class="btn-outline btn-sm" onclick="closeModal()">×</button></div>'+
-  '<div class="form-row">'+
-  '<div class="form-group"><label class="form-label">الفريق *</label>'+
-  '<select class="form-select" id="eTeam">'+tOptions+'</select></div>'+
-  '<div class="form-group"><label class="form-label">الوردية *</label>'+
-  '<select class="form-select" id="eShift">'+sOptions+'</select></div>'+
+  '<div class="modal-hdr"><div style="font-size:14px;font-weight:700"><i class="ti ti-bolt" style="color:var(--amber);margin-left:6px"></i>تسجيل قراءة عداد الطاقة</div>'+
+  '<button class="btno bsm" onclick="closeModal()">×</button></div>'+
+
+  '<div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:7px;padding:8px 12px;margin-bottom:12px;font-size:11px;color:var(--amber)">'+
+  '<i class="ti ti-info-circle"></i> القراءة الحالية للعداد عند بداية الوردية — سيتم حساب استهلاك الوردية السابقة تلقائياً</div>'+
+
+  '<div class="frow">'+
+  '<div class="fg"><label class="fl">الوردية *</label><select class="fi" id="eShift" onchange="updatePrevReading()">'+shiftOpts+'</select></div>'+
+  '<div class="fg"><label class="fl">الماكينة *</label><select class="fi" id="eMach" onchange="updatePrevReading()">'+machOpts+'</select></div>'+
   '</div>'+
-  '<div class="form-group"><label class="form-label">التاريخ *</label>'+
-  '<input class="form-input ltr" type="date" id="eDate" value="'+nowD+'"></div>'+
-  '<div class="form-row">'+
-  '<div class="form-group"><label class="form-label">وقت البداية</label>'+
-  '<input class="form-input ltr" type="time" id="eFrom" value="'+(shiftName&&times[shiftName]?times[shiftName][0]:'06:00')+'"></div>'+
-  '<div class="form-group"><label class="form-label">وقت النهاية</label>'+
-  '<input class="form-input ltr" type="time" id="eTo" value="'+(shiftName&&times[shiftName]?times[shiftName][1]:'14:00')+'"></div>'+
+  '<div class="frow">'+
+  '<div class="fg"><label class="fl">التاريخ</label><input class="fi ltr" type="date" id="eDate" value="'+fmtDate()+'"></div>'+
+  '<div class="fg"><label class="fl">الوقت</label><input class="fi ltr" type="time" id="eTime" value="'+fmtTime()+'"></div>'+
   '</div>'+
-  '<div class="form-group"><label class="form-label">الماكينة</label>'+
-  '<select class="form-select" id="eMachine">'+
-  '<option value="CNC A1">ماكينة CNC أ1</option>'+
-  '<option value="Press B2">مكبس هيدروليكي ب2</option>'+
-  '<option value="All">جميع الماكينات</option>'+
-  '</select></div>'+
-  '<div class="form-row">'+
-  '<div class="form-group"><label class="form-label">الاستهلاك (kWh) *</label>'+
-  '<input class="form-input ltr" type="number" id="eKwh" placeholder="0.0" step="0.1" min="0"></div>'+
-  '<div class="form-group"><label class="form-label">الإنتاج (وحدة) *</label>'+
-  '<input class="form-input ltr" type="number" id="eProd" placeholder="0" min="0"></div>'+
+
+  '<div style="background:var(--bg3);border:1px solid var(--bdr);border-radius:8px;padding:10px 12px;margin-bottom:10px">'+
+  '<div style="font-size:11px;color:var(--txt2);margin-bottom:5px">القراءة السابقة للعداد:</div>'+
+  '<div id="prevReadDisplay" style="font-size:18px;font-weight:800;color:var(--txt2)">—</div>'+
   '</div>'+
-  '<div id="eEffCalc" style="background:rgba(0,200,224,.08);border:1px solid rgba(0,200,224,.2);border-radius:6px;padding:8px 12px;font-size:12px;color:var(--acc);margin-bottom:12px;display:none">'+
-  'كفاءة الطاقة: <strong id="eEffVal">—</strong> وحدة/kWh</div>'+
-  '<div class="form-group"><label class="form-label">ملاحظات</label>'+
-  '<input class="form-input" id="eNotes" placeholder="أي ملاحظات على هذه الوردية..."></div>'+
+
+  '<div class="fg"><label class="fl">قراءة العداد الحالية (kWh المتراكمة) *</label>'+
+  '<input class="fi ltr" type="number" id="eMeter" step="0.1" min="0" placeholder="مثال: 1285.4" oninput="calcEnergyUsed()"></div>'+
+
+  '<div id="kwhCalcBox" style="background:rgba(0,200,224,.08);border:1px solid rgba(0,200,224,.2);border-radius:7px;padding:9px 12px;margin-bottom:10px;display:none">'+
+  '<div style="font-size:11px;color:var(--txt3);margin-bottom:3px">استهلاك الوردية السابقة (محسوب تلقائياً):</div>'+
+  '<div id="kwhCalcVal" style="font-size:20px;font-weight:800;color:var(--acc)"></div>'+
+  '</div>'+
+
+  '<div class="fg"><label class="fl">إنتاج هذه الوردية (وحدة)</label>'+
+  '<input class="fi ltr" type="number" id="eProd" step="1" min="0" placeholder="0" oninput="calcEnergyUsed()"></div>'+
+  '<div id="effCalcBox" style="background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:7px;padding:8px 12px;margin-bottom:10px;display:none">'+
+  '<span style="font-size:11px;color:var(--txt3)">كفاءة الطاقة: </span>'+
+  '<span id="effCalcVal" style="font-size:16px;font-weight:800;color:var(--green)"></span>'+
+  '<span style="font-size:11px;color:var(--txt3)"> وحدة/kWh</span></div>'+
+
+  '<div class="fg"><label class="fl">ملاحظات</label>'+
+  '<input class="fi" id="eNotes" placeholder="أي ملاحظات..."></div>'+
   '<div id="eMsgBox"></div>'+
-  '<button class="btn-primary" onclick="submitEnergy()"><i class="ti ti-check"></i> حفظ سجل الطاقة</button>'+
+  '<button class="btnp" onclick="submitEnergy()"><i class="ti ti-check"></i> حفظ قراءة العداد</button>'+
   '</div></div>';
 
-  document.getElementById('eKwh').addEventListener('input',calcEff);
-  document.getElementById('eProd').addEventListener('input',calcEff);
+  updatePrevReading();
 }
 
-function calcEff(){
-  var k=parseFloat(document.getElementById('eKwh').value)||0;
-  var p=parseFloat(document.getElementById('eProd').value)||0;
-  var box=document.getElementById('eEffCalc');
-  var val=document.getElementById('eEffVal');
-  if(k>0&&p>0&&box&&val){
-    box.style.display='block';
-    val.textContent=(p/k).toFixed(2);
+var _prevRead=0;
+function updatePrevReading(){
+  var shiftEl=document.getElementById('eShift');
+  var machEl=document.getElementById('eMach');
+  var dispEl=document.getElementById('prevReadDisplay');
+  if(!shiftEl||!machEl||!dispEl)return;
+  var sid=shiftEl.value,mid=machEl.value;
+  /* find last reading for this machine regardless of shift */
+  var allForMach=energyReadings.filter(function(e){return e.machineId===mid;});
+  allForMach.sort(function(a,b){return (a.date+a.time)>(b.date+b.time)?-1:1;});
+  if(allForMach.length){
+    _prevRead=allForMach[0].meterReading;
+    dispEl.style.color='var(--txt)';
+    dispEl.textContent=_prevRead.toFixed(1)+' kWh';
+  } else {
+    _prevRead=0;
+    dispEl.style.color='var(--txt3)';
+    dispEl.textContent='لا توجد قراءة سابقة (أول تسجيل)';
+  }
+  calcEnergyUsed();
+}
+
+function calcEnergyUsed(){
+  var meterEl=document.getElementById('eMeter');
+  var prodEl=document.getElementById('eProd');
+  var kwhBox=document.getElementById('kwhCalcBox');
+  var kwhVal=document.getElementById('kwhCalcVal');
+  var effBox=document.getElementById('effCalcBox');
+  var effVal=document.getElementById('effCalcVal');
+  if(!meterEl||!kwhBox||!kwhVal)return;
+  var meter=parseFloat(meterEl.value)||0;
+  if(meter>0&&meter>_prevRead){
+    var kwh=meter-_prevRead;
+    kwhBox.style.display='block';
+    kwhVal.textContent=kwh.toFixed(2)+' kWh';
+    var prod=parseInt(prodEl?prodEl.value:0)||0;
+    if(prod>0&&kwh>0){
+      effBox.style.display='block';
+      effVal.textContent=(prod/kwh).toFixed(2);
+    } else effBox.style.display='none';
+  } else {
+    kwhBox.style.display='none';
+    effBox.style.display='none';
   }
 }
 
 function submitEnergy(){
-  var team=parseInt(document.getElementById('eTeam').value);
-  var shift=document.getElementById('eShift').value;
-  var date=document.getElementById('eDate').value;
-  var from=document.getElementById('eFrom').value;
-  var to=document.getElementById('eTo').value;
-  var machine=document.getElementById('eMachine').value;
-  var kwh=parseFloat(document.getElementById('eKwh').value);
-  var prod=parseInt(document.getElementById('eProd').value);
-  var notes=document.getElementById('eNotes').value;
+  var shiftEl=document.getElementById('eShift'),machEl=document.getElementById('eMach'),
+      dateEl=document.getElementById('eDate'),timeEl=document.getElementById('eTime'),
+      meterEl=document.getElementById('eMeter'),prodEl=document.getElementById('eProd'),
+      notesEl=document.getElementById('eNotes');
   var msg=document.getElementById('eMsgBox');
-  if(!date||isNaN(kwh)||kwh<=0||isNaN(prod)||prod<0){
-    if(msg) msg.innerHTML='<div class="msg-error">يرجى ملء التاريخ والاستهلاك والإنتاج</div>';
-    return;
+  var meter=parseFloat(meterEl?meterEl.value:0)||0;
+  if(!shiftEl.value||!machEl.value||!dateEl.value||meter<=0){
+    msg.innerHTML='<div class="msg-e">يرجى اختيار الوردية والماكينة وإدخال قراءة العداد</div>';return;
   }
-  energyLogs.push({id:energyLogs.length+1,date:date,team:team,shift:shift.charAt(0),shiftName:shift,
-    timeFrom:from,timeTo:to,machine:machine,kwh:kwh,production:prod,notes:notes});
+  if(_prevRead>0&&meter<_prevRead){
+    msg.innerHTML='<div class="msg-e">قراءة العداد يجب أن تكون أكبر من القراءة السابقة ('+_prevRead.toFixed(1)+')</div>';return;
+  }
+  var kwh=meter-(_prevRead||0);
+  var shift=currentUser.shifts.find(function(s){return s.id===shiftEl.value;});
+  var machine=currentUser.machines.find(function(m){return m.id===machEl.value;});
+  var prod=parseInt(prodEl?prodEl.value:0)||0;
+  energyReadings.push({
+    id:uid(),shiftId:shiftEl.value,shiftName:shift?shift.name:'',
+    machineId:machEl.value,machineName:machine?machine.name:'',
+    date:dateEl.value,time:timeEl?timeEl.value:fmtTime(),
+    meterReading:meter,prevReading:_prevRead||0,
+    kwh:parseFloat(kwh.toFixed(2)),production:prod,
+    notes:notesEl?notesEl.value:''
+  });
   closeModal();
-  showToast('تم تسجيل استهلاك فريق '+team+' وردية '+shift+': '+kwh+' kWh','green');
+  showToast('تم تسجيل قراءة العداد · استهلاك: '+kwh.toFixed(2)+' kWh','green');
   navigate('energy');
 }
 
-/* ========== REPORTS ========== */
+/* ============================================================
+   REPORTS
+============================================================ */
 function renderReports(){
   var ct=document.getElementById('ct');
-  var reps=[
-    {icon:'ti-chart-bar',title:'تقرير الأداء اليومي',desc:'مقاييس OEE وأعطال الماكينات',type:'PDF'},
-    {icon:'ti-bolt',title:'تقرير الطاقة والورديات',desc:'استهلاك كل فريق ووردية',type:'Excel'},
-    {icon:'ti-tool',title:'تقرير الصيانة الوقائية',desc:'جدول الصيانة القادمة',type:'PDF'},
-    {icon:'ti-alert-triangle',title:'تقرير تحليل الأعطال',desc:'توقفات وأسباب وأزمان',type:'PDF'},
-  ];
   ct.innerHTML='<div class="ph"><div class="ph-title">التقارير</div></div>'+
-  '<div class="g2">'+reps.map(function(r){
+  '<div class="g2">'+
+  [['ti-chart-bar','تقرير الأداء اليومي','OEE والأعطال والتوقفات','PDF'],
+   ['ti-bolt','تقرير الطاقة والورديات','استهلاك كل فريق بالتفصيل','Excel'],
+   ['ti-clock-stop','تقرير أزمان التوقف','تحليل أسباب وأزمان التوقف','PDF'],
+   ['ti-alert-triangle','تقرير تحليل الأعطال','أنواع وتكرار وأولوية الأعطال','PDF']].map(function(r){
     return '<div class="card" style="direction:rtl;cursor:pointer" onclick="showReportModal()">'+
-    '<div style="font-size:24px;color:var(--acc);margin-bottom:8px"><i class="ti '+r.icon+'"></i></div>'+
-    '<div style="font-size:13px;font-weight:700;margin-bottom:4px">'+r.title+'</div>'+
-    '<div style="font-size:11px;color:var(--txt2);margin-bottom:12px">'+r.desc+'</div>'+
+    '<div style="font-size:22px;color:var(--acc);margin-bottom:7px"><i class="ti '+r[0]+'"></i></div>'+
+    '<div style="font-size:12px;font-weight:700;margin-bottom:3px">'+r[1]+'</div>'+
+    '<div style="font-size:11px;color:var(--txt2);margin-bottom:10px">'+r[2]+'</div>'+
     '<div style="display:flex;justify-content:space-between;align-items:center">'+
-    '<span class="badge b-cyan">'+r.type+'</span>'+
-    '<button class="btn-outline btn-sm" onclick="event.stopPropagation();showReportModal()"><i class="ti ti-download"></i> تصدير</button>'+
+    '<span class="badge b-cyan">'+r[3]+'</span>'+
+    '<button class="btno bsm" onclick="event.stopPropagation();showReportModal()"><i class="ti ti-download"></i> تصدير</button>'+
     '</div></div>';
   }).join('')+'</div>';
 }
 
-/* ========== SUPPORT ========== */
+/* ============================================================
+   SUPPORT
+============================================================ */
 function renderSupport(){
   var ct=document.getElementById('ct');
   ct.innerHTML='<div class="ph"><div><div class="ph-title">الدعم الفني الذكي</div>'+
-  '<div class="ph-sub">مدعوم بـ Claude AI · info@gtech-a.com</div></div></div>'+
-  '<div class="card">'+
-  '<div class="chat-box">'+
+  '<div class="ph-sub">Claude AI · info@gtech-a.com</div></div></div>'+
+  '<div class="card"><div class="chat-box">'+
   '<div id="chatMsgs" class="chat-msgs">'+
-  '<div class="chat-msg bot">مرحباً! أنا مساعد G-Tech الذكي.\nيمكنني مساعدتك في:\n• تشخيص الأعطال وتحديد الأسباب\n• تحليل أزمان التوقف وتقليلها\n• تحسين كفاءة الطاقة لكل وردية\n• جدولة الصيانة الوقائية\n\nكيف يمكنني مساعدتك؟</div>'+
+  '<div class="chat-msg bot">مرحباً! أنا مساعد G-Tech الذكي.\nيمكنني مساعدتك في:\n• تشخيص الأعطال وتحديد أسبابها\n• تحليل أزمان التوقف وتقليلها\n• تحسين كفاءة الطاقة لكل وردية\n• جدولة الصيانة الوقائية</div>'+
   '</div>'+
   '<div class="chat-input-row">'+
-  '<input class="form-input" id="aiIn" style="direction:rtl" placeholder="اسأل عن أي عطل أو مشكلة..." onkeydown="if(event.key===\'Enter\')sendAI()">'+
-  '<button class="btn-outline btn-sm" onclick="sendAI()" style="padding:7px 14px"><i class="ti ti-send"></i></button>'+
+  '<input class="fi" id="aiIn" style="flex:1;direction:rtl" placeholder="اسأل عن أي عطل أو مشكلة..." onkeydown="if(event.key===\'Enter\')sendAI()">'+
+  '<button class="btno bsm" onclick="sendAI()" style="padding:7px 12px"><i class="ti ti-send"></i></button>'+
   '</div></div></div>'+
-  '<div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px">'+
-  ['تشخيص ارتفاع الحرارة','كيف أحسن OEE؟','كيف أقلل زمن التوقف؟','تحسين كفاءة الطاقة'].map(function(q){
-    return '<button class="btn-outline btn-sm" style="font-size:10px" onclick="setAI(\''+q+'\')">'+q+'</button>';
+  '<div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:9px">'+
+  ['تشخيص ارتفاع الحرارة','كيف أقلل زمن التوقف؟','تحسين كفاءة الطاقة','جدولة الصيانة'].map(function(q){
+    return '<button class="btno bsm" style="font-size:10px" onclick="setAI(\''+q+'\')">'+q+'</button>';
   }).join('')+'</div>';
 }
-
 function setAI(q){var el=document.getElementById('aiIn');if(el){el.value=q;sendAI();}}
-
 async function sendAI(){
-  var inp=document.getElementById('aiIn');
-  var msgs=document.getElementById('chatMsgs');
-  if(!inp||!msgs||!inp.value.trim()) return;
-  var q=inp.value.trim(); inp.value='';
-  var uDiv=document.createElement('div');
-  uDiv.className='chat-msg user'; uDiv.textContent=q;
-  msgs.appendChild(uDiv); msgs.scrollTop=msgs.scrollHeight;
-  var bDiv=document.createElement('div');
-  bDiv.className='chat-msg bot'; bDiv.textContent='⟳ جاري التحليل...';
-  msgs.appendChild(bDiv); msgs.scrollTop=msgs.scrollHeight;
+  var inp=document.getElementById('aiIn'),msgs=document.getElementById('chatMsgs');
+  if(!inp||!msgs||!inp.value.trim())return;
+  var q=inp.value.trim();inp.value='';
+  var uDiv=document.createElement('div');uDiv.className='chat-msg user';uDiv.textContent=q;
+  msgs.appendChild(uDiv);msgs.scrollTop=msgs.scrollHeight;
+  var bDiv=document.createElement('div');bDiv.className='chat-msg bot';bDiv.textContent='⟳ جاري التحليل...';
+  msgs.appendChild(bDiv);msgs.scrollTop=msgs.scrollHeight;
   try{
-    var res=await fetch('https://api.anthropic.com/v1/messages',{
-      method:'POST',headers:{'Content-Type':'application/json'},
+    var res=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:500,
         system:'أنت مهندس صيانة صناعية خبير في G-Tech. أجب بإيجاز وعملية بالعربية.',
-        messages:[{role:'user',content:q}]})
-    });
+        messages:[{role:'user',content:q}]})});
     var data=await res.json();
     bDiv.textContent=(data.content&&data.content[0]&&data.content[0].text)||'تعذر الاتصال.';
   }catch(e){bDiv.textContent='تعذر الاتصال. تواصل مع info@gtech-a.com';}
   msgs.scrollTop=msgs.scrollHeight;
 }
 
-/* ========== SETTINGS ========== */
+/* ============================================================
+   SETTINGS
+============================================================ */
 function renderSettings(){
   var ct=document.getElementById('ct');
+  var u=currentUser;
   ct.innerHTML='<div class="ph"><div class="ph-title">الإعدادات</div></div>'+
   '<div class="card" style="max-width:460px;direction:rtl">'+
-  '<div style="font-size:13px;font-weight:700;margin-bottom:14px;color:var(--acc)">بيانات الحساب</div>'+
-  '<div class="form-row">'+
-  '<div class="form-group"><label class="form-label">الاسم الكامل</label><input class="form-input" value="'+(currentUser?currentUser.name:'')+'"></div>'+
-  '<div class="form-group"><label class="form-label">اسم الشركة</label><input class="form-input" value="'+(currentUser?currentUser.company:'')+'"></div>'+
+  '<div style="font-size:12px;font-weight:700;margin-bottom:12px;color:var(--acc)">بيانات الحساب</div>'+
+  '<div class="frow"><div class="fg"><label class="fl">الاسم</label><input class="fi" value="'+u.name+'"></div>'+
+  '<div class="fg"><label class="fl">الشركة</label><input class="fi" value="'+u.company+'"></div></div>'+
+  '<div class="fg"><label class="fl">البريد الإلكتروني</label><input class="fi ltr" value="'+u.email+'" style="color:var(--acc)"></div>'+
+  '<div class="fg"><label class="fl">الموبايل</label><input class="fi ltr" value="'+(u.phone||'')+'"></div>'+
+  '<div style="border-top:1px solid var(--bdr);padding-top:12px;margin-top:4px">'+
+  '<div class="trial-info" style="margin-bottom:12px"><i class="ti ti-clock" style="font-size:13px"></i> نسخة تجريبية: <strong>'+(u.trialDays||0)+' أيام متبقية</strong></div>'+
+  '<button class="btnp"><i class="ti ti-rocket"></i> ترقية للخطة المدفوعة</button>'+
+  '</div></div>'+
+  '<div class="card" style="max-width:460px;direction:rtl">'+
+  '<div style="font-size:12px;font-weight:700;margin-bottom:10px;color:var(--acc)">الماكينات المسجّلة</div>'+
+  u.machines.map(function(m){return '<div class="ff-item"><i class="ti ti-cpu" style="color:var(--acc)"></i><div class="ff-info"><div class="ff-title">'+m.name+'</div><div class="ff-sub">'+m.type+'</div></div></div>';}).join('')+
   '</div>'+
-  '<div class="form-group"><label class="form-label">البريد الإلكتروني</label><input class="form-input ltr" value="'+(currentUser?currentUser.email:'')+'" style="color:var(--acc)"></div>'+
-  '<div class="form-group"><label class="form-label">رقم الموبايل</label><input class="form-input ltr" value="'+(currentUser?currentUser.phone||'':'')+'" ></div>'+
-  '<div style="border-top:1px solid var(--bdr);padding-top:14px;margin-top:4px">'+
-  '<div class="trial-info" style="margin-bottom:14px"><i class="ti ti-clock" style="font-size:14px"></i> '+
-  'نسخة تجريبية: <strong>'+(currentUser&&currentUser.trialDays?currentUser.trialDays+' أيام متبقية':'—')+'</strong></div>'+
-  '<button class="btn-primary"><i class="ti ti-rocket"></i> ترقية للخطة المدفوعة</button>'+
-  '</div></div>';
+  '<div class="card" style="max-width:460px;direction:rtl">'+
+  '<div style="font-size:12px;font-weight:700;margin-bottom:10px;color:var(--acc)">الورديات المسجّلة</div>'+
+  u.shifts.map(function(s){return '<div class="ff-item"><div style="width:10px;height:10px;border-radius:50%;background:'+s.color+';flex-shrink:0"></div><div class="ff-info"><div class="ff-title">'+s.name+' · '+s.leader+'</div><div class="ff-sub">'+s.timeFrom+' - '+s.timeTo+'</div></div></div>';}).join('')+
+  '</div>';
 }
 
-/* ========== ADMIN PAGE (SEPARATE) ========== */
-var adminLoggedIn=false;
-
+/* ============================================================
+   ADMIN (SEPARATE PAGE)
+============================================================ */
 function renderAdminLoginPage(){
   document.getElementById('root').innerHTML=
-  '<div class="auth-wrap">'+
-  '<div class="auth-card">'+
-  '<div class="auth-logo"><div style="width:60px;height:60px;background:linear-gradient(135deg,var(--purple),#1e3a8a);border-radius:14px;display:inline-flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:10px">🛡</div>'+
-  '<h1 style="font-size:18px">G-Tech Admin</h1><p>لوحة تحكم المشرفين — وصول محدود</p></div>'+
+  '<div class="auth-wrap"><div class="auth-card">'+
+  '<div class="auth-logo"><div style="width:54px;height:54px;background:linear-gradient(135deg,var(--purple),#1e3a8a);border-radius:13px;display:inline-flex;align-items:center;justify-content:center;font-size:24px;margin-bottom:8px">🛡</div>'+
+  '<h1 style="font-size:18px">G-Tech Admin</h1><p>وصول المشرفين فقط</p></div>'+
   '<div id="adminMsg"></div>'+
-  '<div class="form-group"><label class="form-label">كلمة مرور المشرف</label>'+
-  '<input class="form-input ltr" id="aPw" type="password" placeholder="••••••••" onkeydown="if(event.key===\'Enter\')checkAdminPw()"></div>'+
-  '<button class="btn-primary" onclick="checkAdminPw()"><i class="ti ti-shield-lock"></i> دخول لوحة الإدارة</button>'+
-  '<div style="margin-top:12px;text-align:center">'+
-  '<span style="font-size:11px;color:var(--acc);cursor:pointer" onclick="backToApp()">← العودة للتطبيق</span></div>'+
+  '<div class="fg"><label class="fl">كلمة مرور المشرف</label>'+
+  '<input class="fi ltr" id="aPw" type="password" placeholder="••••••••" onkeydown="if(event.key===\'Enter\')checkAdminPw()"></div>'+
+  '<button class="btnp" onclick="checkAdminPw()"><i class="ti ti-shield-lock"></i> دخول لوحة الإدارة</button>'+
+  '<div style="text-align:center;margin-top:10px"><span style="font-size:11px;color:var(--acc);cursor:pointer" onclick="backToApp()">← العودة للتطبيق</span></div>'+
   '</div></div>';
 }
 
 function checkAdminPw(){
-  var pw=document.getElementById('aPw');
-  var m=document.getElementById('adminMsg');
-  if(pw&&(pw.value==='gtech2026'||pw.value==='admin')){
-    adminLoggedIn=true;
-    renderAdminDashPage();
-  } else {
-    if(m) m.innerHTML='<div class="msg-error">كلمة المرور غير صحيحة</div>';
-  }
+  var pw=document.getElementById('aPw'),m=document.getElementById('adminMsg');
+  if(pw&&(pw.value==='gtech2026'||pw.value==='admin')){renderAdminDashPage();}
+  else if(m) m.innerHTML='<div class="msg-e">كلمة المرور غير صحيحة</div>';
 }
-
-function backToApp(){
-  window.location.hash='';
-  screen='auth'; render();
-}
+function backToApp(){window.location.hash='';screen='auth';render();}
 
 function renderAdminDashPage(){
   var totalF=clients.reduce(function(a,c){return a+c.faultsToday;},0);
   var trialC=clients.filter(function(c){return c.plan==='trial';}).length;
   var avgOee=Math.round(clients.reduce(function(a,c){return a+c.oee;},0)/clients.length);
-
   document.getElementById('root').innerHTML=
   '<div class="admin-page">'+
-  '<div class="admin-topbar">'+
-  '<div style="display:flex;align-items:center;gap:10px">'+
-  '<div style="font-size:20px">🛡</div>'+
-  '<div><div style="font-size:15px;font-weight:800;color:#fff">G-Tech Admin Control Panel</div>'+
-  '<div style="font-size:11px;opacity:.8;color:#ddd">وصول المشرفين فقط · '+fmtDateTime(now())+'</div></div></div>'+
-  '<div style="display:flex;gap:8px">'+
-  '<button class="btn-outline btn-sm" style="border-color:rgba(255,255,255,.3);color:#fff" onclick="backToApp()">← العودة للتطبيق</button>'+
-  '<button class="btn-outline btn-sm" style="border-color:rgba(255,255,255,.3);color:#fff" onclick="renderAdminLoginPage()"><i class="ti ti-logout"></i> خروج</button>'+
+  '<div class="admin-topbar"><div style="display:flex;align-items:center;gap:10px">'+
+  '<div style="font-size:18px">🛡</div><div>'+
+  '<div style="font-size:14px;font-weight:800;color:#fff">G-Tech Admin Control Panel</div>'+
+  '<div style="font-size:10px;opacity:.8;color:#ddd">'+fmtDT()+'</div></div></div>'+
+  '<div style="display:flex;gap:7px">'+
+  '<button class="btno bsm" style="border-color:rgba(255,255,255,.3);color:#fff" onclick="backToApp()">← العودة</button>'+
+  '<button class="btno bsm" style="border-color:rgba(255,255,255,.3);color:#fff" onclick="renderAdminLoginPage()"><i class="ti ti-logout"></i></button>'+
   '</div></div>'+
-
-  '<div class="admin-body">'+
+  '<div style="padding:16px;max-width:1100px;margin:0 auto">'+
   '<div class="sg">'+
   mkStat('ti-building','blue','إجمالي العملاء',clients.length,'+1 هذا الشهر','up')+
   mkStat('ti-alert-triangle','red','أعطال اليوم',totalF,'عبر جميع العملاء','up')+
   mkStat('ti-clock','amber','حسابات تجريبية',trialC,'تتطلب متابعة','down')+
   mkStat('ti-chart-bar','green','متوسط OEE',avgOee+'%','+2% هذا الأسبوع','up')+
   '</div>'+
-
-  '<div style="font-size:14px;font-weight:700;margin-bottom:12px;direction:rtl">'+
-  'إدارة العملاء <span style="font-size:11px;color:var(--txt2);font-weight:400">('+clients.length+' عميل)</span></div>'+
-
-  '<div style="direction:rtl;margin-bottom:12px">'+
-  '<input class="form-input" style="max-width:260px" placeholder="بحث بالاسم أو الإيميل..." oninput="filterAdminClients(this.value)" id="adminSearch">'+
-  '</div>'+
-
-  '<div id="adminClientsGrid" class="g2">'+
-  clients.map(mkAdminClientCard).join('')+
-  '</div>'+
-
-  '<div class="card" style="margin-top:16px">'+
-  '<div class="card-hdr"><div class="card-title"><i class="ti ti-server" style="margin-left:6px;color:var(--acc)"></i>حالة الأنظمة</div>'+
-  '<div style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--green)"><span class="live-dot"></span>جميع الأنظمة تعمل</div></div>'+
-  '<div class="tbl-wrap"><table class="tbl">'+
-  '<thead><tr><th>الخدمة</th><th>الحالة</th><th>Uptime</th><th>زمن الاستجابة</th></tr></thead><tbody>'+
-  [['API Gateway','operational','99.98%','42ms'],['Database','operational','99.95%','8ms'],
-   ['Claude AI','operational','99.9%','850ms'],['Real-time','operational','99.7%','12ms'],
-   ['Email','degraded','97.2%','320ms'],['Storage','operational','100%','28ms']].map(function(s){
+  '<div class="fg" style="margin-bottom:10px"><input class="fi" style="max-width:260px" placeholder="بحث..." oninput="filterAC(this.value)" id="acSearch"></div>'+
+  '<div class="g2" id="acGrid">'+clients.map(mkACC).join('')+'</div>'+
+  '<div class="card" style="margin-top:14px">'+
+  '<div class="card-hdr"><div class="card-title"><i class="ti ti-server" style="margin-left:5px;color:var(--acc)"></i>حالة الأنظمة</div>'+
+  '<div style="display:flex;align-items:center;gap:4px;font-size:10px;color:var(--green)"><span class="live-dot"></span>كل الأنظمة تعمل</div></div>'+
+  '<div class="tbl-wrap"><table class="tbl"><thead><tr><th>الخدمة</th><th>الحالة</th><th>Uptime</th><th>استجابة</th></tr></thead><tbody>'+
+  [['API Gateway','op','99.98%','42ms'],['Database','op','99.95%','8ms'],['Claude AI','op','99.9%','850ms'],['Sensors','op','99.7%','12ms'],['Email','deg','97.2%','320ms'],['Storage','op','100%','28ms']].map(function(s){
     return '<tr><td style="color:var(--txt);font-weight:700">'+s[0]+'</td>'+
-    '<td><span class="badge '+(s[1]==='operational'?'b-green':'b-amber')+'">'+(s[1]==='operational'?'يعمل':'متأثر')+'</span></td>'+
+    '<td><span class="badge '+(s[1]==='op'?'b-green':'b-amber')+'">'+(s[1]==='op'?'يعمل':'متأثر')+'</span></td>'+
     '<td style="color:var(--green)">'+s[2]+'</td><td style="color:var(--txt2)">'+s[3]+'</td></tr>';
-  }).join('')+
-  '</tbody></table></div></div>'+
+  }).join('')+'</tbody></table></div></div>'+
   '</div></div>';
 }
 
-function mkAdminClientCard(c){
+function mkACC(c){
   var oC=c.oee>=85?'var(--green)':c.oee>=75?'var(--amber)':'var(--red)';
-  return '<div class="client-card" id="acc'+c.id+'" onclick="showAdminClientDetail('+c.id+')">'+
-  '<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">'+
+  return '<div class="client-card" id="acc'+c.id+'" onclick="showAccDetail('+c.id+')">'+
+  '<div style="display:flex;align-items:center;gap:8px;margin-bottom:9px">'+
   '<div class="cc-av">'+c.nameAr.charAt(0)+'</div>'+
-  '<div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:700;color:var(--txt)">'+c.nameAr+'</div>'+
-  '<div style="font-size:10px;color:var(--txt2)">'+c.email+' · '+c.phone+'</div></div>'+
+  '<div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:700;color:var(--txt)">'+c.nameAr+'</div>'+
+  '<div style="font-size:10px;color:var(--txt2)">'+c.email+'</div></div>'+
   (c.plan==='trial'?'<span class="badge '+(c.trialDays<=7?'b-amber':'b-cyan')+'">'+c.trialDays+'d</span>':'<span class="badge b-green">مدفوع</span>')+
   '</div>'+
-  '<div class="g3" style="text-align:center;font-size:10px;margin-bottom:8px">'+
-  '<div style="background:var(--bg2);border-radius:6px;padding:6px"><div style="font-size:16px;font-weight:800;color:'+oC+'">'+c.oee+'%</div><div style="color:var(--txt3)">OEE</div></div>'+
-  '<div style="background:var(--bg2);border-radius:6px;padding:6px"><div style="font-size:16px;font-weight:800;color:'+(c.faultsToday>3?'var(--red)':'var(--txt)')+'">'+c.faultsToday+'</div><div style="color:var(--txt3)">أعطال</div></div>'+
-  '<div style="background:var(--bg2);border-radius:6px;padding:6px"><div style="font-size:16px;font-weight:800">'+c.machines+'</div><div style="color:var(--txt3)">ماكينات</div></div>'+
+  '<div class="g3" style="text-align:center;font-size:10px;margin-bottom:7px">'+
+  '<div style="background:var(--bg2);border-radius:5px;padding:5px"><div style="font-size:14px;font-weight:800;color:'+oC+'">'+c.oee+'%</div><div style="color:var(--txt3)">OEE</div></div>'+
+  '<div style="background:var(--bg2);border-radius:5px;padding:5px"><div style="font-size:14px;font-weight:800;color:'+(c.faultsToday>3?'var(--red)':'var(--txt)')+'">'+c.faultsToday+'</div><div style="color:var(--txt3)">أعطال</div></div>'+
+  '<div style="background:var(--bg2);border-radius:5px;padding:5px"><div style="font-size:14px;font-weight:800">'+c.machines+'</div><div style="color:var(--txt3)">ماكينات</div></div>'+
   '</div>'+
   '<div class="pbar-w"><div class="pbar" style="width:'+c.oee+'%;background:'+oC+'"></div></div>'+
-  '<div style="font-size:10px;color:var(--txt3);margin-top:6px">آخر دخول: '+c.lastLogin+'</div>'+
+  '<div style="font-size:10px;color:var(--txt3);margin-top:5px">'+c.lastLogin+'</div>'+
   '</div>';
 }
 
-function filterAdminClients(q){
-  var el=document.getElementById('adminClientsGrid'); if(!el) return;
-  var f=clients.filter(function(c){return c.nameAr.includes(q)||c.email.includes(q)||c.phone.includes(q)||c.companyAr.includes(q);});
-  el.innerHTML=f.length?f.map(mkAdminClientCard).join(''):'<div style="padding:16px;color:var(--txt2);font-size:12px">لا توجد نتائج</div>';
+function filterAC(q){
+  var el=document.getElementById('acGrid');if(!el)return;
+  var f=clients.filter(function(c){return c.nameAr.includes(q)||c.email.includes(q)||c.phone.includes(q);});
+  el.innerHTML=f.length?f.map(mkACC).join(''):'<div style="padding:14px;color:var(--txt2);font-size:12px">لا توجد نتائج</div>';
 }
 
-function showAdminClientDetail(id){
-  var c=clients.find(function(x){return x.id===id;}); if(!c) return;
+function showAccDetail(id){
+  var c=clients.find(function(x){return x.id===id;});if(!c)return;
   document.getElementById('modal').innerHTML=
-  '<div class="modal-bg" onclick="closeMBg(event)">'+
-  '<div class="modal-box">'+
+  '<div class="modal-bg" onclick="closeMBg(event)"><div class="modal-box">'+
   '<div class="modal-hdr"><div style="font-size:14px;font-weight:700">'+c.nameAr+'</div>'+
-  '<button class="btn-outline btn-sm" onclick="closeModal()">إغلاق</button></div>'+
-  '<div class="g2" style="margin-bottom:14px">'+
-  '<div style="background:var(--bg3);border-radius:8px;padding:10px;text-align:center">'+
-  '<div style="font-size:22px;font-weight:800;color:'+(c.oee>=85?'var(--green)':'var(--amber)')+'">'+c.oee+'%</div>'+
-  '<div style="font-size:10px;color:var(--txt3)">OEE</div></div>'+
-  '<div style="background:var(--bg3);border-radius:8px;padding:10px;text-align:center">'+
-  '<div style="font-size:22px;font-weight:800;color:'+(c.faultsToday>3?'var(--red)':'var(--txt)')+'">'+c.faultsToday+'</div>'+
-  '<div style="font-size:10px;color:var(--txt3)">أعطال اليوم</div></div>'+
+  '<button class="btno bsm" onclick="closeModal()">إغلاق</button></div>'+
+  '<div class="g2" style="margin-bottom:12px">'+
+  '<div style="background:var(--bg3);border-radius:7px;padding:9px;text-align:center"><div style="font-size:20px;font-weight:800;color:'+(c.oee>=85?'var(--green)':'var(--amber)')+'">'+c.oee+'%</div><div style="font-size:10px;color:var(--txt3)">OEE</div></div>'+
+  '<div style="background:var(--bg3);border-radius:7px;padding:9px;text-align:center"><div style="font-size:20px;font-weight:800;color:'+(c.faultsToday>3?'var(--red)':'var(--txt)')+'">'+c.faultsToday+'</div><div style="font-size:10px;color:var(--txt3)">أعطال اليوم</div></div>'+
   '</div>'+
   '<div style="background:var(--bg3);border-radius:8px;overflow:hidden;margin-bottom:12px;font-size:12px">'+
-  '<div style="padding:8px 12px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:8px"><i class="ti ti-mail" style="color:var(--acc)"></i>'+c.email+'</div>'+
-  '<div style="padding:8px 12px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:8px"><i class="ti ti-phone" style="color:var(--green)"></i>'+c.phone+'</div>'+
-  '<div style="padding:8px 12px;display:flex;align-items:center;gap:8px"><i class="ti ti-building" style="color:var(--blue)"></i>'+c.companyAr+'</div>'+
+  '<div style="padding:7px 11px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:7px"><i class="ti ti-mail" style="color:var(--acc)"></i>'+c.email+'</div>'+
+  '<div style="padding:7px 11px;display:flex;align-items:center;gap:7px"><i class="ti ti-phone" style="color:var(--green)"></i>'+c.phone+'</div>'+
   '</div>'+
-  (c.plan==='trial'?'<div class="trial-info" style="margin-bottom:12px"><i class="ti ti-clock"></i> تجريبي: '+c.trialDays+' أيام متبقية</div>':'<span class="badge b-green" style="font-size:11px">خطة مدفوعة نشطة</span><br><br>')+
-  '<div style="display:flex;gap:8px">'+
-  '<button class="btn-outline btn-sm" style="flex:1;justify-content:center;color:var(--green)"><i class="ti ti-message"></i> مراسلة</button>'+
-  (c.status==='active'
-    ?'<button class="btn-outline btn-sm" style="flex:1;justify-content:center;color:var(--amber)"><i class="ti ti-pause"></i> تعليق</button>'
-    :'<button class="btn-outline btn-sm btn-green" style="flex:1;justify-content:center"><i class="ti ti-play"></i> تفعيل</button>')+
+  (c.plan==='trial'?'<div class="trial-info" style="margin-bottom:12px"><i class="ti ti-clock"></i> تجريبي: '+c.trialDays+' أيام متبقية</div>':'<span class="badge b-green" style="font-size:11px;margin-bottom:12px;display:inline-block">خطة مدفوعة</span><br>')+
+  '<div style="display:flex;gap:7px">'+
+  '<button class="btno bsm" style="flex:1;justify-content:center;color:var(--green)"><i class="ti ti-message"></i> مراسلة</button>'+
+  (c.status==='active'?'<button class="btno bsm" style="flex:1;justify-content:center;color:var(--amber)"><i class="ti ti-pause"></i> تعليق</button>':'<button class="btno bsm" style="flex:1;justify-content:center;color:var(--green)"><i class="ti ti-play"></i> تفعيل</button>')+
   '</div></div></div>';
 }
 
-/* ========== SHARED HELPERS ========== */
+/* ============================================================
+   SHARED HELPERS
+============================================================ */
 function mkStat(icon,color,label,value,change,dir){
   var cols={red:'#ef4444',blue:'#3b82f6',amber:'#f59e0b',purple:'#8b5cf6',green:'#10b981'};
   var bgs={red:'rgba(239,68,68,.1)',blue:'rgba(59,130,246,.1)',amber:'rgba(245,158,11,.1)',purple:'rgba(139,92,246,.1)',green:'rgba(16,185,129,.1)'};
-  return '<div class="sc">'+
-  '<div class="sc-icon" style="background:'+bgs[color]+';color:'+cols[color]+'"><i class="ti '+icon+'"></i></div>'+
-  '<div class="sc-lbl">'+label+'</div>'+
-  '<div class="sc-val">'+value+'</div>'+
-  '<div class="sc-ch" style="color:'+cols[color]+'"><i class="ti ti-arrow-'+(dir==='up'?'up':'down')+'-right"></i> '+change+'</div>'+
-  '</div>';
+  return '<div class="sc"><div class="sc-icon" style="background:'+bgs[color]+';color:'+cols[color]+'"><i class="ti '+icon+'"></i></div>'+
+  '<div class="sc-lbl">'+label+'</div><div class="sc-val">'+value+'</div>'+
+  '<div class="sc-ch" style="color:'+cols[color]+'"><i class="ti ti-arrow-'+(dir==='up'?'up':'down')+'-right"></i> '+change+'</div></div>';
 }
 
 function showReportModal(){
   document.getElementById('modal').innerHTML=
-  '<div class="modal-bg" onclick="closeMBg(event)">'+
-  '<div class="modal-box">'+
+  '<div class="modal-bg" onclick="closeMBg(event)"><div class="modal-box">'+
   '<div class="modal-hdr"><div style="font-size:14px;font-weight:700"><i class="ti ti-download" style="color:var(--acc);margin-left:6px"></i>تصدير التقرير</div>'+
-  '<button class="btn-outline btn-sm" onclick="closeModal()">×</button></div>'+
-  '<div class="form-group"><label class="form-label">فترة التقرير</label>'+
-  '<select class="form-select"><option>اليوم</option><option>آخر 7 أيام</option><option>آخر 30 يوم</option><option>هذا الشهر</option></select></div>'+
-  '<div style="display:flex;flex-direction:column;gap:7px;margin-bottom:14px">'+
-  '<label class="form-check"><input type="checkbox" checked style="accent-color:var(--acc)"> تضمين رسوم بيانية</label>'+
-  '<label class="form-check"><input type="checkbox" checked style="accent-color:var(--acc)"> سجل الأعطال مع أزمان التوقف</label>'+
-  '<label class="form-check"><input type="checkbox" checked style="accent-color:var(--acc)"> تقرير الطاقة والورديات</label>'+
-  '<label class="form-check"><input type="checkbox" style="accent-color:var(--acc)"> جدول الصيانة</label>'+
+  '<button class="btno bsm" onclick="closeModal()">×</button></div>'+
+  '<div class="fg"><label class="fl">فترة التقرير</label>'+
+  '<select class="fi"><option>اليوم</option><option>آخر 7 أيام</option><option>آخر 30 يوم</option><option>هذا الشهر</option></select></div>'+
+  '<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:12px">'+
+  '<label class="fcheck"><input type="checkbox" checked style="accent-color:var(--acc)"> رسوم بيانية للأعطال</label>'+
+  '<label class="fcheck"><input type="checkbox" checked style="accent-color:var(--acc)"> سجل الأعطال مع أزمان التوقف</label>'+
+  '<label class="fcheck"><input type="checkbox" checked style="accent-color:var(--acc)"> تقرير الطاقة والورديات</label>'+
   '</div>'+
-  '<div id="rMsg" style="font-size:11px;min-height:16px;margin-bottom:8px"></div>'+
-  '<button class="btn-primary" id="rBtn" onclick="doExport()"><i class="ti ti-download"></i> تصدير PDF</button>'+
+  '<div id="rMsg" style="font-size:11px;min-height:14px;margin-bottom:7px"></div>'+
+  '<button class="btnp" id="rBtn" onclick="doExport()"><i class="ti ti-download"></i> تصدير PDF</button>'+
   '</div></div>';
 }
 
 function doExport(){
-  var btn=document.getElementById('rBtn'), msg=document.getElementById('rMsg');
+  var btn=document.getElementById('rBtn'),msg=document.getElementById('rMsg');
   if(btn){btn.disabled=true;btn.innerHTML='<i class="ti ti-loader"></i> جاري التحضير...';}
   if(msg){msg.textContent='جاري تجميع البيانات...';msg.style.color='var(--amber)';}
   setTimeout(function(){
-    if(btn){btn.disabled=false;btn.innerHTML='<i class="ti ti-check"></i> التقرير جاهز!';}
-    if(msg){msg.textContent='✅ G-Tech_Report_'+fmtDate(now())+'.pdf';msg.style.color='var(--green)';}
+    if(btn){btn.disabled=false;btn.innerHTML='<i class="ti ti-check"></i> جاهز!';}
+    if(msg){msg.textContent='✅ G-Tech_Report_'+fmtDate()+'.pdf';msg.style.color='var(--green)';}
   },2000);
 }
 
 function showToast(msg,color){
   var tw=document.getElementById('toasts');
-  var d=document.createElement('div'); d.className='toast';
-  d.style.color='var(--'+color+')';
-  d.innerHTML='<i class="ti ti-check-circle" style="font-size:15px"></i> '+msg;
-  tw.appendChild(d);
-  setTimeout(function(){if(d.parentNode)d.remove();},4000);
+  var d=document.createElement('div');d.className='toast';d.style.color='var(--'+color+')';
+  d.innerHTML='<i class="ti ti-check-circle" style="font-size:14px"></i> '+msg;
+  tw.appendChild(d);setTimeout(function(){if(d.parentNode)d.remove();},4000);
 }
-
 function closeModal(){document.getElementById('modal').innerHTML='';}
 function closeMBg(e){if(e&&e.target.classList.contains('modal-bg'))closeModal();}
 function destroyCharts(){Object.keys(charts).forEach(function(k){if(charts[k])charts[k].destroy();});charts={};}
 
-/* PROTECTION */
 document.addEventListener('contextmenu',function(e){e.preventDefault();});
 document.addEventListener('keydown',function(e){if((e.ctrlKey||e.metaKey)&&['s','u','p','a','c'].includes(e.key))e.preventDefault();});
 document.addEventListener('selectstart',function(e){e.preventDefault();});
