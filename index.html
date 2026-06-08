@@ -2,1276 +2,1120 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>GTech Smart Platform | نظام تحكم الوقت</title>
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>G-Tech Smart Factory Platform</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css">
 <style>
-*{box-sizing:border-box;margin:0;padding:0;}
+*{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --bg:#020f0a;--bg2:#071a12;--bg3:#0a1f15;--bg4:#0f2318;
-  --border:#1a3328;--border2:#1a4332;
-  --accent:#34d399;--accent2:#059669;--accent3:#047857;
-  --text:#e2e8f0;--text2:#94a3b8;--text3:#64748b;--text4:#475569;
-  --green:#22c55e;--green2:#16a34a;--red:#f87171;--amber:#f59e0b;
-  --shiftA:#7c3aed;--shiftB:#0e7490;--shiftC:#b45309;
+  --bg:#080d18;--bg2:#0f1729;--bg3:#162035;--bg4:#1c2a44;
+  --bdr:#1e3558;--bdr2:#2a4870;
+  --txt:#e2e8f0;--txt2:#94a3b8;--txt3:#64748b;
+  --green:#10b981;--gd:#064e3b;--gl:#d1fae5;
+  --blue:#3b82f6;--bd:#1e3a8a;--bl:#dbeafe;
+  --amber:#f59e0b;--ad:#78350f;--al:#fef3c7;
+  --red:#ef4444;--rd:#7f1d1d;--rl:#fee2e2;
+  --purple:#8b5cf6;--pd:#4c1d95;--pl:#ede9fe;
+  --cyan:#06b6d4;--cd:#164e63;--cl:#cffafe;
+  --acc:#00c8e0;--acc2:#0891b2;
 }
-body{background:var(--bg);color:var(--text);font-family:'Cairo',sans-serif;min-height:100vh;display:flex;justify-content:center;}
-#app{width:100%;max-width:500px;min-height:100vh;display:flex;flex-direction:column;}
-input,textarea,button,select{font-family:'Cairo',sans-serif;}
-input,textarea,select{outline:none;resize:none;}
-::placeholder{color:var(--text4);}
-select{appearance:none;-webkit-appearance:none;}
-button{cursor:pointer;}
+body{background:var(--bg);color:var(--txt);font-family:'Cairo',sans-serif;font-size:13px;min-height:100vh}
+.hidden{display:none!important}
+input,select,textarea,button{font-family:'Cairo',sans-serif}
+button{cursor:pointer}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-thumb{background:var(--bdr2);border-radius:2px}
 
-/* ── LANDING ── */
-#landing{flex:1;overflow-y:auto;}
-.hero{background:linear-gradient(180deg,var(--bg),#051a10);padding:40px 20px 28px;text-align:center;}
-.hero-icon{font-size:56px;margin-bottom:10px;filter:drop-shadow(0 0 24px #05966988);}
-.hero-title{font-size:22px;font-weight:900;color:#f0f9ff;margin-bottom:4px;}
-.hero-en{font-size:11px;color:var(--text3);margin-bottom:16px;}
-.hero-tag{display:inline-block;background:#05966922;border:1px solid #05966955;color:var(--accent);font-size:10px;padding:3px 14px;border-radius:20px;margin-bottom:24px;}
-.hero-btns{display:flex;flex-direction:column;align-items:center;gap:8px;padding:0 20px;}
-.btn-primary{background:linear-gradient(135deg,var(--accent2),var(--accent3));border:none;border-radius:14px;padding:13px;color:#fff;font-size:14px;font-weight:700;width:100%;max-width:300px;box-shadow:0 4px 20px #05966944;}
-.btn-outline{background:transparent;border:1px solid var(--border2);border-radius:14px;padding:11px;color:var(--text3);font-size:12px;width:100%;max-width:300px;}
-.feat-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;padding:16px;}
-.feat-card{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:14px;text-align:center;}
-.feat-icon{font-size:26px;margin-bottom:6px;}
-.feat-title{font-size:11px;font-weight:700;color:#f0f9ff;margin-bottom:3px;}
-.feat-desc{font-size:10px;color:var(--text3);line-height:1.5;}
-.footer-info{padding:12px 20px 30px;text-align:center;font-size:10px;color:var(--text4);line-height:1.8;}
+/* AUTH */
+.auth-wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;background:var(--bg);padding:20px}
+.auth-card{background:var(--bg2);border:1px solid var(--bdr);border-radius:16px;width:100%;max-width:420px;padding:32px}
+.auth-logo{text-align:center;margin-bottom:24px}
+.auth-logo-icon{width:60px;height:60px;background:linear-gradient(135deg,var(--acc2),var(--purple));border-radius:14px;display:inline-flex;align-items:center;justify-content:center;font-size:28px;margin-bottom:10px}
+.auth-logo h1{font-size:22px;font-weight:800;color:var(--txt)}
+.auth-logo p{font-size:12px;color:var(--txt2);margin-top:3px}
+.auth-tabs{display:flex;background:var(--bg3);border-radius:10px;padding:3px;margin-bottom:22px}
+.auth-tab{flex:1;padding:9px;text-align:center;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;color:var(--txt2);border:none;background:transparent;transition:all .2s}
+.auth-tab.active{background:var(--acc2);color:#fff}
+.form-group{margin-bottom:14px}
+.form-label{display:block;font-size:12px;color:var(--txt2);margin-bottom:5px;font-weight:500}
+.input-wrap{position:relative}
+.form-input{width:100%;background:var(--bg3);border:1px solid var(--bdr);border-radius:8px;padding:10px 38px 10px 12px;color:var(--txt);font-size:13px;outline:none;transition:border .2s}
+.form-input:focus{border-color:var(--acc)}
+.form-input.ltr{direction:ltr;text-align:left;padding:10px 12px 10px 38px}
+.input-icon{position:absolute;right:10px;top:50%;transform:translateY(-50%);color:var(--txt3);font-size:16px;pointer-events:none}
+.form-select{width:100%;background:var(--bg3);border:1px solid var(--bdr);border-radius:8px;padding:10px 12px;color:var(--txt);font-size:13px;outline:none;transition:border .2s}
+.form-select:focus{border-color:var(--acc)}
+.btn-primary{width:100%;background:var(--acc2);border:none;border-radius:8px;padding:12px;color:#fff;font-size:14px;font-weight:700;cursor:pointer;transition:opacity .2s;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-primary:hover{opacity:.9}
+.btn-primary:disabled{opacity:.5;cursor:not-allowed}
+.btn-outline{background:transparent;border:1px solid var(--bdr2);border-radius:8px;padding:8px 14px;color:var(--txt2);font-size:12px;font-weight:600;cursor:pointer;transition:all .2s;display:inline-flex;align-items:center;gap:6px}
+.btn-outline:hover{border-color:var(--acc);color:var(--acc)}
+.btn-sm{padding:5px 12px!important;font-size:11px!important;border-radius:6px!important}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.form-check{display:flex;align-items:flex-start;gap:8px;font-size:11px;color:var(--txt2);cursor:pointer}
+.form-check input{margin-top:2px;accent-color:var(--acc);cursor:pointer}
+.trial-info{background:rgba(0,200,224,.08);border:1px solid rgba(0,200,224,.2);border-radius:8px;padding:10px 12px;margin-top:14px;font-size:11px;color:var(--acc);display:flex;align-items:center;gap:6px}
+.msg-error{background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);border-radius:6px;padding:8px 12px;font-size:11px;color:var(--red);margin-bottom:12px}
+.msg-success{background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.25);border-radius:6px;padding:8px 12px;font-size:11px;color:var(--green);margin-bottom:12px}
+.divider{text-align:center;color:var(--txt3);font-size:11px;margin:14px 0;position:relative}
+.divider::before,.divider::after{content:'';position:absolute;top:50%;width:42%;height:1px;background:var(--bdr)}
+.divider::before{left:0}.divider::after{right:0}
 
-/* ── COMMON UI ── */
-.screen{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:20px;}
-.card{background:var(--bg3);border:1px solid var(--border2);border-radius:20px;padding:24px;width:100%;max-width:360px;box-shadow:0 20px 60px #00000077;}
-.card-icon{text-align:center;font-size:40px;margin-bottom:10px;}
-.card-title{font-size:17px;font-weight:900;color:#f0f9ff;text-align:center;margin-bottom:4px;}
-.card-sub{font-size:11px;color:var(--text3);text-align:center;margin-bottom:20px;}
-.fl{font-size:11px;color:var(--text3);display:block;margin-bottom:4px;margin-top:10px;}
-.fi{width:100%;background:var(--bg4);border:1px solid var(--border2);border-radius:10px;padding:10px 12px;color:#f0f9ff;font-size:13px;}
-.fi:focus{border-color:var(--accent);}
-.fp{width:100%;background:linear-gradient(135deg,var(--accent2),var(--accent3));border:none;border-radius:12px;padding:12px;color:#fff;font-size:14px;font-weight:700;margin-top:14px;}
-.fs{width:100%;background:transparent;border:1px solid var(--border2);border-radius:12px;padding:10px;color:var(--text3);font-size:12px;margin-top:8px;}
-.er{color:var(--red);font-size:11px;text-align:center;margin-top:6px;min-height:16px;}
-.loading{text-align:center;padding:40px;color:var(--text3);font-size:13px;}
-.spin{display:inline-block;animation:spin 1s linear infinite;font-size:24px;margin-bottom:10px;}
-@keyframes spin{to{transform:rotate(360deg);}}
+/* APP LAYOUT */
+.app{display:flex;flex-direction:column;height:100vh;overflow:hidden}
+.trial-bar{background:var(--cd);padding:7px 16px;display:flex;align-items:center;gap:10px;font-size:11px;flex-shrink:0;justify-content:space-between}
+.trial-days-pill{background:rgba(255,255,255,.2);color:#fff;border-radius:10px;padding:2px 10px;font-size:10px;font-weight:700}
+.topbar{background:var(--bg2);border-bottom:1px solid var(--bdr);height:52px;display:flex;align-items:center;padding:0 16px;gap:12px;flex-shrink:0}
+.logo-mini{display:flex;align-items:center;gap:8px}
+.logo-icon-sm{width:32px;height:32px;background:linear-gradient(135deg,var(--acc2),var(--purple));border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.logo-text{font-size:14px;font-weight:800;color:var(--txt)}
+.logo-sub{font-size:10px;color:var(--txt2)}
+.spacer{flex:1}
+.lang-pill{display:flex;background:var(--bg3);border:1px solid var(--bdr);border-radius:20px;padding:2px;gap:1px}
+.lbtn{padding:3px 10px;border-radius:16px;font-size:11px;font-weight:700;border:none;background:transparent;color:var(--txt2);cursor:pointer;transition:all .2s}
+.lbtn.active{background:var(--acc2);color:#fff}
+.top-btn{width:32px;height:32px;border-radius:8px;border:1px solid var(--bdr);background:transparent;color:var(--txt2);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px;transition:all .2s;position:relative}
+.top-btn:hover{border-color:var(--acc);color:var(--acc)}
+.notif-badge::after{content:'3';position:absolute;top:-4px;right:-4px;width:15px;height:15px;background:var(--red);border-radius:50%;font-size:9px;font-weight:700;display:flex;align-items:center;justify-content:center;color:#fff}
+.avatar{width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--purple));display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;cursor:pointer;color:#fff;flex-shrink:0}
 
-/* ── HEADER ── */
-#header{background:var(--bg2);border-bottom:1px solid var(--border);padding:10px 13px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
-.h-logo{font-size:13px;font-weight:900;color:#f0f9ff;}
-.h-user{font-size:10px;color:var(--accent);background:var(--bg4);border:1px solid var(--border);padding:3px 10px;border-radius:20px;}
-.h-logout{background:var(--bg4);border:1px solid var(--border);color:var(--text3);padding:4px 10px;border-radius:10px;font-size:10px;}
+/* BODY LAYOUT */
+.app-body{display:flex;flex:1;overflow:hidden}
+.sidebar{width:200px;background:var(--bg2);border-left:1px solid var(--bdr);display:flex;flex-direction:column;flex-shrink:0;overflow-y:auto}
+.sb-sec{padding:12px 10px 3px;font-size:9px;color:var(--txt3);font-weight:700;letter-spacing:.8px}
+.nav-item{display:flex;align-items:center;gap:9px;padding:8px 12px;margin:1px 6px;border-radius:7px;cursor:pointer;color:var(--txt2);font-size:12px;transition:all .2s;user-select:none;direction:rtl}
+.nav-item:hover{background:var(--bg3);color:var(--txt)}
+.nav-item.active{background:var(--bg4);color:var(--acc);border:1px solid rgba(0,200,224,.15)}
+.nav-item i{font-size:15px;flex-shrink:0}
+.nav-item .nbadge{margin-right:auto;background:var(--red);color:#fff;border-radius:8px;padding:1px 5px;font-size:9px;font-weight:700}
+.sb-bottom{margin-top:auto;padding:10px 6px;border-top:1px solid var(--bdr)}
+.content{flex:1;overflow-y:auto;background:var(--bg);padding:16px}
 
-/* ── TABS ── */
-#tabs{display:flex;background:var(--bg2);border-bottom:1px solid var(--border);}
-.tb{flex:1;padding:9px 4px;background:transparent;border:none;border-bottom:2px solid transparent;color:var(--text4);font-size:10px;font-weight:700;}
-.tb.on{border-bottom-color:var(--accent);color:var(--accent);}
+/* PAGE */
+.ph{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;direction:rtl}
+.ph-title{font-size:18px;font-weight:800;color:var(--txt)}
+.ph-sub{font-size:11px;color:var(--txt2);margin-top:2px}
+.ph-actions{display:flex;gap:8px}
 
-/* ── SHIFT SELECTOR ── */
-.shift-btn{border:2px solid var(--border);border-radius:16px;padding:16px 14px;display:flex;align-items:center;gap:14px;background:var(--bg3);transition:all .2s;margin-bottom:8px;}
-.shift-btn.active-shift{border-color:var(--accent);}
-.shift-color{width:12px;height:40px;border-radius:6px;flex-shrink:0;}
-.shift-info{flex:1;}
-.shift-name{font-size:15px;font-weight:800;color:#f0f9ff;margin-bottom:2px;}
-.shift-time{font-size:11px;color:var(--text3);margin-bottom:4px;}
-.shift-status{font-size:10px;font-weight:700;}
-.shift-status.done{color:var(--green);}
-.shift-status.empty{color:var(--text4);}
-.shift-status.current{color:var(--amber);}
+/* STAT CARDS */
+.sg{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}
+.sc{background:var(--bg2);border:1px solid var(--bdr);border-radius:12px;padding:12px;direction:rtl;transition:border .2s;cursor:pointer}
+.sc:hover{border-color:var(--bdr2)}
+.sc-icon{width:34px;height:34px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;margin-bottom:8px}
+.sc-lbl{font-size:10px;color:var(--txt2);margin-bottom:4px}
+.sc-val{font-size:22px;font-weight:800;color:var(--txt);line-height:1}
+.sc-ch{font-size:10px;margin-top:3px}
 
-/* ── FORM ── */
-.section-box{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:12px;margin-bottom:9px;}
-.sec-label{font-size:11px;font-weight:700;color:var(--accent);margin-bottom:10px;display:flex;align-items:center;gap:6px;}
-.sec-label span{font-size:10px;color:var(--text3);font-weight:400;}
-.meter-row{display:grid;grid-template-columns:auto 1fr auto;gap:6px;align-items:center;margin-bottom:7px;}
-.meter-num{font-size:10px;color:var(--text3);width:20px;text-align:center;}
-.meter-input{background:var(--bg4);border:1px solid var(--border);border-radius:9px;padding:8px 10px;color:#f0f9ff;font-size:13px;width:100%;}
-.meter-input:focus{border-color:var(--accent);}
-.meter-unit{font-size:10px;color:var(--text3);width:30px;text-align:center;}
-.add-meter-btn{background:transparent;border:1px dashed var(--border2);border-radius:9px;padding:7px;color:var(--text3);font-size:11px;width:100%;margin-top:4px;}
-.stop-item{background:var(--bg4);border:1px solid var(--border);border-radius:11px;padding:10px;margin-bottom:7px;position:relative;}
-.stop-delete{position:absolute;top:8px;left:8px;background:transparent;border:none;color:var(--red);font-size:14px;padding:2px;}
-.stop-select{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:7px 10px;color:#f0f9ff;font-size:12px;width:100%;}
-.stop-time-row{display:grid;grid-template-columns:1fr 1fr auto;gap:6px;align-items:end;}
-.stop-time{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:7px 10px;color:#f0f9ff;font-size:12px;width:100%;}
-.stop-duration{background:var(--accent2);border:none;border-radius:8px;padding:7px 10px;color:#fff;font-size:11px;font-weight:700;white-space:nowrap;}
-.stop-notes{width:100%;background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:7px 10px;color:#f0f9ff;font-size:11px;margin-top:6px;}
-.add-stop-btn{background:transparent;border:1px dashed var(--border2);border-radius:9px;padding:8px;color:var(--text3);font-size:11px;width:100%;display:flex;align-items:center;justify-content:center;gap:6px;}
-.prod-row{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;}
-.prod-unit-select{background:var(--bg4);border:1px solid var(--border);border-radius:9px;padding:8px 10px;color:#f0f9ff;font-size:12px;width:90px;}
-.save-btn{background:linear-gradient(135deg,var(--green2),#15803d);border:none;border-radius:13px;padding:13px;color:#fff;font-size:14px;font-weight:700;width:100%;margin-top:4px;box-shadow:0 4px 16px #16a34a44;}
-.cancel-btn{background:transparent;border:1px solid var(--border);border-radius:13px;padding:11px;color:var(--text3);font-size:12px;width:100%;margin-top:6px;}
-.meter-label-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:5px;}
-.meter-name-input{background:var(--bg4);border:1px solid var(--border);border-radius:8px;padding:5px 8px;color:#f0f9ff;font-size:11px;flex:1;}
-.remove-meter{background:transparent;border:none;color:var(--text4);font-size:14px;padding:2px 6px;}
-.help-text{font-size:10px;color:var(--text4);margin-top:4px;}
+/* CARDS */
+.card{background:var(--bg2);border:1px solid var(--bdr);border-radius:12px;padding:14px}
+.card-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px;direction:rtl}
+.card-title{font-size:13px;font-weight:700}
+.card-act{font-size:11px;color:var(--acc);cursor:pointer}
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
 
-/* ── REPORTS ── */
-.report-day-card{background:var(--bg3);border:1px solid var(--border);border-radius:14px;margin-bottom:10px;overflow:hidden;}
-.report-day-header{padding:12px 14px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;}
-.report-day-title{font-size:13px;font-weight:800;color:#f0f9ff;}
-.report-day-badge{font-size:9px;font-weight:700;padding:2px 8px;border-radius:10px;}
-.report-day-body{border-top:1px solid var(--border);padding:10px;}
-.shift-report-row{padding:8px 0;border-bottom:1px solid var(--border);}
-.shift-report-row:last-child{border-bottom:none;}
-.shift-rep-header{display:flex;align-items:center;gap:8px;margin-bottom:5px;}
-.shift-dot{width:8px;height:8px;border-radius:50%;}
-.rep-details{display:grid;grid-template-columns:1fr 1fr;gap:5px;margin-top:5px;}
-.rep-detail{background:var(--bg4);border-radius:8px;padding:6px 8px;}
-.rep-detail-label{font-size:9px;color:var(--text3);margin-bottom:2px;}
-.rep-detail-val{font-size:12px;font-weight:700;color:#f0f9ff;}
-.rep-stops{margin-top:5px;}
-.rep-stop-item{display:flex;align-items:center;gap:6px;padding:4px 0;font-size:10px;color:var(--text2);flex-wrap:wrap;}
-.rep-stop-type{padding:2px 7px;border-radius:8px;font-size:9px;font-weight:700;flex-shrink:0;}
-.no-data{text-align:center;padding:40px 20px;color:var(--text3);}
-.no-data-icon{font-size:40px;margin-bottom:10px;}
-.export-btn{background:linear-gradient(135deg,var(--accent2),var(--accent3));border:none;border-radius:11px;padding:10px;color:#fff;font-size:11px;font-weight:700;width:100%;display:flex;align-items:center;justify-content:center;gap:6px;margin-bottom:10px;}
-.eff-chip{display:inline-block;padding:2px 8px;border-radius:8px;font-weight:700;font-size:10px;}
-.eff-bar-wrap{background:var(--bg4);border-radius:6px;height:8px;width:100%;overflow:hidden;margin-top:4px;}
-.eff-bar{height:100%;border-radius:6px;transition:width .6s;}
+/* BADGES */
+.badge{display:inline-flex;align-items:center;padding:2px 8px;border-radius:10px;font-size:10px;font-weight:700}
+.b-red{background:var(--rd);color:var(--rl)}
+.b-amber{background:var(--ad);color:var(--al)}
+.b-blue{background:var(--bd);color:var(--bl)}
+.b-green{background:var(--gd);color:var(--gl)}
+.b-purple{background:var(--pd);color:var(--pl)}
+.b-cyan{background:var(--cd);color:var(--cl)}
 
-/* ── DASHBOARD ── */
-.dash-hero{background:linear-gradient(135deg,#051a10,var(--bg));padding:16px;text-align:center;border-bottom:1px solid var(--border);}
-.dash-kpi-row{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;padding:10px;}
-.dash-kpi{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:10px 6px;text-align:center;}
-.dash-kpi-val{font-size:20px;font-weight:900;margin-bottom:2px;}
-.dash-kpi-label{font-size:9px;color:var(--text3);}
-.dash-section-title{font-size:11px;font-weight:800;color:var(--accent);padding:10px 12px 6px;display:flex;align-items:center;gap:6px;}
-.monthly-eff-box{background:var(--bg3);border:1px solid var(--border);border-radius:16px;margin:0 10px 10px;padding:16px;text-align:center;}
-.monthly-eff-num{font-size:48px;font-weight:900;line-height:1;}
-.month-nav{display:flex;align-items:center;justify-content:center;gap:12px;padding:10px;}
-.month-nav-btn{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:4px 12px;color:var(--text3);font-size:16px;}
-.month-nav-label{font-size:13px;font-weight:700;color:#f0f9ff;}
-.perf-table{width:100%;border-collapse:collapse;font-size:10px;}
-.perf-table th{background:var(--bg4);color:var(--text3);padding:6px 8px;text-align:center;font-weight:700;font-size:9px;}
-.perf-table td{padding:5px 8px;text-align:center;border-bottom:1px solid var(--border);}
-.perf-table tr:last-child td{border-bottom:none;}
-.meter-dash-card{background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:12px;margin:0 10px 8px;}
-.excel-btn{background:linear-gradient(135deg,#166534,#15803d);border:none;border-radius:11px;padding:11px;color:#fff;font-size:12px;font-weight:700;width:calc(100% - 20px);margin:0 10px 10px;display:flex;align-items:center;justify-content:center;gap:8px;}
+/* TABLE */
+.tbl-wrap{overflow-x:auto}
+.tbl{width:100%;border-collapse:collapse;font-size:12px;direction:rtl}
+.tbl th{text-align:right;padding:8px 10px;font-size:10px;color:var(--txt3);font-weight:700;border-bottom:1px solid var(--bdr);text-transform:uppercase;letter-spacing:.3px}
+.tbl td{padding:9px 10px;border-bottom:1px solid rgba(30,53,88,.4);color:var(--txt2);vertical-align:middle}
+.tbl tr:last-child td{border-bottom:none}
+.tbl tr:hover td{background:rgba(30,53,88,.25)}
 
-/* ── FACTORY SETUP ── */
-.setup-card{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:10px;}
-.setup-title{font-size:13px;font-weight:800;color:#f0f9ff;margin-bottom:12px;display:flex;align-items:center;gap:8px;}
-.shift-setup-row{background:var(--bg4);border:1px solid var(--border);border-radius:10px;padding:10px;margin-bottom:8px;}
-.shift-setup-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
-.shift-color-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0;}
-.remove-shift-btn{background:transparent;border:none;color:var(--red);font-size:14px;}
-.setup-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
-.setup-input{background:var(--bg3);border:1px solid var(--border);border-radius:8px;padding:7px 10px;color:#f0f9ff;font-size:12px;width:100%;}
-.setup-input:focus{border-color:var(--accent);}
-.add-shift-btn{background:transparent;border:1px dashed var(--border2);border-radius:10px;padding:9px;color:var(--text3);font-size:11px;width:100%;margin-top:4px;}
-.leader-row{background:var(--bg4);border:1px solid var(--border);border-radius:10px;padding:10px;margin-bottom:8px;position:relative;}
-.leader-grid{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:6px;}
-.remove-leader-btn{position:absolute;top:8px;left:8px;background:transparent;border:none;color:var(--red);font-size:13px;}
-.save-setup-btn{background:linear-gradient(135deg,var(--accent2),var(--accent3));border:none;border-radius:12px;padding:12px;color:#fff;font-size:13px;font-weight:700;width:100%;margin-top:8px;}
+/* FAULT FEED */
+.ff-item{display:flex;align-items:center;gap:9px;padding:8px 10px;background:var(--bg3);border:1px solid var(--bdr);border-radius:8px;direction:rtl;margin-bottom:6px}
+.ff-icon{width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.ff-info{flex:1;min-width:0}
+.ff-title{font-size:12px;font-weight:700;color:var(--txt);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ff-sub{font-size:10px;color:var(--txt2)}
+.live-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:blink 1.5s infinite;flex-shrink:0}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+@keyframes slideIn{from{opacity:0;transform:translateX(10px)}to{opacity:1;transform:translateX(0)}}
 
-/* ── ADMIN ── */
-.admin-factory-card{background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:14px;margin-bottom:10px;}
-.admin-factory-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;}
-.admin-factory-name{font-size:14px;font-weight:800;color:#f0f9ff;}
-.admin-badge{font-size:9px;padding:2px 8px;border-radius:10px;font-weight:700;}
-.admin-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-top:8px;}
-.admin-stat{background:var(--bg4);border-radius:8px;padding:7px;text-align:center;}
-.admin-stat-val{font-size:14px;font-weight:800;color:var(--accent);}
-.admin-stat-label{font-size:9px;color:var(--text3);}
-.toggle-active-btn{background:transparent;border:1px solid var(--border);border-radius:8px;padding:4px 10px;font-size:10px;color:var(--text3);}
+/* FAULT FORM */
+.ftype-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:8px 0 14px}
+.ftype-card{background:var(--bg3);border:1px solid var(--bdr);border-radius:8px;padding:10px 6px;text-align:center;cursor:pointer;transition:all .2s;font-size:11px;color:var(--txt2)}
+.ftype-card:hover{border-color:var(--bdr2);color:var(--txt)}
+.ftype-card.selected{border-color:var(--acc);background:rgba(0,200,224,.08);color:var(--acc)}
+.ftype-card i{font-size:24px;display:block;margin-bottom:5px}
+.sev-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:8px 0 14px}
+.sev-btn{padding:10px 6px;border:1px solid var(--bdr);background:var(--bg3);border-radius:8px;font-size:11px;font-weight:700;cursor:pointer;text-align:center;color:var(--txt2);transition:all .2s}
+.sev-btn:hover{border-color:var(--bdr2)}
+.sev-btn.s-critical{border-color:var(--red);background:rgba(239,68,68,.1);color:var(--red)}
+.sev-btn.s-high{border-color:var(--amber);background:rgba(245,158,11,.1);color:var(--amber)}
+.sev-btn.s-medium{border-color:var(--blue);background:rgba(59,130,246,.1);color:var(--blue)}
+.sev-btn.s-low{border-color:var(--green);background:rgba(16,185,129,.1);color:var(--green)}
 
-/* ── STOP TYPE COLORS ── */
-.type-electric{background:#7c3aed22;color:#a78bfa;}
-.type-mechanic{background:#b4530922;color:#fbbf24;}
-.type-ops{background:#0e749022;color:#22d3ee;}
-.type-other{background:#1e293b;color:#94a3b8;}
+/* ADMIN */
+.admin-hero{background:linear-gradient(135deg,var(--purple),var(--acc2));border-radius:12px;padding:16px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;direction:rtl}
+.client-card{background:var(--bg3);border:1px solid var(--bdr);border-radius:10px;padding:12px;direction:rtl;cursor:pointer;transition:border .2s}
+.client-card:hover{border-color:var(--bdr2)}
+.cc-av{width:38px;height:38px;border-radius:9px;background:var(--bg4);display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:var(--acc);flex-shrink:0;border:1px solid var(--bdr)}
+.pbar-w{height:4px;background:var(--bg);border-radius:2px;overflow:hidden;margin-top:3px}
+.pbar{height:100%;border-radius:2px;transition:width .6s}
 
-/* ── TOAST ── */
-#toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--green2);color:#fff;padding:10px 20px;border-radius:12px;font-size:12px;font-weight:700;opacity:0;transition:all .3s;z-index:999;pointer-events:none;white-space:nowrap;}
-#toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
-#toast.error{background:#dc2626;}
+/* MODAL */
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.65);display:flex;align-items:center;justify-content:center;z-index:200}
+.modal-box{background:var(--bg2);border:1px solid var(--bdr2);border-radius:14px;padding:22px;width:92%;max-width:420px;direction:rtl;max-height:90vh;overflow-y:auto}
+.modal-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px}
+
+/* TOAST */
+#toasts{position:fixed;bottom:16px;left:16px;z-index:300;display:flex;flex-direction:column;gap:6px}
+.toast{background:var(--bg2);border:1px solid var(--bdr2);border-radius:8px;padding:10px 16px;font-size:12px;display:flex;align-items:center;gap:8px;animation:slideIn .3s ease;direction:rtl}
+
+/* AI CHAT */
+.chat-box{display:flex;flex-direction:column;height:260px}
+.chat-msgs{flex:1;overflow-y:auto;padding:8px;display:flex;flex-direction:column;gap:8px}
+.chat-msg{padding:10px 12px;border-radius:10px;font-size:12px;line-height:1.7;max-width:88%}
+.chat-msg.bot{background:var(--bg3);border:1px solid var(--bdr);align-self:flex-end;direction:rtl;text-align:right}
+.chat-msg.user{background:var(--bd);align-self:flex-start;direction:rtl}
+.chat-input-row{display:flex;gap:8px;padding-top:8px;border-top:1px solid var(--bdr)}
+
+/* LTR content */
+.ltr-content{direction:ltr;text-align:left}
+
+/* NO COPY */
+body{-webkit-user-select:none;-moz-user-select:none;user-select:none}
 </style>
 </head>
 <body>
-<div id="app">
-  <div id="toast"></div>
 
-  <!-- LANDING -->
-  <div id="landing" style="display:none;">
-    <div class="hero">
-      <div class="hero-icon">⚙️</div>
-      <div class="hero-title">نظام تحكم الوقت</div>
-      <div class="hero-en">GTech Smart Platform</div>
-      <div class="hero-tag">⏱ Zero Downtime · صفر ضياع</div>
-    </div>
-    <div class="hero-btns">
-      <button class="btn-primary" onclick="showScreen('login-factory')">🏭 دخول المصنع · Factory Login</button>
-      <button class="btn-outline" onclick="showScreen('login-admin')">🔐 مدير النظام · System Admin</button>
-    </div>
-    <div class="feat-grid">
-      <div class="feat-card"><div class="feat-icon">📊</div><div class="feat-title">داش بورد الكفاءة</div><div class="feat-desc">تحليل الوقت الضائع لحظة بلحظة</div></div>
-      <div class="feat-card"><div class="feat-icon">☁️</div><div class="feat-title">بيانات سحابية</div><div class="feat-desc">أي جهاز · في أي وقت · نفس البيانات</div></div>
-      <div class="feat-card"><div class="feat-icon">👥</div><div class="feat-title">متعدد الورديات</div><div class="feat-desc">حتى 3 ورديات بأوقات مخصصة</div></div>
-      <div class="feat-card"><div class="feat-icon">📈</div><div class="feat-title">تقارير Excel</div><div class="feat-desc">تصدير شهري بنقرة واحدة</div></div>
-    </div>
-    <div class="footer-info">G-Tech Smart Platform | info@gtech-a.com | +00966541719233<br>🔒 Powered by Supabase Cloud</div>
-  </div>
-
-  <!-- LOGIN FACTORY -->
-  <div id="login-factory" style="display:none;" class="screen">
-    <div class="card">
-      <div class="card-icon">🏭</div>
-      <div class="card-title">دخول المصنع</div>
-      <div class="card-sub">Factory Login</div>
-      <label class="fl">اسم المستخدم · Username</label>
-      <input class="fi" id="f-user" type="text" placeholder="اسم المستخدم">
-      <label class="fl">كلمة المرور · Password</label>
-      <input class="fi" id="f-pass" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')loginFactory()">
-      <div class="er" id="f-err"></div>
-      <button class="fp" onclick="loginFactory()">دخول · Login</button>
-      <button class="fs" onclick="showScreen('landing')">رجوع · Back</button>
-    </div>
-  </div>
-
-  <!-- LOGIN ADMIN -->
-  <div id="login-admin" style="display:none;" class="screen">
-    <div class="card">
-      <div class="card-icon">🔐</div>
-      <div class="card-title">مدير النظام</div>
-      <div class="card-sub">System Administrator</div>
-      <label class="fl">اسم المستخدم · Username</label>
-      <input class="fi" id="a-user" type="text" placeholder="admin username">
-      <label class="fl">كلمة المرور · Password</label>
-      <input class="fi" id="a-pass" type="password" placeholder="••••••••" onkeydown="if(event.key==='Enter')loginAdmin()">
-      <div class="er" id="a-err"></div>
-      <button class="fp" onclick="loginAdmin()">دخول · Login</button>
-      <button class="fs" onclick="showScreen('landing')">رجوع · Back</button>
-    </div>
-  </div>
-
-  <!-- FACTORY APP -->
-  <div id="factory-app" style="display:none;flex-direction:column;">
-    <div id="header">
-      <div class="h-logo">⚙️ GTech Smart</div>
-      <div style="display:flex;align-items:center;gap:8px;">
-        <div class="h-user" id="h-factory-name"></div>
-        <button class="h-logout" onclick="doLogout()">خروج</button>
-      </div>
-    </div>
-    <div id="factory-tabs">
-      <div id="tabs">
-        <button class="tb on" onclick="showFactoryTab('shifts')" id="tab-shifts">📋 الورديات</button>
-        <button class="tb" onclick="showFactoryTab('form')" id="tab-form" style="display:none;">✏️ تسجيل</button>
-        <button class="tb" onclick="showFactoryTab('reports')" id="tab-reports">📄 التقارير</button>
-        <button class="tb" onclick="showFactoryTab('dash')" id="tab-dash">📊 الداش</button>
-        <button class="tb" onclick="showFactoryTab('setup')" id="tab-setup">⚙️ الإعداد</button>
-      </div>
-    </div>
-    <div id="shifts-tab" style="flex:1;overflow-y:auto;padding:12px;"></div>
-    <div id="form-tab" style="display:none;flex:1;overflow-y:auto;"><div id="form-content"></div></div>
-    <div id="reports-tab" style="display:none;flex:1;overflow-y:auto;padding:10px;"><div id="reports-content"></div></div>
-    <div id="dash-tab" style="display:none;flex:1;overflow-y:auto;"><div id="dash-content"></div></div>
-    <div id="setup-tab" style="display:none;flex:1;overflow-y:auto;padding:10px;"><div id="setup-content"></div></div>
-  </div>
-
-  <!-- ADMIN APP -->
-  <div id="admin-app" style="display:none;flex-direction:column;">
-    <div id="header" style="background:var(--bg2);border-bottom:1px solid var(--border);padding:10px 13px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;">
-      <div class="h-logo">🔐 GTech Admin</div>
-      <div style="display:flex;align-items:center;gap:8px;">
-        <div class="h-user">مدير النظام</div>
-        <button class="h-logout" onclick="doLogout()">خروج</button>
-      </div>
-    </div>
-    <div style="flex:1;overflow-y:auto;padding:12px;" id="admin-content"></div>
-  </div>
-</div>
+<div id="root"></div>
+<div id="toasts"></div>
+<div id="modal"></div>
 
 <script>
-// ============================================================
-// SUPABASE CONFIG
-// ============================================================
-const SB_URL = 'https://ignfmthxmdmmyrzjlqdw.supabase.co';
-const SB_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlnbmZtdGh4bWRtbXlyempscWR3Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODAxNjM2MzIsImV4cCI6MjA5NTczOTYzMn0.pSZIsW9h68TZ_-qwHnsrKAXgPIILzThu_TzIBXdMdRY';
+/* ===================== STATE ===================== */
+var lang = 'ar';
+var screen = 'auth';
+var authTab = 'login';
+var currentUser = null;
+var currentPage = 'dashboard';
+var isAdmin = false;
+var charts = {};
+var selectedType = '';
+var selectedSev = '';
 
-async function sb(table, method='GET', body=null, query=''){
-  const url = `${SB_URL}/rest/v1/${table}${query}`;
-  const opts = {
-    method,
-    headers: {
-      'apikey': SB_KEY,
-      'Authorization': `Bearer ${SB_KEY}`,
-      'Content-Type': 'application/json',
-      'Prefer': method==='POST' ? 'return=representation' : ''
-    }
-  };
-  if(body) opts.body = JSON.stringify(body);
-  const res = await fetch(url, opts);
-  if(!res.ok){
-    const err = await res.text();
-    throw new Error(err);
-  }
-  const txt = await res.text();
-  return txt ? JSON.parse(txt) : [];
-}
-
-// ============================================================
-// CONSTANTS
-// ============================================================
-const SHIFT_COLORS = ['#7c3aed','#0e7490','#b45309','#be185d','#065f46'];
-const STOP_TYPES = [
-  {id:'electric', label:'كهرباء', en:'Electrical', cls:'type-electric'},
-  {id:'mechanic', label:'ميكانيكا', en:'Mechanical', cls:'type-mechanic'},
-  {id:'ops',      label:'تشغيل',   en:'Operational', cls:'type-ops'},
-  {id:'other',    label:'أخرى',    en:'Other',        cls:'type-other'},
+var faults = [
+  {id:1,type:'mechanical',typeAr:'ميكانيكي',title:'Motor Overheating',titleAr:'ارتفاع حرارة المحرك',machine:'CNC A1',machineAr:'ماكينة CNC أ1',severity:'critical',time:'10:24',status:'open'},
+  {id:2,type:'hydraulic',typeAr:'هيدروليك',title:'Hydraulic Pressure Low',titleAr:'انخفاض ضغط الهيدروليك',machine:'Press B2',machineAr:'مكبس ب2',severity:'high',time:'09:55',status:'open'},
+  {id:3,type:'electrical',typeAr:'كهربائي',title:'Sensor Error',titleAr:'خطأ في الحساس',machine:'Conveyor',machineAr:'خط النقل',severity:'medium',time:'08:30',status:'inprogress'},
 ];
-const PROD_UNITS = ['وحدة','طن','كيلو','لتر','متر','صندوق'];
-const AR_MONTHS = ['يناير','فبراير','مارس','أبريل','مايو','يونيو','يوليو','أغسطس','سبتمبر','أكتوبر','نوفمبر','ديسمبر'];
 
-// ============================================================
-// STATE
-// ============================================================
-let currentFactory = null;
-let factoryShifts = [];
-let factoryLeaders = [];
-let currentLeader = null;
-let currentShiftId = null;
-let formMeters = [];
-let formStops = [];
-let dashYear = new Date().getFullYear();
-let dashMonth = new Date().getMonth();
-let userRole = null; // 'factory' | 'leader' | 'admin'
+var clients = [
+  {id:1,name:'Steel Works Co.',nameAr:'شركة أعمال الفولاذ',email:'ops@steelworks.com',phone:'+966501234567',company:'Steel Works Co.',companyAr:'أعمال الفولاذ',trialDays:23,status:'active',machines:2,faultsToday:4,oee:87,lastLogin:'منذ 2 دقيقة',plan:'trial'},
+  {id:2,name:'AutoParts Factory',nameAr:'مصنع قطع السيارات',email:'info@autoparts.com',phone:'+966509876543',company:'AutoParts Factory',companyAr:'قطع السيارات',trialDays:0,status:'active',machines:2,faultsToday:1,oee:91,lastLogin:'منذ ساعة',plan:'paid'},
+  {id:3,name:'Chemical Plant A',nameAr:'المصنع الكيميائي',email:'safety@chemicala.com',phone:'+966551234890',company:'Chemical Plant A',companyAr:'المصنع الكيميائي',trialDays:5,status:'warning',machines:1,faultsToday:7,oee:72,lastLogin:'منذ 3 ساعات',plan:'trial'},
+  {id:4,name:'Textile Mill',nameAr:'مطحنة النسيج',email:'mgr@textileb.com',phone:'+966512345678',company:'Textile Mill',companyAr:'النسيج',trialDays:0,status:'active',machines:2,faultsToday:2,oee:84,lastLogin:'متصل الآن',plan:'paid'},
+];
 
-// ============================================================
-// SCREEN NAV
-// ============================================================
-function showScreen(name){
-  ['landing','login-factory','login-admin','factory-app','admin-app'].forEach(id=>{
-    const el = document.getElementById(id);
-    if(el) el.style.display = 'none';
+/* ===================== TRANSLATIONS ===================== */
+var T = {
+  dashboard:'لوحة التحكم', machines:'الماكينات', addFault:'إضافة عطل',
+  faultLog:'سجل الأعطال', maintenance:'الصيانة', energy:'الطاقة',
+  reports:'التقارير', support:'الدعم الذكي', settings:'الإعدادات',
+  logout:'خروج', adminPanel:'لوحة الإدارة', clients:'العملاء',
+  systemStatus:'حالة النظام', login:'تسجيل الدخول', register:'إنشاء حساب',
+  loginBtn:'دخول', registerBtn:'إنشاء حساب مجاني',
+  email:'البريد الإلكتروني', password:'كلمة المرور', phone:'رقم الموبايل',
+  company:'اسم الشركة', fullName:'الاسم الكامل',
+  companyType:'نوع الصناعة', manufacturing:'تصنيع', food:'غذاء وشراب',
+  chemical:'كيمياء', automotive:'سيارات', other:'أخرى',
+  agreeTerms:'أوافق على الشروط والأحكام',
+  forgotPw:'نسيت كلمة المرور؟',
+  noAccount:'ليس لديك حساب؟', haveAccount:'لديك حساب؟',
+  trialNote:'✓ تجربة مجانية 30 يوم — لا يلزم بطاقة ائتمان',
+  totalFaults:'أعطال اليوم', activeMachines:'ماكينات نشطة',
+  criticalAlerts:'تنبيهات حرجة', pendingMaint:'صيانة معلقة',
+  liveFaults:'الأعطال المباشرة', viewAll:'عرض الكل',
+  faultType:'نوع العطل', mechanical:'ميكانيكي', electrical:'كهربائي',
+  hydraulic:'هيدروليك', thermal:'حراري', sensor:'حساسات', structural:'هيكلي',
+  severity:'درجة الخطورة', critical:'حرج', high:'عالٍ', medium:'متوسط', low:'منخفض',
+  machineLabel:'الماكينة', descLabel:'وصف العطل', submitFault:'حفظ وإرسال',
+  open:'مفتوح', inprogress:'جارٍ', resolved:'محلول',
+  status:'الحالة', time:'الوقت', type:'النوع',
+  exportReport:'تصدير التقرير', save:'حفظ', cancel:'إلغاء',
+  close:'إغلاق', upgrade:'ترقية الآن',
+  adminPw:'كلمة مرور المشرف', adminHint:'أدخل: gtech2026',
+  adminWrong:'كلمة المرور غير صحيحة',
+  allOk:'جميع الأنظمة تعمل', lastLogin:'آخر دخول',
+  sendMsg:'مراسلة', suspend:'تعليق', activate:'تفعيل',
+  searchClients:'بحث عن عميل...',
+  welcomeMsg:'أهلاً بك في G-Tech! التطبيق جاهز للاستخدام',
+  registerSuccess:'تم إنشاء حسابك! مرحباً بك',
+  faultAdded:'تم تسجيل العطل وإضافته للداش بورد',
+  fieldsRequired:'يرجى ملء جميع الحقول المطلوبة',
+  loginError:'البريد الإلكتروني أو كلمة المرور غير صحيحة',
+  selectTypeAndSev:'يرجى تحديد نوع العطل والخطورة والوصف',
+  machineLimit:'وصلت للحد الأقصى (2 ماكينة) — قم بالترقية'
+};
+
+function t(k){ return T[k] || k; }
+
+/* ===================== RENDER ===================== */
+function render(){
+  destroyCharts();
+  if(screen === 'auth') renderAuth();
+  else renderApp();
+}
+
+/* ===================== AUTH ===================== */
+function renderAuth(){
+  var isLogin = authTab === 'login';
+  document.getElementById('root').innerHTML =
+  '<div class="auth-wrap">' +
+  '<div class="auth-card">' +
+  '<div class="auth-logo">' +
+  '<div class="auth-logo-icon">⚙</div>' +
+  '<h1>G-Tech</h1>' +
+  '<p>منصة المصنع الذكي</p>' +
+  '</div>' +
+  '<div class="auth-tabs">' +
+  '<button class="auth-tab ' + (isLogin?'active':'') + '" onclick="switchTab(\'login\')">' + t('login') + '</button>' +
+  '<button class="auth-tab ' + (!isLogin?'active':'') + '" onclick="switchTab(\'register\')">' + t('register') + '</button>' +
+  '</div>' +
+  '<div id="authMsg"></div>' +
+  (isLogin ? buildLoginForm() : buildRegisterForm()) +
+  '<div class="trial-info"><i class="ti ti-clock" style="font-size:14px"></i> ' + t('trialNote') + '</div>' +
+  '<div class="divider">أو</div>' +
+  '<button class="btn-outline" style="width:100%;justify-content:center;font-size:12px" onclick="showAdminModal()">' +
+  '<i class="ti ti-shield-lock"></i> ' + t('adminPanel') + ' ←' +
+  '</button>' +
+  '</div></div>';
+}
+
+function buildLoginForm(){
+  return '<div class="form-group">' +
+  '<label class="form-label"><i class="ti ti-mail" style="font-size:12px;margin-left:4px"></i>' + t('email') + '</label>' +
+  '<div class="input-wrap"><input class="form-input ltr" id="lEmail" type="email" placeholder="you@company.com" value="ahmed@gtech.com">' +
+  '<i class="ti ti-mail input-icon" style="right:auto;left:10px"></i></div></div>' +
+  '<div class="form-group">' +
+  '<label class="form-label"><i class="ti ti-lock" style="font-size:12px;margin-left:4px"></i>' + t('password') + '</label>' +
+  '<div class="input-wrap"><input class="form-input ltr" id="lPw" type="password" value="123456">' +
+  '<i class="ti ti-lock input-icon" style="right:auto;left:10px"></i></div></div>' +
+  '<div style="display:flex;justify-content:space-between;margin-bottom:16px">' +
+  '<label class="form-check"><input type="checkbox" checked> تذكرني</label>' +
+  '<span style="font-size:11px;color:var(--acc);cursor:pointer">' + t('forgotPw') + '</span>' +
+  '</div>' +
+  '<button class="btn-primary" onclick="doLogin()"><i class="ti ti-login"></i> ' + t('loginBtn') + '</button>' +
+  '<div style="text-align:center;margin-top:10px">' +
+  '<span style="font-size:11px;color:var(--txt2)">' + t('noAccount') + ' </span>' +
+  '<span style="font-size:11px;color:var(--acc);cursor:pointer" onclick="switchTab(\'register\')">' + t('register') + '</span>' +
+  '</div>';
+}
+
+function buildRegisterForm(){
+  return '<div class="form-row">' +
+  '<div class="form-group"><label class="form-label">' + t('fullName') + ' *</label>' +
+  '<input class="form-input" id="rName" placeholder="أحمد محمد"></div>' +
+  '<div class="form-group"><label class="form-label">' + t('phone') + ' *</label>' +
+  '<input class="form-input ltr" id="rPhone" placeholder="+966 5X XXX XXXX"></div>' +
+  '</div>' +
+  '<div class="form-group"><label class="form-label">' + t('email') + ' *</label>' +
+  '<input class="form-input ltr" id="rEmail" type="email" placeholder="you@company.com"></div>' +
+  '<div class="form-group"><label class="form-label">' + t('company') + ' *</label>' +
+  '<input class="form-input" id="rCompany" placeholder="اسم مصنعك أو شركتك"></div>' +
+  '<div class="form-row">' +
+  '<div class="form-group"><label class="form-label">' + t('companyType') + '</label>' +
+  '<select class="form-select" id="rType">' +
+  '<option value="manufacturing">' + t('manufacturing') + '</option>' +
+  '<option value="food">' + t('food') + '</option>' +
+  '<option value="chemical">' + t('chemical') + '</option>' +
+  '<option value="automotive">' + t('automotive') + '</option>' +
+  '<option value="other">' + t('other') + '</option>' +
+  '</select></div>' +
+  '<div class="form-group"><label class="form-label">' + t('password') + ' *</label>' +
+  '<input class="form-input ltr" id="rPw" type="password" placeholder="6 أحرف على الأقل"></div>' +
+  '</div>' +
+  '<label class="form-check" style="margin-bottom:14px"><input type="checkbox" id="rTerms"> ' + t('agreeTerms') + '</label>' +
+  '<button class="btn-primary" onclick="doRegister()"><i class="ti ti-user-plus"></i> ' + t('registerBtn') + '</button>' +
+  '<div style="text-align:center;margin-top:10px">' +
+  '<span style="font-size:11px;color:var(--txt2)">' + t('haveAccount') + ' </span>' +
+  '<span style="font-size:11px;color:var(--acc);cursor:pointer" onclick="switchTab(\'login\')">' + t('login') + '</span>' +
+  '</div>';
+}
+
+function switchTab(tab){ authTab = tab; renderAuth(); }
+
+function doLogin(){
+  var e = document.getElementById('lEmail');
+  var p = document.getElementById('lPw');
+  var m = document.getElementById('authMsg');
+  if(!e||!p) return;
+  if(!e.value || !p.value){ m.innerHTML = '<div class="msg-error">' + t('fieldsRequired') + '</div>'; return; }
+  if(p.value.length < 3){ m.innerHTML = '<div class="msg-error">' + t('loginError') + '</div>'; return; }
+  currentUser = {name:'أحمد طارق', email:e.value, company:'مصنع G-Tech الذكي', phone:'+966501234567', role:'engineer', trialDays:23};
+  screen='app'; currentPage='dashboard'; isAdmin=false;
+  render();
+  showToast(t('welcomeMsg'), 'green');
+}
+
+function doRegister(){
+  var n=document.getElementById('rName'), e=document.getElementById('rEmail'),
+      c=document.getElementById('rCompany'), p=document.getElementById('rPhone'),
+      pw=document.getElementById('rPw'), tm=document.getElementById('rTerms');
+  var m=document.getElementById('authMsg');
+  if(!n||!e||!c||!p||!pw) return;
+  if(!n.value||!e.value||!c.value||!p.value||!pw.value){
+    m.innerHTML='<div class="msg-error">'+t('fieldsRequired')+'</div>'; return;
+  }
+  if(!tm.checked){
+    m.innerHTML='<div class="msg-error">يجب الموافقة على الشروط والأحكام</div>'; return;
+  }
+  currentUser={name:n.value, email:e.value, company:c.value, phone:p.value, role:'admin', trialDays:30};
+  screen='app'; currentPage='dashboard'; isAdmin=false;
+  render();
+  showToast(t('registerSuccess'), 'green');
+}
+
+/* ===================== ADMIN MODAL ===================== */
+function showAdminModal(){
+  document.getElementById('modal').innerHTML =
+  '<div class="modal-bg" onclick="closeMBg(event)">' +
+  '<div class="modal-box">' +
+  '<div class="modal-hdr"><div style="font-size:14px;font-weight:700;color:var(--purple)"><i class="ti ti-shield-lock" style="margin-left:6px"></i>' + t('adminPanel') + '</div>' +
+  '<button class="btn-outline btn-sm" onclick="closeModal()">×</button></div>' +
+  '<p style="font-size:12px;color:var(--txt2);margin-bottom:12px">' + t('adminHint') + '</p>' +
+  '<div class="form-group"><label class="form-label">' + t('adminPw') + '</label>' +
+  '<input class="form-input ltr" id="aPw" type="password" placeholder="••••••••" onkeydown="if(event.key===\'Enter\')doAdminLogin()"></div>' +
+  '<div id="adminMsg"></div>' +
+  '<button class="btn-primary" style="margin-top:8px" onclick="doAdminLogin()"><i class="ti ti-lock"></i> دخول</button>' +
+  '</div></div>';
+}
+
+function doAdminLogin(){
+  var pw=document.getElementById('aPw');
+  var m=document.getElementById('adminMsg');
+  if(!pw) return;
+  if(pw.value==='gtech2026'||pw.value==='admin'){
+    closeModal();
+    currentUser={name:'المشرف العام', email:'admin@gtech-a.com', company:'G-Tech', role:'superadmin', trialDays:null};
+    screen='app'; currentPage='dashboard'; isAdmin=true;
+    render();
+    showToast('مرحباً بك في لوحة إدارة G-Tech', 'purple');
+  } else {
+    if(m) m.innerHTML='<div class="msg-error" style="margin-top:8px">'+t('adminWrong')+'</div>';
+  }
+}
+
+/* ===================== APP ===================== */
+function renderApp(){
+  var root = document.getElementById('root');
+  var trialBar = '';
+  if(currentUser && currentUser.trialDays){
+    trialBar = '<div class="trial-bar">' +
+    '<div style="display:flex;align-items:center;gap:8px">' +
+    '<span class="trial-days-pill">' + currentUser.trialDays + ' يوم</span>' +
+    '<span>متبقية من نسختك التجريبية المجانية</span>' +
+    '</div>' +
+    '<span style="color:#cffafe;cursor:pointer;font-size:11px;font-weight:700">' + t('upgrade') + ' ←</span>' +
+    '</div>';
+  }
+
+  root.innerHTML = trialBar +
+  '<div class="app">' +
+  buildTopbar() +
+  '<div class="app-body">' +
+  '<aside class="sidebar" id="sb"></aside>' +
+  '<main class="content" id="ct"></main>' +
+  '</div></div>';
+
+  renderSidebar();
+  renderPage();
+}
+
+function buildTopbar(){
+  return '<div class="topbar">' +
+  '<div class="logo-mini">' +
+  '<div class="logo-icon-sm">⚙</div>' +
+  '<div><div class="logo-text">G-Tech</div>' +
+  '<div class="logo-sub">Smart Factory</div></div>' +
+  '</div>' +
+  '<div class="spacer"></div>' +
+  '<div class="lang-pill">' +
+  '<button class="lbtn active" onclick="setLang(\'ar\')">عر</button>' +
+  '<button class="lbtn" onclick="setLang(\'en\')">EN</button>' +
+  '</div>' +
+  (isAdmin ? '' : '<div class="top-btn notif-badge"><i class="ti ti-bell"></i></div>') +
+  '<div class="top-btn" onclick="navigate(\'settings\')"><i class="ti ti-settings"></i></div>' +
+  '<div class="avatar" onclick="navigate(\'settings\')">' +
+  (currentUser ? currentUser.name.charAt(0) : 'U') +
+  '</div>' +
+  '</div>';
+}
+
+function renderSidebar(){
+  var sb=document.getElementById('sb');
+  if(!sb) return;
+  var items = isAdmin ? [
+    {id:'dashboard',icon:'ti-layout-dashboard'},
+    {id:'clients',icon:'ti-users'},
+    {id:'systemStatus',icon:'ti-server'},
+    {id:'reports',icon:'ti-file-analytics'},
+  ] : [
+    {id:'dashboard',icon:'ti-layout-dashboard'},
+    {id:'addFault',icon:'ti-alert-triangle',badge:faults.filter(function(f){return f.status==='open';}).length},
+    {id:'faultLog',icon:'ti-list'},
+    {id:'machines',icon:'ti-cpu'},
+    {id:'maintenance',icon:'ti-tool'},
+    {id:'energy',icon:'ti-bolt'},
+    {id:'reports',icon:'ti-file-analytics'},
+    {id:'support',icon:'ti-robot'},
+  ];
+
+  var h = '<div class="sb-sec">' + (isAdmin ? 'الإدارة' : 'القائمة') + '</div>';
+  items.forEach(function(item){
+    var active = currentPage===item.id ? 'active' : '';
+    var badge = item.badge ? '<span class="nbadge">'+item.badge+'</span>' : '';
+    h += '<div class="nav-item ' + active + '" onclick="navigate(\'' + item.id + '\')">' +
+         '<i class="ti ' + item.icon + '"></i><span>' + t(item.id) + '</span>' + badge + '</div>';
   });
-  const el = document.getElementById(name);
+
+  h += '<div class="sb-bottom">';
+  if(!isAdmin){
+    h += '<div class="nav-item" style="color:var(--purple)" onclick="showAdminModal()">' +
+         '<i class="ti ti-shield-lock"></i><span>' + t('adminPanel') + '</span></div>';
+  }
+  h += '<div class="nav-item" onclick="doLogout()"><i class="ti ti-logout"></i><span>' + t('logout') + '</span></div>';
+  h += '</div>';
+  sb.innerHTML = h;
+}
+
+function navigate(p){ currentPage=p; destroyCharts(); renderSidebar(); renderPage(); }
+function doLogout(){ screen='auth'; authTab='login'; currentUser=null; isAdmin=false; render(); }
+
+function renderPage(){
+  var ct=document.getElementById('ct');
+  if(!ct) return;
+  ct.innerHTML = '';
+  var pages = {
+    dashboard: isAdmin ? renderAdminDash : renderDashboard,
+    addFault: renderAddFault,
+    faultLog: renderFaultLog,
+    machines: renderMachines,
+    maintenance: renderMaintenance,
+    energy: renderEnergy,
+    reports: renderReports,
+    support: renderSupport,
+    settings: renderSettings,
+    clients: renderClients,
+    systemStatus: renderSystemStatus,
+  };
+  if(pages[currentPage]) pages[currentPage]();
+  else ct.innerHTML = '<div style="padding:20px;color:var(--txt2)">' + t(currentPage) + '</div>';
+}
+
+/* ===================== DASHBOARD ===================== */
+function renderDashboard(){
+  var ct=document.getElementById('ct');
+  var openF = faults.filter(function(f){return f.status==='open';}).length;
+  var critF = faults.filter(function(f){return f.severity==='critical'&&f.status==='open';}).length;
+  ct.innerHTML =
+  '<div class="ph">' +
+  '<div><div class="ph-title">' + t('dashboard') + '</div>' +
+  '<div class="ph-sub">نظرة عامة · مباشر</div></div>' +
+  '<div class="ph-actions">' +
+  '<button class="btn-outline btn-sm" onclick="navigate(\'addFault\')"><i class="ti ti-plus"></i> ' + t('addFault') + '</button>' +
+  '<button class="btn-outline btn-sm" style="background:var(--acc2);border-color:var(--acc2);color:#fff" onclick="showReportModal()"><i class="ti ti-download"></i> ' + t('exportReport') + '</button>' +
+  '</div></div>' +
+
+  '<div class="sg">' +
+  mkStat('ti-alert-triangle','red',t('totalFaults'),openF,'+2 اليوم','up') +
+  mkStat('ti-cpu','blue',t('activeMachines'),'2','100%','up') +
+  mkStat('ti-alert-octagon','amber',t('criticalAlerts'),critF,critF>1?'خطر!':'تحت السيطرة','down') +
+  mkStat('ti-tool','purple',t('pendingMaint'),'3','-1 هذا الأسبوع','down') +
+  '</div>' +
+
+  '<div class="g2">' +
+  '<div>' +
+  '<div class="card-title" style="margin-bottom:8px;font-size:12px;display:flex;align-items:center;gap:6px;direction:rtl">' +
+  '<span class="live-dot"></span> ' + t('liveFaults') + '</div>' +
+  '<div id="liveFeed"></div>' +
+  '<button class="btn-outline btn-sm" style="margin-top:6px;width:100%" onclick="navigate(\'faultLog\')">' + t('viewAll') + ' (' + faults.length + ') ←</button>' +
+  '</div>' +
+  '<div>' +
+  '<div class="card-title" style="margin-bottom:8px;font-size:12px;direction:rtl">معدل الكفاءة OEE</div>' +
+  '<div style="height:155px;position:relative"><canvas id="oeeChart" role="img" aria-label="OEE chart">OEE weekly data</canvas></div>' +
+  '</div>' +
+  '</div>' +
+
+  '<div class="card" style="margin-top:12px">' +
+  '<div class="card-hdr"><div class="card-title">توزيع الأعطال حسب النوع</div></div>' +
+  '<div style="height:130px;position:relative"><canvas id="ftChart" role="img" aria-label="Fault types">Fault type distribution</canvas></div>' +
+  '</div>';
+
+  buildLiveFeed();
+  setTimeout(buildDashCharts, 80);
+}
+
+function buildLiveFeed(){
+  var el=document.getElementById('liveFeed');
   if(!el) return;
-  if(name==='factory-app'||name==='admin-app'){
-    el.style.display='flex'; el.style.flexDirection='column';
-  } else {
-    el.style.display = name==='landing'||name.startsWith('login') ? (name==='landing'?'block':'flex') : 'flex';
-    if(name.startsWith('login')) { el.style.flexDirection='column'; el.style.alignItems='center'; el.style.justifyContent='center'; }
-  }
-}
-function showFactoryTab(name){
-  ['shifts','form','reports','dash','setup'].forEach(t=>{
-    const el=document.getElementById(t+'-tab');
-    if(el) el.style.display='none';
-    const tb=document.getElementById('tab-'+t);
-    if(tb) tb.classList.remove('on');
-  });
-  const el=document.getElementById(name+'-tab');
-  if(el) el.style.display = name==='form'?'flex':'block';
-  const tb=document.getElementById('tab-'+name);
-  if(tb) tb.classList.add('on');
-  if(name==='shifts') renderShifts();
-  if(name==='reports') renderReports();
-  if(name==='dash') renderDashboard();
-  if(name==='setup') renderSetup();
-}
-
-// ============================================================
-// AUTH — FACTORY LOGIN
-// ============================================================
-async function loginFactory(){
-  const username = document.getElementById('f-user').value.trim();
-  const password = document.getElementById('f-pass').value;
-  if(!username||!password){ document.getElementById('f-err').textContent='أدخل اسم المستخدم وكلمة المرور'; return; }
-  document.getElementById('f-err').textContent='⏳ جاري التحقق...';
-  try {
-    // Check factory
-    const factories = await sb('factories','GET',null,`?username=eq.${encodeURIComponent(username)}&select=*`);
-    if(factories.length && factories[0].password===password){
-      if(!factories[0].active){ document.getElementById('f-err').textContent='هذا الحساب موقوف'; return; }
-      currentFactory = factories[0];
-      userRole = 'factory';
-      await loadFactoryData();
-      document.getElementById('h-factory-name').textContent = currentFactory.name;
-      showScreen('factory-app');
-      showFactoryTab('shifts');
-      return;
-    }
-    // Check leader
-    const leaders = await sb('shift_leaders','GET',null,`?username=eq.${encodeURIComponent(username)}&select=*,factories(*),shifts(*)`);
-    if(leaders.length && leaders[0].password===password){
-      currentLeader = leaders[0];
-      currentFactory = leaders[0].factories;
-      userRole = 'leader';
-      await loadFactoryData();
-      document.getElementById('h-factory-name').textContent = currentLeader.name;
-      showScreen('factory-app');
-      showFactoryTab('shifts');
-      return;
-    }
-    document.getElementById('f-err').textContent='اسم المستخدم أو كلمة المرور غلط';
-  } catch(e){
-    document.getElementById('f-err').textContent='خطأ في الاتصال · Connection error';
-    console.error(e);
-  }
-}
-
-async function loadFactoryData(){
-  factoryShifts = await sb('shifts','GET',null,`?factory_id=eq.${currentFactory.id}&order=sort_order.asc`);
-  factoryLeaders = await sb('shift_leaders','GET',null,`?factory_id=eq.${currentFactory.id}&select=*`);
-}
-
-// ============================================================
-// AUTH — ADMIN LOGIN
-// ============================================================
-async function loginAdmin(){
-  const username = document.getElementById('a-user').value.trim();
-  const password = document.getElementById('a-pass').value;
-  document.getElementById('a-err').textContent='⏳ جاري التحقق...';
-  try {
-    const admins = await sb('app_admins','GET',null,`?username=eq.${encodeURIComponent(username)}`);
-    if(admins.length && admins[0].password===password){
-      userRole='admin';
-      showScreen('admin-app');
-      renderAdminPanel();
-      return;
-    }
-    document.getElementById('a-err').textContent='اسم المستخدم أو كلمة المرور غلط';
-  } catch(e){
-    document.getElementById('a-err').textContent='خطأ في الاتصال · Connection error';
-  }
-}
-
-function doLogout(){
-  currentFactory=null; currentLeader=null; currentShiftId=null;
-  userRole=null; formMeters=[]; formStops=[];
-  showScreen('landing');
-}
-
-// ============================================================
-// SHIFTS TAB
-// ============================================================
-function renderShifts(){
-  const today = todayStr();
-  const curHour = new Date().getHours();
-  let html = `
-    <div style="text-align:center;padding:14px 0 10px;">
-      <div style="font-size:15px;font-weight:800;color:#f0f9ff;">ورديات اليوم</div>
-      <div style="font-size:11px;color:var(--text3);margin-top:4px;">${formatDate(today)}</div>
-    </div>`;
-
-  if(!factoryShifts.length){
-    html+=`<div class="no-data"><div class="no-data-icon">⚙️</div><div>لا توجد ورديات مضبوطة<br><span style="font-size:11px;color:var(--text4);">اذهب إلى الإعداد لإضافة الورديات</span></div></div>`;
-  } else {
-    html+=`<div id="shifts-loading" class="loading"><div class="spin">⏳</div><div>جاري التحميل...</div></div><div id="shifts-list" style="display:none;"></div>`;
-  }
-  document.getElementById('shifts-tab').innerHTML=html;
-  if(factoryShifts.length) loadTodayShifts(today);
-}
-
-async function loadTodayShifts(today){
-  try {
-    const logs = await sb('shift_logs','GET',null,`?factory_id=eq.${currentFactory.id}&date=eq.${today}&select=*,stops:stop_logs(*),meters:meter_readings(*)`);
-    const logMap={};
-    logs.forEach(l=>logMap[l.shift_id]=l);
-
-    let html='';
-    factoryShifts.forEach((s,i)=>{
-      const log=logMap[s.id];
-      const color=SHIFT_COLORS[i%SHIFT_COLORS.length];
-      const isCurrent = isCurrentShift(s);
-      const canEdit = userRole==='factory' || (userRole==='leader' && currentLeader.shift_id===s.id);
-
-      let statusHtml='';
-      if(log){
-        const sm=calcStopMins(log.stops||[]);
-        const eff=calcEff(sm, s.duration_hours*60);
-        statusHtml=`<div class="shift-status done">✓ مُسجّلة · كفاءة <span style="color:${effColor(eff)}">${eff}%</span></div>`;
-      } else if(isCurrent){
-        statusHtml=`<div class="shift-status current">● جارية الآن · In Progress</div>`;
-      } else {
-        statusHtml=`<div class="shift-status empty">○ لم تُسجَّل · Not recorded</div>`;
-      }
-      const click=canEdit?`onclick="openForm('${s.id}')"`:'';
-      html+=`
-        <div class="shift-btn ${isCurrent?'active-shift':''}" ${click} style="opacity:${canEdit?1:0.5};${canEdit?'cursor:pointer;':''}">
-          <div class="shift-color" style="background:${color};"></div>
-          <div class="shift-info">
-            <div class="shift-name">${s.name}</div>
-            <div class="shift-time">⏱ ${s.start_time} → ${s.end_time} (${s.duration_hours}س)</div>
-            ${statusHtml}
-          </div>
-          <div style="font-size:18px;color:var(--text4);">${canEdit?'✏️':'🔒'}</div>
-        </div>`;
-    });
-    document.getElementById('shifts-loading').style.display='none';
-    document.getElementById('shifts-list').style.display='block';
-    document.getElementById('shifts-list').innerHTML=html;
-  } catch(e){ showToast('خطأ في التحميل',true); }
-}
-
-function isCurrentShift(shift){
-  const now = new Date();
-  const h=now.getHours(), m=now.getMinutes();
-  const cur=h*60+m;
-  const [sh,sm]=shift.start_time.split(':').map(Number);
-  const [eh,em]=shift.end_time.split(':').map(Number);
-  const start=sh*60+sm, end=eh*60+em;
-  if(end>start) return cur>=start&&cur<end;
-  return cur>=start||cur<end;
-}
-
-// ============================================================
-// FORM
-// ============================================================
-async function openForm(shiftId){
-  currentShiftId=shiftId;
-  document.getElementById('tab-form').style.display='flex';
-  showFactoryTab('form');
-  document.getElementById('form-content').innerHTML=`<div class="loading"><div class="spin">⏳</div><div>جاري التحميل...</div></div>`;
-  try {
-    const shift=factoryShifts.find(s=>s.id===shiftId);
-    const today=todayStr();
-    const logs=await sb('shift_logs','GET',null,`?shift_id=eq.${shiftId}&date=eq.${today}&select=*,stops:stop_logs(*),meters:meter_readings(*)`);
-    const existing=logs[0]||null;
-    formMeters=existing&&existing.meters&&existing.meters.length
-      ? existing.meters.map((m,i)=>({id:i,name:m.meter_name||`خط ${i+1}`,value:m.value||'',dbId:m.id}))
-      : [{id:0,name:'خط الإنتاج 1',value:''}];
-    formStops=existing&&existing.stops&&existing.stops.length
-      ? existing.stops.map((s,i)=>({...s,fid:i}))
-      : [];
-    renderForm(shift,existing);
-  } catch(e){ showToast('خطأ في التحميل',true); }
-}
-
-function renderForm(shift,existing){
-  const shiftIdx=factoryShifts.findIndex(s=>s.id===shift.id);
-  const color=SHIFT_COLORS[shiftIdx%SHIFT_COLORS.length];
-  const prodVal=existing?existing.production||'':'';
-  const prodUnit=existing?existing.production_unit||'وحدة':'وحدة';
-  const notesVal=existing?existing.notes||'':'';
-  const leaderName=existing?existing.leader_name||currentLeader?.name||'':currentLeader?.name||'';
-
-  document.getElementById('form-content').innerHTML=`
-    <div style="padding:10px;">
-      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:14px;padding:12px 14px;margin-bottom:10px;display:flex;align-items:center;gap:10px;">
-        <div style="width:10px;height:10px;border-radius:50%;background:${color};flex-shrink:0;"></div>
-        <div>
-          <div style="font-size:14px;font-weight:800;color:#f0f9ff;">${shift.name}</div>
-          <div style="font-size:10px;color:var(--text3);">⏱ ${shift.start_time} → ${shift.end_time} | 📅 ${formatDate(todayStr())}</div>
-        </div>
-      </div>
-      <div class="section-box">
-        <div class="sec-label">👷 قائد الوردية · Shift Leader</div>
-        <input class="fi" id="sup-name" value="${leaderName}" placeholder="اسم القائد">
-      </div>
-      <div class="section-box">
-        <div class="sec-label">⚡ قراءات العدادات <span>(اختياري)</span></div>
-        <div id="meters-list">${renderMetersHtml()}</div>
-        ${formMeters.length<5?`<button class="add-meter-btn" onclick="addMeter()">+ إضافة عداد</button>`:''}
-      </div>
-      <div class="section-box">
-        <div class="sec-label">🛑 التوقفات · Stoppages</div>
-        <div id="stops-list">${renderStopsHtml()}</div>
-        <button class="add-stop-btn" onclick="addStop()">+ إضافة توقف</button>
-      </div>
-      <div class="section-box">
-        <div class="sec-label">📦 الإنتاج · Production</div>
-        <div class="prod-row">
-          <input class="fi" id="prod-qty" type="number" min="0" placeholder="الكمية" value="${prodVal}">
-          <select class="prod-unit-select fi" id="prod-unit">
-            ${PROD_UNITS.map(u=>`<option value="${u}" ${u===prodUnit?'selected':''}>${u}</option>`).join('')}
-          </select>
-        </div>
-      </div>
-      <div class="section-box">
-        <div class="sec-label">📝 ملاحظات</div>
-        <textarea class="fi" id="shift-notes" rows="3" placeholder="ملاحظات...">${notesVal}</textarea>
-      </div>
-      <button class="save-btn" onclick="saveShift('${shift.id}')">💾 حفظ الوردية</button>
-      <button class="cancel-btn" onclick="cancelForm()">إلغاء</button>
-      <div style="height:20px;"></div>
-    </div>`;
-}
-
-function renderMetersHtml(){
-  return formMeters.map((m,i)=>`
-    <div style="margin-bottom:10px;">
-      <div class="meter-label-row">
-        <input class="meter-name-input" id="m-name-${m.id}" value="${m.name}" placeholder="اسم الخط">
-        ${formMeters.length>1?`<button class="remove-meter" onclick="removeMeter(${m.id})">✕</button>`:''}
-      </div>
-      <div class="meter-row">
-        <div class="meter-num">${i+1}</div>
-        <input class="meter-input" id="m-val-${m.id}" type="number" min="0" step="0.01" value="${m.value}" placeholder="القراءة">
-        <div class="meter-unit">kWh</div>
-      </div>
-    </div>`).join('');
-}
-
-function renderStopsHtml(){
-  if(!formStops.length) return '<div style="text-align:center;padding:8px;font-size:11px;color:var(--text4);">لا توقفات</div>';
-  return formStops.map(s=>`
-    <div class="stop-item">
-      <button class="stop-delete" onclick="removeStop(${s.fid})">✕</button>
-      <div style="padding-left:24px;margin-bottom:7px;">
-        <div style="font-size:9px;color:var(--text3);margin-bottom:4px;">نوع التوقف</div>
-        <select class="stop-select" id="s-type-${s.fid}">
-          ${STOP_TYPES.map(t=>`<option value="${t.id}" ${t.id===s.stop_type?'selected':''}>${t.label} · ${t.en}</option>`).join('')}
-        </select>
-      </div>
-      <div class="stop-time-row">
-        <div><div style="font-size:9px;color:var(--text3);margin-bottom:4px;">البداية</div>
-          <input type="time" class="stop-time" id="s-start-${s.fid}" value="${s.start_time||''}" onchange="updateDur(${s.fid})"></div>
-        <div><div style="font-size:9px;color:var(--text3);margin-bottom:4px;">النهاية</div>
-          <input type="time" class="stop-time" id="s-end-${s.fid}" value="${s.end_time||''}" onchange="updateDur(${s.fid})"></div>
-        <div><div style="font-size:9px;color:var(--text3);margin-bottom:4px;">المدة</div>
-          <div class="stop-duration" id="s-dur-${s.fid}">${calcDurStr(s.start_time,s.end_time)}</div></div>
-      </div>
-      <textarea class="stop-notes" id="s-notes-${s.fid}" rows="2" placeholder="وصف التوقف">${s.notes||''}</textarea>
-    </div>`).join('');
-}
-
-function updateDur(fid){
-  const s=document.getElementById('s-start-'+fid)?.value;
-  const e=document.getElementById('s-end-'+fid)?.value;
-  const el=document.getElementById('s-dur-'+fid);
-  if(el) el.textContent=calcDurStr(s,e);
-}
-function addMeter(){ collectFormVals(); if(formMeters.length>=5)return; formMeters.push({id:Date.now(),name:`خط ${formMeters.length+1}`,value:''}); refreshLists(); }
-function removeMeter(id){ collectFormVals(); formMeters=formMeters.filter(m=>m.id!==id); refreshLists(); }
-function addStop(){ collectFormVals(); formStops.push({fid:Date.now(),stop_type:'electric',start_time:'',end_time:'',notes:''}); refreshLists(); }
-function removeStop(fid){ collectFormVals(); formStops=formStops.filter(s=>s.fid!==fid); refreshLists(); }
-function refreshLists(){
-  document.getElementById('meters-list').innerHTML=renderMetersHtml();
-  document.getElementById('stops-list').innerHTML=renderStopsHtml();
-  formMeters.forEach(m=>{ const n=document.getElementById('m-name-'+m.id); const v=document.getElementById('m-val-'+m.id); if(n)n.value=m.name; if(v)v.value=m.value; });
-}
-function collectFormVals(){
-  formMeters=formMeters.map(m=>({...m,name:document.getElementById('m-name-'+m.id)?.value||m.name,value:document.getElementById('m-val-'+m.id)?.value||m.value}));
-  formStops=formStops.map(s=>({...s,stop_type:document.getElementById('s-type-'+s.fid)?.value||s.stop_type,start_time:document.getElementById('s-start-'+s.fid)?.value||s.start_time,end_time:document.getElementById('s-end-'+s.fid)?.value||s.end_time,notes:document.getElementById('s-notes-'+s.fid)?.value||s.notes}));
-}
-
-async function saveShift(shiftId){
-  collectFormVals();
-  const shift=factoryShifts.find(s=>s.id===shiftId);
-  const today=todayStr();
-  const leaderName=document.getElementById('sup-name')?.value||currentLeader?.name||'';
-  const leaderId=currentLeader?.id||null;
-  const production=document.getElementById('prod-qty')?.value||null;
-  const productionUnit=document.getElementById('prod-unit')?.value||'وحدة';
-  const notes=document.getElementById('shift-notes')?.value||'';
-
-  try {
-    // Upsert shift_log
-    const existing=await sb('shift_logs','GET',null,`?shift_id=eq.${shiftId}&date=eq.${today}`);
-    let logId;
-    if(existing.length){
-      logId=existing[0].id;
-      await sb('shift_logs','PATCH',{leader_name:leaderName,leader_id:leaderId,production:production?parseFloat(production):null,production_unit:productionUnit,notes,saved_at:new Date().toISOString()},`?id=eq.${logId}`);
-      await sb('stop_logs','DELETE',null,`?shift_log_id=eq.${logId}`);
-      await sb('meter_readings','DELETE',null,`?shift_log_id=eq.${logId}`);
-    } else {
-      const created=await sb('shift_logs','POST',{factory_id:currentFactory.id,shift_id:shiftId,leader_id:leaderId,leader_name:leaderName,date:today,production:production?parseFloat(production):null,production_unit:productionUnit,notes,saved_at:new Date().toISOString()});
-      logId=created[0].id;
-    }
-    // Insert stops
-    for(const s of formStops){
-      const startT=document.getElementById('s-start-'+s.fid)?.value||s.start_time;
-      const endT=document.getElementById('s-end-'+s.fid)?.value||s.end_time;
-      const stopType=document.getElementById('s-type-'+s.fid)?.value||s.stop_type;
-      const stopNotes=document.getElementById('s-notes-'+s.fid)?.value||s.notes;
-      const dm=calcMins(startT,endT);
-      await sb('stop_logs','POST',{shift_log_id:logId,stop_type:stopType,start_time:startT,end_time:endT,duration_mins:dm,notes:stopNotes});
-    }
-    // Insert meters
-    for(const m of formMeters.filter(m=>m.value!=='')){
-      await sb('meter_readings','POST',{shift_log_id:logId,meter_name:m.name,value:parseFloat(m.value)||0});
-    }
-    showToast('✓ تم الحفظ بنجاح');
-    cancelForm();
-  } catch(e){ showToast('خطأ في الحفظ · Save error',true); console.error(e); }
-}
-
-function cancelForm(){
-  document.getElementById('tab-form').style.display='none';
-  showFactoryTab('shifts');
-}
-
-// ============================================================
-// REPORTS
-// ============================================================
-async function renderReports(){
-  document.getElementById('reports-content').innerHTML=`<div class="loading"><div class="spin">⏳</div><div>جاري التحميل...</div></div>`;
-  try {
-    let query=`?factory_id=eq.${currentFactory.id}&order=date.desc&select=*,stops:stop_logs(*),meters:meter_readings(*)`;
-    if(userRole==='leader') query+=`&leader_id=eq.${currentLeader.id}`;
-    const logs=await sb('shift_logs','GET',null,query);
-    const byDate={};
-    logs.forEach(l=>{ if(!byDate[l.date]) byDate[l.date]=[]; byDate[l.date].push(l); });
-    const dates=Object.keys(byDate).sort((a,b)=>b.localeCompare(a));
-    let html=`<button class="export-btn" onclick="exportCSV()">📥 تصدير CSV</button>`;
-    if(!dates.length){
-      html+=`<div class="no-data"><div class="no-data-icon">📋</div><div>لا توجد بيانات مسجّلة</div></div>`;
-    } else {
-      dates.forEach(date=>{
-        const dayLogs=byDate[date];
-        const totalStops=dayLogs.reduce((a,l)=>a+(l.stops||[]).length,0);
-        const effs=dayLogs.map(l=>{ const s=factoryShifts.find(s=>s.id===l.shift_id); return calcEff(calcStopMins(l.stops||[]),s?s.duration_hours*60:480); });
-        const avgEff=effs.length?Math.round(effs.reduce((a,b)=>a+b,0)/effs.length):null;
-        html+=`
-          <div class="report-day-card">
-            <div class="report-day-header" onclick="toggleEl('d-${date}')">
-              <div class="report-day-title">📅 ${formatDate(date)}</div>
-              <div style="display:flex;gap:6px;">
-                <span class="report-day-badge" style="background:#22c55e22;color:#22c55e;">${dayLogs.length} ورديات</span>
-                ${avgEff!==null?`<span class="report-day-badge" style="background:${effColor(avgEff)}22;color:${effColor(avgEff)}">${avgEff}%</span>`:''}
-                ${totalStops>0?`<span class="report-day-badge" style="background:#f8717133;color:var(--red)">${totalStops} توقف</span>`:''}
-              </div>
-            </div>
-            <div id="d-${date}" style="display:none;" class="report-day-body">
-              ${renderDayLogs(dayLogs)}
-            </div>
-          </div>`;
-      });
-    }
-    document.getElementById('reports-content').innerHTML=html;
-  } catch(e){ document.getElementById('reports-content').innerHTML=`<div class="no-data">خطأ في التحميل</div>`; }
-}
-
-function renderDayLogs(dayLogs){
-  return factoryShifts.map((s,i)=>{
-    const log=dayLogs.find(l=>l.shift_id===s.id);
-    const color=SHIFT_COLORS[i%SHIFT_COLORS.length];
-    if(!log) return `<div class="shift-report-row" style="opacity:.4;"><div class="shift-rep-header"><div class="shift-dot" style="background:${color}"></div><div style="font-size:11px;font-weight:700;color:#f0f9ff;">${s.name}</div><div style="font-size:10px;color:var(--text3);">لم تُسجَّل</div></div></div>`;
-    const sm=calcStopMins(log.stops||[]);
-    const eff=calcEff(sm,s.duration_hours*60);
-    const stopH=Math.floor(sm/60),stopM=sm%60;
-    return `
-      <div class="shift-report-row">
-        <div class="shift-rep-header">
-          <div class="shift-dot" style="background:${color}"></div>
-          <div style="font-size:11px;font-weight:700;color:#f0f9ff;">${s.name}</div>
-          <div style="font-size:10px;color:var(--text3);">👷 ${log.leader_name||'—'}</div>
-          <div style="margin-right:auto;"><span class="eff-chip" style="background:${effColor(eff)}22;color:${effColor(eff)}">${eff}%</span></div>
-        </div>
-        <div class="rep-details">
-          <div class="rep-detail"><div class="rep-detail-label">🛑 التوقف</div><div class="rep-detail-val" style="color:${sm>0?'var(--red)':'var(--green)'}">${sm>0?`${stopH>0?stopH+'س ':''}${stopM}د`:'لا توقفات'}</div></div>
-          <div class="rep-detail"><div class="rep-detail-label">📦 الإنتاج</div><div class="rep-detail-val">${log.production!=null?log.production+' '+(log.production_unit||''):'—'}</div></div>
-          <div class="rep-detail"><div class="rep-detail-label">⚡ kWh</div><div class="rep-detail-val">${(log.meters||[]).reduce((a,m)=>a+(m.value||0),0)||'—'}</div></div>
-          <div class="rep-detail"><div class="rep-detail-label">🕐 حُفظ</div><div class="rep-detail-val" style="font-size:10px;">${log.saved_at?new Date(log.saved_at).toLocaleTimeString('ar-SA',{hour:'2-digit',minute:'2-digit'}):'—'}</div></div>
-        </div>
-        ${(log.stops||[]).length?`<div class="rep-stops">${(log.stops||[]).map(st=>{const t=STOP_TYPES.find(x=>x.id===st.stop_type)||STOP_TYPES[3];return `<div class="rep-stop-item"><span class="rep-stop-type ${t.cls}">${t.label}</span><span>${st.start_time||'?'}→${st.end_time||'?'} (${st.duration_mins||0}د)</span>${st.notes?`<span style="color:var(--text3)">· ${st.notes}</span>`:''}</div>`;}).join('')}</div>`:''}
-        ${log.notes?`<div style="font-size:10px;color:var(--text3);margin-top:5px;padding-top:5px;border-top:1px solid var(--border)">📝 ${log.notes}</div>`:''}
-      </div>`;
+  var recent=faults.slice(-4).reverse();
+  var sevBg={critical:'rgba(239,68,68,.15)',high:'rgba(245,158,11,.15)',medium:'rgba(59,130,246,.15)',low:'rgba(16,185,129,.15)'};
+  var sevCol={critical:'#ef4444',high:'#f59e0b',medium:'#3b82f6',low:'#10b981'};
+  var sevClass={critical:'b-red',high:'b-amber',medium:'b-blue',low:'b-green'};
+  el.innerHTML = recent.map(function(f){
+    return '<div class="ff-item" style="animation:slideIn .3s ease">' +
+    '<div class="ff-icon" style="background:'+sevBg[f.severity]+';color:'+sevCol[f.severity]+'">' +
+    '<i class="ti ti-alert-triangle"></i></div>' +
+    '<div class="ff-info"><div class="ff-title">'+f.titleAr+'</div>' +
+    '<div class="ff-sub">'+f.machineAr+'</div></div>' +
+    '<div style="text-align:left"><span class="badge '+sevClass[f.severity]+'">'+f.severity+'</span>' +
+    '<div style="font-size:10px;color:var(--txt3);margin-top:2px">'+f.time+'</div></div>' +
+    '</div>';
   }).join('');
 }
 
-function toggleEl(id){ const el=document.getElementById(id); if(el) el.style.display=el.style.display==='none'?'block':'none'; }
+function buildDashCharts(){
+  var oc=document.getElementById('oeeChart');
+  if(oc) charts.oee=new Chart(oc,{type:'line',data:{
+    labels:['أح','إث','ثل','أر','خم','جم','سب'],
+    datasets:[{label:'OEE%',data:[82,85,79,88,84,87,89],borderColor:'#00c8e0',backgroundColor:'rgba(0,200,224,.08)',tension:.4,fill:true,pointRadius:3,pointBackgroundColor:'#00c8e0'}]
+  },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+    scales:{x:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#64748b',font:{size:9}}},
+            y:{min:60,max:100,grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#64748b',font:{size:9},callback:function(v){return v+'%'}}}}}});
 
-// ============================================================
-// DASHBOARD
-// ============================================================
-async function renderDashboard(){
-  document.getElementById('dash-content').innerHTML=`<div class="loading"><div class="spin">⏳</div><div>جاري التحميل...</div></div>`;
-  try {
-    const monthStr=`${dashYear}-${String(dashMonth+1).padStart(2,'0')}`;
-    const logs=await sb('shift_logs','GET',null,`?factory_id=eq.${currentFactory.id}&date=like.${monthStr}*&select=*,stops:stop_logs(*),meters:meter_readings(*)`);
-    buildDashHTML(logs, monthStr);
-  } catch(e){ document.getElementById('dash-content').innerHTML=`<div class="no-data">خطأ في التحميل</div>`; }
+  var fc=document.getElementById('ftChart');
+  if(fc){
+    var mech=faults.filter(function(f){return f.type==='mechanical';}).length;
+    var elec=faults.filter(function(f){return f.type==='electrical';}).length;
+    var hydr=faults.filter(function(f){return f.type==='hydraulic';}).length;
+    charts.ft=new Chart(fc,{type:'bar',data:{
+      labels:['ميكانيكي','كهربائي','هيدروليك','حراري','حساسات'],
+      datasets:[{data:[mech,elec,hydr,1,1],backgroundColor:['#ef4444','#3b82f6','#f59e0b','#8b5cf6','#10b981'],borderRadius:4}]
+    },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+      scales:{x:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#64748b',font:{size:9}}},
+              y:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#64748b',font:{size:9},stepSize:1}}}}});
+  }
 }
 
-function buildDashHTML(logs, monthStr){
-  const days=new Date(dashYear,dashMonth+1,0).getDate();
-  const isNow=dashYear===new Date().getFullYear()&&dashMonth===new Date().getMonth();
-  const maxDay=isNow?new Date().getDate():days;
+/* ===================== ADD FAULT ===================== */
+function renderAddFault(){
+  var ct=document.getElementById('ct');
+  var types=[
+    {id:'mechanical',icon:'ti-settings',label:t('mechanical')},
+    {id:'electrical',icon:'ti-bolt',label:t('electrical')},
+    {id:'hydraulic',icon:'ti-droplet',label:t('hydraulic')},
+    {id:'thermal',icon:'ti-temperature',label:t('thermal')},
+    {id:'sensor',icon:'ti-wifi',label:t('sensor')},
+    {id:'structural',icon:'ti-building',label:t('structural')},
+  ];
+  ct.innerHTML =
+  '<div class="ph"><div><div class="ph-title">' + t('addFault') + '</div>' +
+  '<div class="ph-sub">سجّل عطلاً جديداً وتابعه مباشرة في الداش بورد</div></div></div>' +
+  '<div class="card">' +
+  '<div style="font-size:12px;font-weight:700;color:var(--txt2);margin-bottom:6px">1. ' + t('faultType') + ' *</div>' +
+  '<div class="ftype-grid">' +
+  types.map(function(tp){
+    return '<div class="ftype-card ' + (selectedType===tp.id?'selected':'') + '" onclick="selType(\''+tp.id+'\')">' +
+    '<i class="ti ' + tp.icon + '"></i>' + tp.label + '</div>';
+  }).join('') +
+  '</div>' +
 
-  // Build log map: date -> shift_id -> log
-  const logMap={};
-  logs.forEach(l=>{ if(!logMap[l.date]) logMap[l.date]={}; logMap[l.date][l.shift_id]=l; });
+  '<div style="font-size:12px;font-weight:700;color:var(--txt2);margin-bottom:6px">2. ' + t('severity') + ' *</div>' +
+  '<div class="sev-grid">' +
+  '<button class="sev-btn ' + (selectedSev==='critical'?'s-critical':'') + '" onclick="selSev(\'critical\')"><i class="ti ti-alert-octagon"></i><br>' + t('critical') + '</button>' +
+  '<button class="sev-btn ' + (selectedSev==='high'?'s-high':'') + '" onclick="selSev(\'high\')"><i class="ti ti-alert-triangle"></i><br>' + t('high') + '</button>' +
+  '<button class="sev-btn ' + (selectedSev==='medium'?'s-medium':'') + '" onclick="selSev(\'medium\')"><i class="ti ti-info-circle"></i><br>' + t('medium') + '</button>' +
+  '<button class="sev-btn ' + (selectedSev==='low'?'s-low':'') + '" onclick="selSev(\'low\')"><i class="ti ti-check-circle"></i><br>' + t('low') + '</button>' +
+  '</div>' +
 
-  let totalSM=0,totalMins=0,totalProd=0;
-  const shiftSM={},shiftMins={};
-  factoryShifts.forEach(s=>{ shiftSM[s.id]=0; shiftMins[s.id]=0; });
-  const stopTypeCounts={electric:0,mechanic:0,ops:0,other:0};
-  const meterNamesSet=new Set();
+  '<div class="form-row" style="margin-bottom:12px">' +
+  '<div class="form-group"><label class="form-label">3. ' + t('machineLabel') + ' *</label>' +
+  '<select class="form-select" id="fMachine">' +
+  '<option value="CNC A1">ماكينة CNC أ1</option>' +
+  '<option value="Press B2">مكبس هيدروليكي ب2</option>' +
+  '<option value="Conveyor">خط النقل</option>' +
+  '</select></div>' +
+  '<div class="form-group"><label class="form-label">' + t('status') + '</label>' +
+  '<select class="form-select" id="fStatus">' +
+  '<option value="open">' + t('open') + '</option>' +
+  '<option value="inprogress">' + t('inprogress') + '</option>' +
+  '</select></div>' +
+  '</div>' +
 
-  for(let d=1;d<=maxDay;d++){
-    const dateStr=`${monthStr}-${String(d).padStart(2,'0')}`;
-    factoryShifts.forEach(s=>{
-      const log=logMap[dateStr]?.[s.id];
-      if(!log) return;
-      const sm=calcStopMins(log.stops||[]);
-      const shiftMin=s.duration_hours*60;
-      totalSM+=sm; totalMins+=shiftMin;
-      shiftSM[s.id]+=sm; shiftMins[s.id]+=shiftMin;
-      if(log.production) totalProd+=log.production;
-      (log.stops||[]).forEach(st=>{ if(stopTypeCounts[st.stop_type]!==undefined) stopTypeCounts[st.stop_type]++; });
-      (log.meters||[]).forEach(m=>{ if(m.meter_name) meterNamesSet.add(m.meter_name); });
-    });
+  '<div class="form-group"><label class="form-label">4. ' + t('descLabel') + ' *</label>' +
+  '<input class="form-input" id="fTitle" placeholder="وصف مختصر للعطل..."></div>' +
+  '<div class="form-group"><label class="form-label">ملاحظات إضافية</label>' +
+  '<textarea class="form-input" id="fNotes" rows="2" style="resize:none" placeholder="أي معلومات مفيدة إضافية..."></textarea></div>' +
+
+  '<div id="fMsg"></div>' +
+  '<div style="display:flex;gap:8px;margin-top:8px">' +
+  '<button class="btn-primary" style="flex:2" onclick="submitFault()"><i class="ti ti-send"></i> ' + t('submitFault') + '</button>' +
+  '<button class="btn-outline" style="flex:1;justify-content:center" onclick="navigate(\'faultLog\')">' + t('faultLog') + '</button>' +
+  '</div></div>';
+}
+
+function selType(v){ selectedType=v; renderAddFault(); }
+function selSev(v){ selectedSev=v; renderAddFault(); }
+
+function submitFault(){
+  var tEl=document.getElementById('fTitle');
+  var mEl=document.getElementById('fMachine');
+  var sEl=document.getElementById('fStatus');
+  var nEl=document.getElementById('fNotes');
+  var msg=document.getElementById('fMsg');
+  if(!selectedType||!selectedSev||!tEl||!tEl.value.trim()){
+    if(msg) msg.innerHTML='<div class="msg-error">'+t('selectTypeAndSev')+'</div>';
+    return;
   }
-
-  const overallEff=totalMins>0?calcEff(totalSM,totalMins):null;
-  const meterNames=[...meterNamesSet];
-
-  let html=`
-    <div class="dash-hero">
-      <div style="font-size:14px;font-weight:900;color:#f0f9ff;">📊 GTech Smart Platform</div>
-      <div style="font-size:10px;color:var(--text3);">نظام تحكم الوقت · Efficiency Dashboard</div>
-    </div>
-    <div class="month-nav">
-      <button class="month-nav-btn" onclick="changeDashMonth(-1)">◀</button>
-      <div class="month-nav-label">${AR_MONTHS[dashMonth]} ${dashYear}</div>
-      <button class="month-nav-btn" onclick="changeDashMonth(1)">▶</button>
-    </div>
-    <div class="monthly-eff-box">
-      <div style="font-size:11px;color:var(--text3);margin-bottom:8px;">كفاءة الشهر الكلية · Monthly Efficiency</div>
-      <div class="monthly-eff-num" style="color:${overallEff!==null?effColor(overallEff):'var(--text4)'}">${overallEff!==null?overallEff+'%':'—'}</div>
-      ${overallEff!==null?`
-        <div class="eff-bar-wrap" style="margin:10px 0 6px;">
-          <div class="eff-bar" style="width:${overallEff}%;background:${effColor(overallEff)};"></div>
-        </div>
-        <div style="font-size:10px;color:var(--text3);">وقت التوقف: ${Math.floor(totalSM/60)}س ${totalSM%60}د من ${Math.round(totalMins/60)}س</div>
-      `:'<div style="font-size:11px;color:var(--text4);margin-top:8px;">لا بيانات لهذا الشهر</div>'}
-    </div>
-    <div class="dash-section-title">📈 متوسط كفاءة الورديات</div>
-    <div class="dash-kpi-row">
-      ${factoryShifts.map((s,i)=>{
-        const eff=shiftMins[s.id]>0?calcEff(shiftSM[s.id],shiftMins[s.id]):null;
-        const color=SHIFT_COLORS[i%SHIFT_COLORS.length];
-        return `<div class="dash-kpi">
-          <div class="dash-kpi-val" style="color:${eff!==null?effColor(eff):'var(--text4)'}">${eff!==null?eff+'%':'—'}</div>
-          <div style="width:8px;height:8px;border-radius:50%;background:${color};margin:4px auto;"></div>
-          <div class="dash-kpi-label">${s.name}</div>
-        </div>`;
-      }).join('')}
-    </div>
-    <div class="dash-section-title">📅 أداء كل وردية يومياً</div>
-    <div style="padding:0 10px 10px;overflow-x:auto;">
-      <div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;overflow:hidden;">
-        <table class="perf-table" style="min-width:${200+factoryShifts.length*80}px;">
-          <thead><tr><th>اليوم</th>${factoryShifts.map(s=>`<th style="color:${SHIFT_COLORS[factoryShifts.indexOf(s)%SHIFT_COLORS.length]}">${s.name}</th>`).join('')}<th>اليوم</th></tr></thead>
-          <tbody>${buildDailyRows(logMap,maxDay,monthStr)}</tbody>
-        </table>
-      </div>
-    </div>`;
-
-  // Stop type breakdown
-  const totalStopCnt=Object.values(stopTypeCounts).reduce((a,b)=>a+b,0);
-  if(totalStopCnt>0){
-    html+=`<div class="dash-section-title">🛑 توزيع التوقفات</div>
-      <div style="padding:0 10px 10px;">
-        <div style="background:var(--bg3);border:1px solid var(--border);border-radius:12px;padding:12px;">
-          ${STOP_TYPES.map(t=>{
-            const cnt=stopTypeCounts[t.id]||0;
-            const pct=totalStopCnt>0?Math.round(cnt/totalStopCnt*100):0;
-            const barColor=t.id==='electric'?'#a78bfa':t.id==='mechanic'?'#fbbf24':t.id==='ops'?'#22d3ee':'#64748b';
-            return `<div style="margin-bottom:8px;">
-              <div style="display:flex;justify-content:space-between;margin-bottom:3px;">
-                <span class="rep-stop-type ${t.cls}">${t.label}</span>
-                <span style="font-size:10px;color:var(--text2)">${cnt} توقف (${pct}%)</span>
-              </div>
-              <div class="eff-bar-wrap"><div class="eff-bar" style="width:${pct}%;background:${barColor};"></div></div>
-            </div>`;
-          }).join('')}
-        </div>
-      </div>`;
-  }
-
-  // Meter readings
-  meterNames.forEach(mn=>{
-    const tots={};
-    factoryShifts.forEach(s=>tots[s.id]=0);
-    for(let d=1;d<=maxDay;d++){
-      const dateStr=`${monthStr}-${String(d).padStart(2,'0')}`;
-      factoryShifts.forEach(s=>{
-        const log=logMap[dateStr]?.[s.id];
-        if(!log) return;
-        const m=(log.meters||[]).find(x=>x.meter_name===mn);
-        if(m&&m.value) tots[s.id]+=m.value;
-      });
-    }
-    const grand=Object.values(tots).reduce((a,b)=>a+b,0);
-    if(!grand) return;
-    html+=`
-      <div class="dash-section-title">⚡ ${mn}</div>
-      <div class="meter-dash-card">
-        ${factoryShifts.map((s,i)=>{
-          const tot=tots[s.id];
-          const pct=grand>0?Math.round(tot/grand*100):0;
-          const color=SHIFT_COLORS[i%SHIFT_COLORS.length];
-          return `<div style="display:flex;align-items:center;gap:8px;margin-bottom:6px;">
-            <div style="width:8px;height:8px;border-radius:50%;background:${color};flex-shrink:0;"></div>
-            <div style="font-size:10px;color:var(--text3);width:70px;">${s.name}</div>
-            <div style="font-size:11px;font-weight:700;color:#f0f9ff;width:70px;">${tot.toLocaleString()} kWh</div>
-            <div style="flex:1;"><div class="eff-bar-wrap"><div class="eff-bar" style="width:${pct}%;background:${color};"></div></div></div>
-            <div style="font-size:10px;color:var(--text3);width:30px;">${pct}%</div>
-          </div>`;
-        }).join('')}
-        <div style="border-top:1px solid var(--border);margin-top:6px;padding-top:6px;display:flex;justify-content:space-between;">
-          <span style="font-size:10px;color:var(--text3);">الإجمالي</span>
-          <span style="font-size:12px;font-weight:800;color:var(--accent);">${grand.toLocaleString()} kWh</span>
-        </div>
-      </div>`;
+  var now=new Date();
+  var timeStr=now.getHours()+':'+(now.getMinutes()<10?'0':'')+now.getMinutes();
+  var typeArMap={mechanical:'ميكانيكي',electrical:'كهربائي',hydraulic:'هيدروليك',thermal:'حراري',sensor:'حساسات',structural:'هيكلي'};
+  var mVal=mEl?mEl.value:'CNC A1';
+  var mArMap={'CNC A1':'ماكينة CNC أ1','Press B2':'مكبس هيدروليكي ب2','Conveyor':'خط النقل'};
+  faults.push({
+    id: faults.length+1,
+    type: selectedType, typeAr: typeArMap[selectedType]||selectedType,
+    title: tEl.value.trim(), titleAr: tEl.value.trim(),
+    machine: mVal, machineAr: mArMap[mVal]||mVal,
+    severity: selectedSev,
+    time: timeStr,
+    status: sEl?sEl.value:'open',
+    notes: nEl?nEl.value:''
   });
-
-  html+=`<button class="excel-btn" onclick="exportExcel()">📊 تصدير إكسيل · Export Excel</button><div style="height:16px;"></div>`;
-  document.getElementById('dash-content').innerHTML=html;
+  selectedType=''; selectedSev='';
+  showToast(t('faultAdded'), 'green');
+  navigate('dashboard');
 }
 
-function buildDailyRows(logMap,maxDay,monthStr){
-  let rows='';
-  for(let d=1;d<=maxDay;d++){
-    const dateStr=`${monthStr}-${String(d).padStart(2,'0')}`;
-    let daySM=0,dayMins=0;
-    const cells=factoryShifts.map(s=>{
-      const log=logMap[dateStr]?.[s.id];
-      if(!log) return `<td style="color:var(--text4);">—</td>`;
-      const sm=calcStopMins(log.stops||[]);
-      const eff=calcEff(sm,s.duration_hours*60);
-      daySM+=sm; dayMins+=s.duration_hours*60;
-      return `<td><span class="eff-chip" style="background:${effColor(eff)}22;color:${effColor(eff)}">${eff}%</span></td>`;
+/* ===================== FAULT LOG ===================== */
+function renderFaultLog(){
+  var ct=document.getElementById('ct');
+  var sevClass={critical:'b-red',high:'b-amber',medium:'b-blue',low:'b-green'};
+  var stMap={open:'<span class="badge b-red">'+t('open')+'</span>',inprogress:'<span class="badge b-amber">'+t('inprogress')+'</span>',resolved:'<span class="badge b-green">'+t('resolved')+'</span>'};
+  ct.innerHTML=
+  '<div class="ph"><div><div class="ph-title">'+t('faultLog')+'</div>' +
+  '<div class="ph-sub">'+faults.length+' عطل مسجل</div></div>' +
+  '<button class="btn-outline btn-sm" style="background:var(--acc2);border-color:var(--acc2);color:#fff" onclick="navigate(\'addFault\')"><i class="ti ti-plus"></i> '+t('addFault')+'</button></div>' +
+  '<div class="card"><div class="tbl-wrap"><table class="tbl" style="table-layout:fixed">' +
+  '<thead><tr><th style="width:32%">العطل</th><th style="width:16%">النوع</th><th style="width:20%">الماكينة</th><th style="width:14%">الخطورة</th><th style="width:10%">الوقت</th><th style="width:14%">الحالة</th></tr></thead>' +
+  '<tbody>' +
+  faults.slice().reverse().map(function(f){
+    return '<tr>' +
+    '<td style="color:var(--txt);font-weight:700">'+f.titleAr+'</td>' +
+    '<td><span class="badge b-blue">'+f.typeAr+'</span></td>' +
+    '<td style="color:var(--txt2)">'+f.machineAr+'</td>' +
+    '<td><span class="badge '+sevClass[f.severity]+'">'+f.severity+'</span></td>' +
+    '<td style="color:var(--txt3)">'+f.time+'</td>' +
+    '<td>'+(stMap[f.status]||f.status)+'</td>' +
+    '</tr>';
+  }).join('') +
+  '</tbody></table></div></div>';
+}
+
+/* ===================== MACHINES ===================== */
+function renderMachines(){
+  var ct=document.getElementById('ct');
+  var canAdd = faults.length < 999; // always show limit notice
+  ct.innerHTML=
+  '<div class="ph"><div class="ph-title">'+t('machines')+'</div>' +
+  '<button class="btn-outline btn-sm"><i class="ti ti-plus"></i> إضافة ماكينة (2/2)</button></div>' +
+  '<div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.25);border-radius:8px;padding:10px 14px;margin-bottom:14px;font-size:11px;color:var(--amber);direction:rtl">' +
+  '<i class="ti ti-lock"></i> '+t('machineLimit')+'</div>' +
+  '<div class="g2">' +
+  mkMachineCard('CNC Machine A1','ماكينة CNC أ1','running',87,42.3) +
+  mkMachineCard('Hydraulic Press B2','مكبس هيدروليكي ب2','idle',71,28.7) +
+  '</div>';
+}
+
+function mkMachineCard(name,nameAr,status,oee,energy){
+  var stColor=status==='running'?'var(--green)':'var(--amber)';
+  var stLabel=status==='running'?'تشغيل':'خمول';
+  var oeeColor=oee>=85?'var(--green)':oee>=70?'var(--amber)':'var(--red)';
+  var mFaults=faults.filter(function(f){return f.machine===name||f.machineAr===nameAr;}).length;
+  return '<div class="card" style="direction:rtl">' +
+  '<div style="display:flex;align-items:center;gap:10px;margin-bottom:12px">' +
+  '<div style="width:40px;height:40px;background:var(--bg3);border-radius:9px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0">⚙</div>' +
+  '<div><div style="font-size:13px;font-weight:700">'+nameAr+'</div>' +
+  '<div style="font-size:10px;color:'+stColor+';display:flex;align-items:center;gap:4px"><span class="live-dot" style="background:'+stColor+'"></span>'+stLabel+'</div></div>' +
+  '</div>' +
+  '<div class="g3" style="margin-bottom:12px;text-align:center;font-size:11px">' +
+  '<div style="background:var(--bg3);border-radius:7px;padding:8px"><div style="font-size:18px;font-weight:800;color:'+oeeColor+'">'+oee+'%</div><div style="color:var(--txt3)">OEE</div></div>' +
+  '<div style="background:var(--bg3);border-radius:7px;padding:8px"><div style="font-size:18px;font-weight:800;color:var(--amber)">'+energy+'</div><div style="color:var(--txt3)">kWh</div></div>' +
+  '<div style="background:var(--bg3);border-radius:7px;padding:8px"><div style="font-size:18px;font-weight:800;color:'+(mFaults>0?'var(--red)':'var(--green)')+'">'+mFaults+'</div><div style="color:var(--txt3)">أعطال</div></div>' +
+  '</div>' +
+  '<div style="display:flex;gap:6px">' +
+  '<button class="btn-outline btn-sm" style="flex:1;justify-content:center" onclick="showReportModal()"><i class="ti ti-download"></i> تقرير</button>' +
+  '<button class="btn-outline btn-sm" style="flex:1;justify-content:center" onclick="navigate(\'support\')"><i class="ti ti-robot"></i> AI</button>' +
+  '</div></div>';
+}
+
+/* ===================== MAINTENANCE ===================== */
+function renderMaintenance(){
+  var ct=document.getElementById('ct');
+  var tasks=[
+    {m:'ماكينة CNC أ1',type:'وقائية',due:'2026-06-20',tech:'أحمد',status:'pending'},
+    {m:'مكبس هيدروليكي ب2',type:'تشحيم',due:'2026-06-25',tech:'سارة',status:'inprogress'},
+    {m:'خط النقل',type:'معايرة',due:'2026-07-01',tech:'كريم',status:'pending'},
+  ];
+  ct.innerHTML=
+  '<div class="ph"><div class="ph-title">'+t('maintenance')+'</div>' +
+  '<button class="btn-outline btn-sm" style="background:var(--acc2);border-color:var(--acc2);color:#fff"><i class="ti ti-calendar-plus"></i> جدولة صيانة</button></div>' +
+  '<div class="card"><div class="tbl-wrap"><table class="tbl">' +
+  '<thead><tr><th>الماكينة</th><th>النوع</th><th>التاريخ</th><th>المسؤول</th><th>الحالة</th></tr></thead>' +
+  '<tbody>' +
+  tasks.map(function(task){
+    var stBadge=task.status==='inprogress'?'<span class="badge b-blue">'+t('inprogress')+'</span>':'<span class="badge b-amber">'+t('open')+'</span>';
+    return '<tr><td style="color:var(--txt);font-weight:700">'+task.m+'</td>' +
+    '<td><span class="badge b-cyan">'+task.type+'</span></td>' +
+    '<td style="color:var(--amber)">'+task.due+'</td>' +
+    '<td style="color:var(--txt2)">'+task.tech+'</td>' +
+    '<td>'+stBadge+'</td></tr>';
+  }).join('') +
+  '</tbody></table></div></div>';
+}
+
+/* ===================== ENERGY ===================== */
+function renderEnergy(){
+  var ct=document.getElementById('ct');
+  ct.innerHTML=
+  '<div class="ph"><div class="ph-title">'+t('energy')+'</div></div>' +
+  '<div class="sg">' +
+  mkStat('ti-bolt','amber','إجمالي الطاقة اليوم','287 kWh','+5%','up') +
+  mkStat('ti-leaf','green','CO₂','1.2 طن','-12%','down') +
+  mkStat('ti-currency-dollar','blue','التكلفة','$142','-8%','down') +
+  mkStat('ti-percentage','purple','الكفاءة','84%','+2%','up') +
+  '</div>' +
+  '<div class="card">' +
+  '<div class="card-hdr"><div class="card-title">استهلاك الطاقة الأسبوعي (kWh)</div></div>' +
+  '<div style="height:180px;position:relative"><canvas id="energyChart" role="img" aria-label="Energy chart">Energy data</canvas></div>' +
+  '</div>';
+  setTimeout(function(){
+    var el=document.getElementById('energyChart');
+    if(el) charts.energy=new Chart(el,{type:'line',data:{
+      labels:['أح','إث','ثل','أر','خم','جم','سب'],
+      datasets:[{label:'kWh',data:[240,280,260,310,290,300,287],borderColor:'#00c8e0',backgroundColor:'rgba(0,200,224,.06)',tension:.4,fill:true,pointRadius:3,pointBackgroundColor:'#00c8e0'}]
+    },options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+      scales:{x:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#64748b',font:{size:9}}},
+              y:{grid:{color:'rgba(255,255,255,.04)'},ticks:{color:'#64748b',font:{size:9}}}}}});
+  },80);
+}
+
+/* ===================== REPORTS ===================== */
+function renderReports(){
+  var ct=document.getElementById('ct');
+  var reps=[
+    {icon:'ti-chart-bar',title:'تقرير الأداء اليومي',desc:'مقاييس OEE وأعطال الماكينات',type:'PDF'},
+    {icon:'ti-bolt',title:'تقرير استهلاك الطاقة',desc:'استهلاك كل ماكينة بالتفصيل',type:'Excel'},
+    {icon:'ti-tool',title:'تقرير الصيانة الوقائية',desc:'جدول الصيانة القادمة',type:'PDF'},
+    {icon:'ti-alert-triangle',title:'تقرير تحليل الأعطال',desc:'تحليل أنواع وتكرار الأعطال',type:'PDF'},
+  ];
+  ct.innerHTML=
+  '<div class="ph"><div class="ph-title">'+t('reports')+'</div></div>' +
+  '<div class="g2">' +
+  reps.map(function(r){
+    return '<div class="card" style="cursor:pointer;direction:rtl" onclick="showReportModal()">' +
+    '<div style="font-size:26px;color:var(--acc);margin-bottom:8px"><i class="ti '+r.icon+'"></i></div>' +
+    '<div style="font-size:13px;font-weight:700;margin-bottom:4px">'+r.title+'</div>' +
+    '<div style="font-size:11px;color:var(--txt2);margin-bottom:12px">'+r.desc+'</div>' +
+    '<div style="display:flex;justify-content:space-between;align-items:center">' +
+    '<span class="badge b-cyan">'+r.type+'</span>' +
+    '<button class="btn-outline btn-sm" onclick="event.stopPropagation();showReportModal()"><i class="ti ti-download"></i> تصدير</button>' +
+    '</div></div>';
+  }).join('') +
+  '</div>';
+}
+
+/* ===================== SUPPORT ===================== */
+function renderSupport(){
+  var ct=document.getElementById('ct');
+  ct.innerHTML=
+  '<div class="ph"><div><div class="ph-title">الدعم الفني الذكي</div>' +
+  '<div class="ph-sub">مدعوم بـ Claude AI · info@gtech-a.com</div></div></div>' +
+  '<div class="card">' +
+  '<div class="chat-box">' +
+  '<div id="chatMsgs" class="chat-msgs">' +
+  '<div class="chat-msg bot">مرحباً! أنا مساعد G-Tech الذكي.\nيمكنني مساعدتك في:\n• تشخيص الأعطال وتحديد الأسباب\n• جدولة الصيانة الوقائية\n• تحليل أداء الماكينات\n• تحسين كفاءة الطاقة\n\nكيف يمكنني مساعدتك اليوم؟</div>' +
+  '</div>' +
+  '<div class="chat-input-row">' +
+  '<input class="form-input" id="aiIn" style="direction:rtl" placeholder="اسأل عن أي عطل أو مشكلة فنية..." onkeydown="if(event.key===\'Enter\')sendAI()">' +
+  '<button class="btn-outline btn-sm" onclick="sendAI()" style="padding:8px 14px"><i class="ti ti-send"></i></button>' +
+  '</div></div></div>' +
+  '<div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:10px">' +
+  ['تشخيص ارتفاع الحرارة','كيف أحسن OEE؟','جدولة صيانة وقائية','تقليل استهلاك الطاقة'].map(function(q){
+    return '<button class="btn-outline btn-sm" style="font-size:10px" onclick="setAI(\''+q+'\')">' + q + '</button>';
+  }).join('') +
+  '</div>';
+}
+
+function setAI(q){ var el=document.getElementById('aiIn'); if(el){el.value=q; sendAI();} }
+
+async function sendAI(){
+  var inp=document.getElementById('aiIn');
+  var msgs=document.getElementById('chatMsgs');
+  if(!inp||!msgs||!inp.value.trim()) return;
+  var q=inp.value.trim(); inp.value='';
+  var uDiv=document.createElement('div');
+  uDiv.className='chat-msg user'; uDiv.textContent=q;
+  msgs.appendChild(uDiv); msgs.scrollTop=msgs.scrollHeight;
+  var bDiv=document.createElement('div');
+  bDiv.className='chat-msg bot'; bDiv.textContent='⟳ جاري التحليل...';
+  msgs.appendChild(bDiv); msgs.scrollTop=msgs.scrollHeight;
+  try{
+    var res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:500,
+        system:'أنت مهندس صيانة صناعية خبير في G-Tech. أجب بإيجاز وعملية بالعربية.',
+        messages:[{role:'user',content:q}]})
     });
-    const dayEffHtml=dayMins>0?`<span class="eff-chip" style="background:${effColor(calcEff(daySM,dayMins))}22;color:${effColor(calcEff(daySM,dayMins))}">${calcEff(daySM,dayMins)}%</span>`:'—';
-    rows+=`<tr><td style="color:var(--text3);font-weight:700;">${d}</td>${cells.join('')}<td>${dayEffHtml}</td></tr>`;
+    var data=await res.json();
+    bDiv.textContent=(data.content&&data.content[0]&&data.content[0].text)||'تعذر الاتصال.';
+  }catch(e){
+    bDiv.textContent='تعذر الاتصال. تواصل مع info@gtech-a.com';
   }
-  return rows;
+  msgs.scrollTop=msgs.scrollHeight;
 }
 
-function changeDashMonth(dir){
-  dashMonth+=dir;
-  if(dashMonth<0){dashMonth=11;dashYear--;} if(dashMonth>11){dashMonth=0;dashYear++;}
-  renderDashboard();
+/* ===================== SETTINGS ===================== */
+function renderSettings(){
+  var ct=document.getElementById('ct');
+  ct.innerHTML=
+  '<div class="ph"><div class="ph-title">الإعدادات</div></div>' +
+  '<div class="card" style="max-width:460px;direction:rtl">' +
+  '<div style="font-size:13px;font-weight:700;margin-bottom:14px;color:var(--acc)">بيانات الحساب</div>' +
+  '<div class="form-row">' +
+  '<div class="form-group"><label class="form-label">'+t('fullName')+'</label>' +
+  '<input class="form-input" value="'+(currentUser?currentUser.name:'')+'"></div>' +
+  '<div class="form-group"><label class="form-label">'+t('company')+'</label>' +
+  '<input class="form-input" value="'+(currentUser?currentUser.company:'')+'"></div>' +
+  '</div>' +
+  '<div class="form-group"><label class="form-label">'+t('email')+'</label>' +
+  '<input class="form-input ltr" value="'+(currentUser?currentUser.email:'')+'" style="color:var(--acc)"></div>' +
+  '<div class="form-group"><label class="form-label">'+t('phone')+'</label>' +
+  '<input class="form-input ltr" value="'+(currentUser?currentUser.phone||'':'')+'" ></div>' +
+  '<div style="border-top:1px solid var(--bdr);padding-top:14px;margin-top:4px">' +
+  '<div class="trial-info" style="margin-bottom:14px"><i class="ti ti-clock" style="font-size:14px"></i> ' +
+  'نسخة تجريبية مجانية: <strong>'+(currentUser&&currentUser.trialDays?currentUser.trialDays+' أيام متبقية':'—')+'</strong></div>' +
+  '<button class="btn-primary"><i class="ti ti-rocket"></i> '+t('upgrade')+'</button>' +
+  '</div></div>';
 }
 
-// ============================================================
-// SETUP TAB (Factory configures shifts & leaders)
-// ============================================================
-async function renderSetup(){
-  document.getElementById('setup-content').innerHTML=`<div class="loading"><div class="spin">⏳</div><div>جاري التحميل...</div></div>`;
-  if(userRole==='leader'){ document.getElementById('setup-content').innerHTML=`<div class="no-data"><div class="no-data-icon">🔒</div><div>قائد الوردية لا يملك صلاحية الإعداد</div></div>`; return; }
-  await loadFactoryData();
-  let html=`
-    <div class="setup-card">
-      <div class="setup-title">🏭 بيانات المصنع</div>
-      <label class="fl">اسم المصنع</label>
-      <input class="fi" id="factory-name-inp" value="${currentFactory.name}" placeholder="اسم المصنع">
-      <label class="fl">كلمة مرور المصنع الجديدة <span style="color:var(--text4)">(اتركها فارغة إذا لا تريد التغيير)</span></label>
-      <input class="fi" id="factory-pass-inp" type="password" placeholder="كلمة مرور جديدة (اختياري)">
-      <button class="save-setup-btn" onclick="saveFactoryInfo()">💾 حفظ بيانات المصنع</button>
-    </div>
-    <div class="setup-card">
-      <div class="setup-title">⏱ الورديات <span style="font-size:11px;color:var(--text3);font-weight:400;">(حتى 3 ورديات)</span></div>
-      <div id="shifts-setup-list">${renderShiftsSetup()}</div>
-      ${factoryShifts.length<3?`<button class="add-shift-btn" onclick="addShiftSetup()">+ إضافة وردية</button>`:''}
-      <button class="save-setup-btn" onclick="saveShiftsSetup()">💾 حفظ الورديات</button>
-    </div>
-    <div class="setup-card">
-      <div class="setup-title">👷 قادة الورديات</div>
-      <div id="leaders-setup-list">${renderLeadersSetup()}</div>
-      <button class="add-shift-btn" onclick="addLeaderSetup()">+ إضافة قائد وردية</button>
-      <button class="save-setup-btn" onclick="saveLeadersSetup()">💾 حفظ القادة</button>
-    </div>`;
-  document.getElementById('setup-content').innerHTML=html;
+/* ===================== ADMIN DASHBOARD ===================== */
+function renderAdminDash(){
+  var ct=document.getElementById('ct');
+  var totalF=clients.reduce(function(a,c){return a+c.faultsToday;},0);
+  var trialC=clients.filter(function(c){return c.plan==='trial';}).length;
+  var avgOee=Math.round(clients.reduce(function(a,c){return a+c.oee;},0)/clients.length);
+  ct.innerHTML=
+  '<div class="admin-hero">' +
+  '<div><div style="font-size:16px;font-weight:800;margin-bottom:3px">لوحة تحكم G-Tech الرئيسية</div>' +
+  '<div style="font-size:11px;opacity:.85">وصول المشرفين فقط · مراقبة جميع العملاء</div></div>' +
+  '<div style="display:flex;align-items:center;gap:6px;font-size:11px">' +
+  '<span class="live-dot"></span><span style="color:#cffafe">'+t('allOk')+'</span></div>' +
+  '</div>' +
+  '<div class="sg">' +
+  mkStat('ti-building','blue','إجمالي العملاء',clients.length,'+1 هذا الشهر','up') +
+  mkStat('ti-alert-triangle','red','أعطال اليوم',totalF,'عبر جميع العملاء','up') +
+  mkStat('ti-clock','amber','حسابات تجريبية',trialC,'تتطلب متابعة','down') +
+  mkStat('ti-chart-bar','green','متوسط OEE',avgOee+'%','+2% هذا الأسبوع','up') +
+  '</div>' +
+  '<div style="font-size:13px;font-weight:700;margin-bottom:10px;display:flex;align-items:center;justify-content:space-between;direction:rtl">' +
+  '<span>نظرة سريعة على العملاء</span>' +
+  '<button class="btn-outline btn-sm" onclick="navigate(\'clients\')">'+t('viewAll')+' ←</button></div>' +
+  '<div class="g2">' +
+  clients.map(mkClientMini).join('') +
+  '</div>';
 }
 
-function renderShiftsSetup(){
-  if(!factoryShifts.length) return '<div style="text-align:center;font-size:11px;color:var(--text4);padding:8px;">لا ورديات · أضف وردية</div>';
-  return factoryShifts.map((s,i)=>`
-    <div class="shift-setup-row">
-      <div class="shift-setup-header">
-        <div style="display:flex;align-items:center;gap:8px;">
-          <div class="shift-color-dot" style="background:${SHIFT_COLORS[i%SHIFT_COLORS.length]};"></div>
-          <span style="font-size:12px;font-weight:700;color:#f0f9ff;">وردية ${i+1}</span>
-        </div>
-        <button class="remove-shift-btn" onclick="deleteShiftSetup('${s.id}')">✕</button>
-      </div>
-      <div style="margin-bottom:6px;">
-        <label class="fl" style="margin-top:0;">اسم الوردية</label>
-        <input class="setup-input" id="sn-${s.id}" value="${s.name}" placeholder="مثال: وردية الصباح">
-      </div>
-      <div class="setup-grid">
-        <div><label class="fl" style="margin-top:0;">وقت البداية</label><input type="time" class="setup-input" id="ss-${s.id}" value="${s.start_time}"></div>
-        <div><label class="fl" style="margin-top:0;">وقت النهاية</label><input type="time" class="setup-input" id="se-${s.id}" value="${s.end_time}"></div>
-      </div>
-      <div style="margin-top:6px;">
-        <label class="fl" style="margin-top:0;">مدة الوردية (ساعات)</label>
-        <input type="number" class="setup-input" id="sd-${s.id}" value="${s.duration_hours}" min="1" max="24" step="0.5">
-      </div>
-    </div>`).join('');
+function mkClientMini(c){
+  var oeeCol=c.oee>=85?'var(--green)':c.oee>=75?'var(--amber)':'var(--red)';
+  return '<div class="client-card" onclick="showClientDetail('+c.id+')">' +
+  '<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">' +
+  '<div class="cc-av">'+c.nameAr.charAt(0)+'</div>' +
+  '<div style="flex:1;min-width:0"><div style="font-size:12px;font-weight:700;color:var(--txt);white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+c.nameAr+'</div>' +
+  '<div style="font-size:10px;color:var(--txt2)">'+c.email+'</div></div>' +
+  (c.plan==='trial'?'<span class="badge '+(c.trialDays<=7?'b-amber':'b-cyan')+'">'+c.trialDays+'d</span>':'<span class="badge b-green">مدفوع</span>') +
+  '</div>' +
+  '<div class="g3" style="text-align:center;font-size:10px;margin-bottom:8px">' +
+  '<div style="background:var(--bg2);border-radius:6px;padding:5px"><div style="font-size:15px;font-weight:800;color:'+oeeCol+'">'+c.oee+'%</div><div style="color:var(--txt3)">OEE</div></div>' +
+  '<div style="background:var(--bg2);border-radius:6px;padding:5px"><div style="font-size:15px;font-weight:800;color:'+(c.faultsToday>3?'var(--red)':'var(--txt)')+'">'+c.faultsToday+'</div><div style="color:var(--txt3)">أعطال</div></div>' +
+  '<div style="background:var(--bg2);border-radius:6px;padding:5px"><div style="font-size:15px;font-weight:800">'+c.machines+'</div><div style="color:var(--txt3)">ماكينات</div></div>' +
+  '</div>' +
+  '<div style="font-size:10px;color:var(--txt3)">'+t('lastLogin')+': '+c.lastLogin+'</div>' +
+  '</div>';
 }
 
-function renderLeadersSetup(){
-  if(!factoryLeaders.length) return '<div style="text-align:center;font-size:11px;color:var(--text4);padding:8px;">لا قادة · أضف قائد وردية</div>';
-  return factoryLeaders.map(l=>`
-    <div class="leader-row">
-      <button class="remove-leader-btn" onclick="deleteLeaderSetup('${l.id}')">✕</button>
-      <div class="leader-grid" style="padding-left:20px;">
-        <div><label class="fl" style="margin-top:0;">الاسم</label><input class="setup-input" id="ln-${l.id}" value="${l.name}" placeholder="الاسم الكامل"></div>
-        <div><label class="fl" style="margin-top:0;">اسم المستخدم</label><input class="setup-input" id="lu-${l.id}" value="${l.username}" placeholder="username"></div>
-        <div><label class="fl" style="margin-top:0;">كلمة المرور الجديدة</label><input class="setup-input" id="lp-${l.id}" type="password" placeholder="اتركها فارغة لعدم التغيير"></div>
-        <div><label class="fl" style="margin-top:0;">الوردية</label>
-          <select class="setup-input" id="ls-${l.id}">
-            <option value="">-- اختر الوردية --</option>
-            ${factoryShifts.map(s=>`<option value="${s.id}" ${l.shift_id===s.id?'selected':''}>${s.name}</option>`).join('')}
-          </select>
-        </div>
-      </div>
-    </div>`).join('');
+/* ===================== CLIENTS ===================== */
+function renderClients(){
+  var ct=document.getElementById('ct');
+  ct.innerHTML=
+  '<div class="ph"><div class="ph-title">'+t('clients')+'</div>' +
+  '<input class="form-input" style="max-width:220px;margin-right:auto" placeholder="'+t('searchClients')+'" oninput="filterClients(this.value)"></div>' +
+  '<div class="g2" id="clientsGrid">' +
+  clients.map(mkClientFull).join('') +
+  '</div>';
 }
 
-function addShiftSetup(){
-  // Add temporary local shift for UI
-  const tmp={id:'new-'+Date.now(),name:'',start_time:'08:00',end_time:'16:00',duration_hours:8,factory_id:currentFactory.id,sort_order:factoryShifts.length};
-  factoryShifts.push(tmp);
-  document.getElementById('shifts-setup-list').innerHTML=renderShiftsSetup();
+function mkClientFull(c){
+  var oeeCol=c.oee>=85?'var(--green)':c.oee>=75?'var(--amber)':'var(--red)';
+  return '<div class="client-card" id="cc'+c.id+'" onclick="showClientDetail('+c.id+')">' +
+  '<div style="display:flex;align-items:center;gap:8px;margin-bottom:10px">' +
+  '<div class="cc-av">'+c.nameAr.charAt(0)+'</div>' +
+  '<div style="flex:1;min-width:0"><div style="font-size:13px;font-weight:700;color:var(--txt)">'+c.nameAr+'</div>' +
+  '<div style="font-size:10px;color:var(--txt2)">'+c.phone+'</div></div>' +
+  (c.status==='active'
+    ?'<div style="display:flex;align-items:center;gap:3px;font-size:10px;color:var(--green)"><span class="live-dot"></span>متصل</div>'
+    :'<span style="font-size:10px;color:var(--amber)">تحذير</span>') +
+  '</div>' +
+  '<div class="g3" style="text-align:center;font-size:10px;margin-bottom:8px">' +
+  '<div style="background:var(--bg2);border-radius:6px;padding:6px"><div style="font-size:16px;font-weight:800;color:'+oeeCol+'">'+c.oee+'%</div><div style="color:var(--txt3)">OEE</div></div>' +
+  '<div style="background:var(--bg2);border-radius:6px;padding:6px"><div style="font-size:16px;font-weight:800;color:'+(c.faultsToday>3?'var(--red)':'var(--txt)')+'">'+c.faultsToday+'</div><div style="color:var(--txt3)">أعطال</div></div>' +
+  '<div style="background:var(--bg2);border-radius:6px;padding:6px"><div style="font-size:16px;font-weight:800">'+c.machines+'/2</div><div style="color:var(--txt3)">ماكينات</div></div>' +
+  '</div>' +
+  '<div class="pbar-w" style="margin-bottom:8px"><div class="pbar" style="width:'+c.oee+'%;background:'+oeeCol+'"></div></div>' +
+  (c.plan==='trial'?'<div style="font-size:10px;color:'+(c.trialDays<=7?'var(--amber)':'var(--acc)')+';margin-bottom:4px"><i class="ti ti-clock"></i> تجريبي: '+c.trialDays+' أيام متبقية</div>':'') +
+  '<div style="font-size:10px;color:var(--txt3)">آخر دخول: '+c.lastLogin+'</div>' +
+  '</div>';
 }
 
-function addLeaderSetup(){
-  const tmp={id:'new-'+Date.now(),name:'',username:'',shift_id:'',factory_id:currentFactory.id};
-  factoryLeaders.push(tmp);
-  document.getElementById('leaders-setup-list').innerHTML=renderLeadersSetup();
+function filterClients(q){
+  var grid=document.getElementById('clientsGrid');
+  if(!grid) return;
+  var filtered=clients.filter(function(c){
+    return c.nameAr.includes(q)||c.name.toLowerCase().includes(q.toLowerCase())||c.email.includes(q)||c.phone.includes(q);
+  });
+  grid.innerHTML=filtered.length?filtered.map(mkClientFull).join(''):'<div style="padding:20px;color:var(--txt2);font-size:12px">لا توجد نتائج</div>';
 }
 
-async function deleteShiftSetup(id){
-  if(id.startsWith('new-')){ factoryShifts=factoryShifts.filter(s=>s.id!==id); document.getElementById('shifts-setup-list').innerHTML=renderShiftsSetup(); return; }
-  if(!confirm('حذف هذه الوردية؟')) return;
-  await sb('shifts','DELETE',null,`?id=eq.${id}`);
-  factoryShifts=factoryShifts.filter(s=>s.id!==id);
-  document.getElementById('shifts-setup-list').innerHTML=renderShiftsSetup();
-  showToast('تم حذف الوردية');
+function showClientDetail(id){
+  var c=clients.find(function(x){return x.id===id;});
+  if(!c) return;
+  document.getElementById('modal').innerHTML=
+  '<div class="modal-bg" onclick="closeMBg(event)">' +
+  '<div class="modal-box">' +
+  '<div class="modal-hdr"><div style="font-size:14px;font-weight:700">'+c.nameAr+'</div>' +
+  '<button class="btn-outline btn-sm" onclick="closeModal()">'+t('close')+'</button></div>' +
+  '<div class="g2" style="margin-bottom:14px">' +
+  '<div style="background:var(--bg3);border-radius:8px;padding:10px;text-align:center">' +
+  '<div style="font-size:22px;font-weight:800;color:'+(c.oee>=85?'var(--green)':'var(--amber)')+'">'+c.oee+'%</div>' +
+  '<div style="font-size:10px;color:var(--txt3)">OEE</div></div>' +
+  '<div style="background:var(--bg3);border-radius:8px;padding:10px;text-align:center">' +
+  '<div style="font-size:22px;font-weight:800;color:'+(c.faultsToday>3?'var(--red)':'var(--txt)')+'">'+c.faultsToday+'</div>' +
+  '<div style="font-size:10px;color:var(--txt3)">أعطال اليوم</div></div>' +
+  '</div>' +
+  '<div style="font-size:11px;font-weight:700;color:var(--acc);margin-bottom:8px">بيانات التواصل</div>' +
+  '<div style="font-size:12px;color:var(--txt);border:1px solid var(--bdr);border-radius:8px;overflow:hidden">' +
+  '<div style="padding:8px 12px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:8px">' +
+  '<i class="ti ti-mail" style="color:var(--acc)"></i>'+c.email+'</div>' +
+  '<div style="padding:8px 12px;border-bottom:1px solid var(--bdr);display:flex;align-items:center;gap:8px">' +
+  '<i class="ti ti-phone" style="color:var(--green)"></i>'+c.phone+'</div>' +
+  '<div style="padding:8px 12px;display:flex;align-items:center;gap:8px">' +
+  '<i class="ti ti-building" style="color:var(--blue)"></i>'+c.companyAr+'</div>' +
+  '</div>' +
+  (c.plan==='trial'?'<div class="trial-info" style="margin-top:10px"><i class="ti ti-clock"></i> تجريبي: '+c.trialDays+' أيام متبقية</div>':'<div style="margin-top:10px"><span class="badge b-green" style="font-size:11px">خطة مدفوعة نشطة</span></div>') +
+  '<div style="display:flex;gap:8px;margin-top:14px">' +
+  '<button class="btn-outline btn-sm" style="flex:1;justify-content:center;color:var(--green)"><i class="ti ti-message"></i> '+t('sendMsg')+'</button>' +
+  (c.status==='active'
+    ?'<button class="btn-outline btn-sm" style="flex:1;justify-content:center;color:var(--amber)"><i class="ti ti-pause"></i> '+t('suspend')+'</button>'
+    :'<button class="btn-outline btn-sm" style="flex:1;justify-content:center;color:var(--green)"><i class="ti ti-play"></i> '+t('activate')+'</button>') +
+  '</div></div></div>';
 }
 
-async function deleteLeaderSetup(id){
-  if(id.startsWith('new-')){ factoryLeaders=factoryLeaders.filter(l=>l.id!==id); document.getElementById('leaders-setup-list').innerHTML=renderLeadersSetup(); return; }
-  if(!confirm('حذف هذا القائد؟')) return;
-  await sb('shift_leaders','DELETE',null,`?id=eq.${id}`);
-  factoryLeaders=factoryLeaders.filter(l=>l.id!==id);
-  document.getElementById('leaders-setup-list').innerHTML=renderLeadersSetup();
-  showToast('تم الحذف');
+/* ===================== SYSTEM STATUS ===================== */
+function renderSystemStatus(){
+  var ct=document.getElementById('ct');
+  var svcs=[
+    {name:'API Gateway',status:'operational',uptime:'99.98%',resp:'42ms'},
+    {name:'Database Cluster',status:'operational',uptime:'99.95%',resp:'8ms'},
+    {name:'Claude AI Engine',status:'operational',uptime:'99.9%',resp:'850ms'},
+    {name:'Real-time Sensors',status:'operational',uptime:'99.7%',resp:'12ms'},
+    {name:'Email Service',status:'degraded',uptime:'97.2%',resp:'320ms'},
+    {name:'File Storage',status:'operational',uptime:'100%',resp:'28ms'},
+  ];
+  ct.innerHTML=
+  '<div class="ph"><div class="ph-title">'+t('systemStatus')+'</div>' +
+  '<div style="display:flex;align-items:center;gap:5px;font-size:11px;color:var(--green)"><span class="live-dot"></span>'+t('allOk')+'</div></div>' +
+  '<div class="card"><div class="tbl-wrap"><table class="tbl">' +
+  '<thead><tr><th>الخدمة</th><th>الحالة</th><th>Uptime</th><th>زمن الاستجابة</th></tr></thead><tbody>' +
+  svcs.map(function(s){
+    return '<tr><td style="color:var(--txt);font-weight:700">'+s.name+'</td>' +
+    '<td><span class="badge '+(s.status==='operational'?'b-green':'b-amber')+'">'+(s.status==='operational'?'يعمل':'متأثر')+'</span></td>' +
+    '<td style="color:var(--green)">'+s.uptime+'</td>' +
+    '<td style="color:var(--txt2)">'+s.resp+'</td></tr>';
+  }).join('') +
+  '</tbody></table></div></div>';
 }
 
-async function saveFactoryInfo(){
-  const name=document.getElementById('factory-name-inp').value.trim();
-  const pass=document.getElementById('factory-pass-inp').value;
-  if(!name){ showToast('أدخل اسم المصنع',true); return; }
-  const update={name};
-  if(pass) update.password=pass;
-  await sb('factories','PATCH',update,`?id=eq.${currentFactory.id}`);
-  currentFactory.name=name;
-  document.getElementById('h-factory-name').textContent=name;
-  showToast('✓ تم حفظ بيانات المصنع');
+/* ===================== HELPERS ===================== */
+function mkStat(icon,color,label,value,change,dir){
+  var cols={red:'#ef4444',blue:'#3b82f6',amber:'#f59e0b',purple:'#8b5cf6',green:'#10b981'};
+  var bgs={red:'rgba(239,68,68,.1)',blue:'rgba(59,130,246,.1)',amber:'rgba(245,158,11,.1)',purple:'rgba(139,92,246,.1)',green:'rgba(16,185,129,.1)'};
+  return '<div class="sc">' +
+  '<div class="sc-icon" style="background:'+bgs[color]+';color:'+cols[color]+'">' +
+  '<i class="ti '+icon+'"></i></div>' +
+  '<div class="sc-lbl">'+label+'</div>' +
+  '<div class="sc-val">'+value+'</div>' +
+  '<div class="sc-ch" style="color:'+cols[color]+'"><i class="ti ti-arrow-'+(dir==='up'?'up':'down')+'-right"></i> '+change+'</div>' +
+  '</div>';
 }
 
-async function saveShiftsSetup(){
-  try {
-    for(let i=0;i<factoryShifts.length;i++){
-      const s=factoryShifts[i];
-      const name=document.getElementById('sn-'+s.id)?.value.trim();
-      const start=document.getElementById('ss-'+s.id)?.value;
-      const end=document.getElementById('se-'+s.id)?.value;
-      const dur=parseFloat(document.getElementById('sd-'+s.id)?.value)||8;
-      if(!name||!start||!end){ showToast('أكمل بيانات كل وردية',true); return; }
-      if(s.id.startsWith('new-')){
-        const created=await sb('shifts','POST',{factory_id:currentFactory.id,name,start_time:start,end_time:end,duration_hours:dur,sort_order:i});
-        factoryShifts[i]={...created[0]};
-      } else {
-        await sb('shifts','PATCH',{name,start_time:start,end_time:end,duration_hours:dur,sort_order:i},`?id=eq.${s.id}`);
-        factoryShifts[i]={...s,name,start_time:start,end_time:end,duration_hours:dur};
-      }
-    }
-    showToast('✓ تم حفظ الورديات');
-    await loadFactoryData();
-    document.getElementById('shifts-setup-list').innerHTML=renderShiftsSetup();
-    document.getElementById('leaders-setup-list').innerHTML=renderLeadersSetup();
-  } catch(e){ showToast('خطأ في الحفظ',true); }
+function showReportModal(){
+  document.getElementById('modal').innerHTML=
+  '<div class="modal-bg" onclick="closeMBg(event)">' +
+  '<div class="modal-box">' +
+  '<div class="modal-hdr">' +
+  '<div style="font-size:14px;font-weight:700"><i class="ti ti-download" style="margin-left:6px"></i>تصدير التقرير</div>' +
+  '<button class="btn-outline btn-sm" onclick="closeModal()">×</button></div>' +
+  '<div class="form-group"><label class="form-label">فترة التقرير</label>' +
+  '<select class="form-select"><option>آخر 7 أيام</option><option>آخر 30 يوم</option><option>هذا الشهر</option></select></div>' +
+  '<div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">' +
+  '<label class="form-check"><input type="checkbox" checked style="accent-color:var(--acc)"> تضمين الرسوم البيانية</label>' +
+  '<label class="form-check"><input type="checkbox" checked style="accent-color:var(--acc)"> تضمين سجل الأعطال</label>' +
+  '<label class="form-check"><input type="checkbox" style="accent-color:var(--acc)"> تضمين جدول الصيانة</label>' +
+  '</div>' +
+  '<div id="rMsg" style="font-size:11px;min-height:16px;margin-bottom:8px"></div>' +
+  '<button class="btn-primary" id="rBtn" onclick="doExport()"><i class="ti ti-download"></i> تصدير PDF</button>' +
+  '</div></div>';
 }
 
-async function saveLeadersSetup(){
-  try {
-    for(const l of factoryLeaders){
-      const name=document.getElementById('ln-'+l.id)?.value.trim();
-      const username=document.getElementById('lu-'+l.id)?.value.trim();
-      const pass=document.getElementById('lp-'+l.id)?.value;
-      const shiftId=document.getElementById('ls-'+l.id)?.value;
-      if(!name||!username){ showToast('أكمل بيانات كل قائد',true); return; }
-      if(l.id.startsWith('new-')){
-        if(!pass){ showToast('أدخل كلمة مرور القائد الجديد',true); return; }
-        await sb('shift_leaders','POST',{factory_id:currentFactory.id,shift_id:shiftId||null,name,username,password:pass});
-      } else {
-        const update={name,username,shift_id:shiftId||null};
-        if(pass) update.password=pass;
-        await sb('shift_leaders','PATCH',update,`?id=eq.${l.id}`);
-      }
-    }
-    showToast('✓ تم حفظ القادة');
-    await loadFactoryData();
-    document.getElementById('leaders-setup-list').innerHTML=renderLeadersSetup();
-  } catch(e){ showToast('خطأ في الحفظ',true); console.error(e); }
+function doExport(){
+  var btn=document.getElementById('rBtn');
+  var msg=document.getElementById('rMsg');
+  if(btn){btn.disabled=true;btn.innerHTML='<i class="ti ti-loader"></i> جاري التحضير...';}
+  if(msg){msg.textContent='جاري تجميع البيانات...';msg.style.color='var(--amber)';}
+  setTimeout(function(){
+    if(btn){btn.disabled=false;btn.innerHTML='<i class="ti ti-check"></i> التقرير جاهز!';}
+    if(msg){msg.textContent='✅ G-Tech_Report_'+new Date().toISOString().slice(0,10)+'.pdf';msg.style.color='var(--green)';}
+  },2000);
 }
 
-// ============================================================
-// ADMIN PANEL
-// ============================================================
-async function renderAdminPanel(){
-  document.getElementById('admin-content').innerHTML=`<div class="loading"><div class="spin">⏳</div><div>جاري التحميل...</div></div>`;
-  try {
-    const factories=await sb('factories','GET',null,`?select=*,shifts(*),shift_leaders(*)`);
-    const logs=await sb('shift_logs','GET',null,`?select=factory_id,date`);
-    const logCount={};
-    logs.forEach(l=>{ logCount[l.factory_id]=(logCount[l.factory_id]||0)+1; });
-
-    let html=`
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
-        <div style="font-size:15px;font-weight:900;color:#f0f9ff;">🏭 المصانع المسجّلة</div>
-        <button onclick="showAddFactory()" style="background:var(--accent2);border:none;border-radius:10px;padding:7px 14px;color:#fff;font-size:11px;font-weight:700;">+ إضافة مصنع</button>
-      </div>
-      <div id="add-factory-form" style="display:none;" class="setup-card">
-        <div class="setup-title">🏭 مصنع جديد</div>
-        <label class="fl">اسم المصنع</label><input class="fi" id="nf-name" placeholder="اسم المصنع">
-        <label class="fl">اسم المستخدم</label><input class="fi" id="nf-user" placeholder="username">
-        <label class="fl">كلمة المرور</label><input class="fi" id="nf-pass" type="password" placeholder="••••••••">
-        <button class="save-setup-btn" onclick="addFactory()">💾 إضافة المصنع</button>
-        <button class="cancel-btn" onclick="document.getElementById('add-factory-form').style.display='none'">إلغاء</button>
-      </div>`;
-
-    if(!factories.length){
-      html+=`<div class="no-data"><div class="no-data-icon">🏭</div><div>لا مصانع مسجّلة بعد</div></div>`;
-    } else {
-      factories.forEach(f=>{
-        const cnt=logCount[f.id]||0;
-        html+=`
-          <div class="admin-factory-card">
-            <div class="admin-factory-header">
-              <div>
-                <div class="admin-factory-name">🏭 ${f.name}</div>
-                <div style="font-size:10px;color:var(--text3);">@${f.username}</div>
-              </div>
-              <div style="display:flex;gap:6px;align-items:center;">
-                <span class="admin-badge" style="background:${f.active?'#22c55e22':'#f8717122'};color:${f.active?'var(--green)':'var(--red)'};">${f.active?'نشط':'موقوف'}</span>
-                <button class="toggle-active-btn" onclick="toggleFactory('${f.id}',${f.active})">${f.active?'إيقاف':'تفعيل'}</button>
-              </div>
-            </div>
-            <div class="admin-stats">
-              <div class="admin-stat"><div class="admin-stat-val">${(f.shifts||[]).length}</div><div class="admin-stat-label">ورديات</div></div>
-              <div class="admin-stat"><div class="admin-stat-val">${(f.shift_leaders||[]).length}</div><div class="admin-stat-label">قادة</div></div>
-              <div class="admin-stat"><div class="admin-stat-val">${cnt}</div><div class="admin-stat-label">تسجيلات</div></div>
-            </div>
-          </div>`;
-      });
-    }
-    document.getElementById('admin-content').innerHTML=html;
-  } catch(e){ document.getElementById('admin-content').innerHTML=`<div class="no-data">خطأ في التحميل · ${e.message}</div>`; }
+function showToast(msg,color){
+  var tw=document.getElementById('toasts');
+  var d=document.createElement('div');
+  d.className='toast';
+  d.style.color='var(--'+color+')';
+  d.innerHTML='<i class="ti ti-check-circle" style="font-size:15px"></i> '+msg;
+  tw.appendChild(d);
+  setTimeout(function(){if(d.parentNode)d.remove();},3500);
 }
 
-function showAddFactory(){ document.getElementById('add-factory-form').style.display='block'; }
+function closeModal(){ document.getElementById('modal').innerHTML=''; }
+function closeMBg(e){ if(e&&e.target.classList.contains('modal-bg')) closeModal(); }
+function destroyCharts(){ Object.keys(charts).forEach(function(k){if(charts[k])charts[k].destroy();}); charts={}; }
+function setLang(l){ lang=l; showToast(l==='ar'?'تم التبديل للعربية':'Switched to English','blue'); }
 
-async function addFactory(){
-  const name=document.getElementById('nf-name').value.trim();
-  const username=document.getElementById('nf-user').value.trim();
-  const password=document.getElementById('nf-pass').value;
-  if(!name||!username||!password){ showToast('أكمل جميع الحقول',true); return; }
-  try {
-    await sb('factories','POST',{name,username,password,active:true});
-    showToast('✓ تم إضافة المصنع');
-    renderAdminPanel();
-  } catch(e){ showToast('اسم المستخدم مستخدم بالفعل',true); }
-}
+/* PROTECTION */
+document.addEventListener('contextmenu',function(e){e.preventDefault();});
+document.addEventListener('keydown',function(e){if((e.ctrlKey||e.metaKey)&&['s','u','p','a','c'].includes(e.key))e.preventDefault();});
+document.addEventListener('selectstart',function(e){e.preventDefault();});
 
-async function toggleFactory(id, current){
-  await sb('factories','PATCH',{active:!current},`?id=eq.${id}`);
-  showToast(current?'تم إيقاف المصنع':'تم تفعيل المصنع');
-  renderAdminPanel();
-}
-
-// ============================================================
-// EXPORT
-// ============================================================
-async function exportCSV(){
-  try {
-    const logs=await sb('shift_logs','GET',null,`?factory_id=eq.${currentFactory.id}&order=date.asc&select=*,stops:stop_logs(*),meters:meter_readings(*)`);
-    if(!logs.length){ showToast('لا بيانات للتصدير',true); return; }
-    let csv='\uFEFF';
-    csv+='التاريخ,الوردية,القائد,وقت التوقف (دقيقة),كفاءة %,الإنتاج,الوحدة,kWh,ملاحظات\n';
-    logs.forEach(l=>{
-      const shift=factoryShifts.find(s=>s.id===l.shift_id);
-      const sm=calcStopMins(l.stops||[]);
-      const eff=calcEff(sm,(shift?.duration_hours||8)*60);
-      const kwh=(l.meters||[]).reduce((a,m)=>a+(m.value||0),0);
-      csv+=`${l.date},${shift?.name||''},${l.leader_name||''},${sm},${eff},${l.production||''},${l.production_unit||''},${kwh},"${(l.notes||'').replace(/"/g,"'")}"\n`;
-    });
-    const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'});
-    const url=URL.createObjectURL(blob);
-    const a=document.createElement('a'); a.href=url; a.download=`gtech-${todayStr()}.csv`; a.click(); URL.revokeObjectURL(url);
-    showToast('✓ تم التصدير');
-  } catch(e){ showToast('خطأ في التصدير',true); }
-}
-
-async function exportExcel(){
-  if(typeof XLSX==='undefined'){
-    const s=document.createElement('script');
-    s.src='https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js';
-    s.onload=()=>buildExcel(); s.onerror=()=>showToast('تعذّر تحميل المكتبة',true);
-    document.head.appendChild(s);
-  } else buildExcel();
-}
-
-async function buildExcel(){
-  try {
-    const monthStr=`${dashYear}-${String(dashMonth+1).padStart(2,'0')}`;
-    const logs=await sb('shift_logs','GET',null,`?factory_id=eq.${currentFactory.id}&date=like.${monthStr}*&select=*,stops:stop_logs(*),meters:meter_readings(*)`);
-    const wb=XLSX.utils.book_new();
-    const days=new Date(dashYear,dashMonth+1,0).getDate();
-    const isNow=dashYear===new Date().getFullYear()&&dashMonth===new Date().getMonth();
-    const maxDay=isNow?new Date().getDate():days;
-    const logMap={};
-    logs.forEach(l=>{ if(!logMap[l.date])logMap[l.date]={}; logMap[l.date][l.shift_id]=l; });
-
-    // Sheet 1: Details
-    const det=[['التاريخ','الوردية','القائد','وقت التوقف (د)','كفاءة %','الإنتاج','الوحدة','kWh','ملاحظات']];
-    for(let d=1;d<=maxDay;d++){
-      const dateStr=`${monthStr}-${String(d).padStart(2,'0')}`;
-      factoryShifts.forEach(s=>{
-        const log=logMap[dateStr]?.[s.id]; if(!log) return;
-        const sm=calcStopMins(log.stops||[]);
-        const eff=calcEff(sm,s.duration_hours*60);
-        const kwh=(log.meters||[]).reduce((a,m)=>a+(m.value||0),0);
-        det.push([dateStr,s.name,log.leader_name||'',sm,eff,log.production||'',log.production_unit||'',kwh,log.notes||'']);
-      });
-    }
-    const ws1=XLSX.utils.aoa_to_sheet(det);
-    ws1['!cols']=[{wch:12},{wch:14},{wch:16},{wch:16},{wch:10},{wch:10},{wch:8},{wch:10},{wch:24}];
-    XLSX.utils.book_append_sheet(wb,ws1,'تفاصيل الورديات');
-
-    // Sheet 2: Daily summary
-    const sum=[['اليوم','التاريخ',...factoryShifts.map(s=>s.name+' %'),...factoryShifts.map(s=>'توقف '+s.name+' (د)'),'كفاءة اليوم %','إجمالي توقف (د)']];
-    for(let d=1;d<=maxDay;d++){
-      const dateStr=`${monthStr}-${String(d).padStart(2,'0')}`;
-      let daySM=0,dayMins=0;
-      const effs=factoryShifts.map(s=>{ const log=logMap[dateStr]?.[s.id]; if(!log)return '—'; const sm=calcStopMins(log.stops||[]); daySM+=sm; dayMins+=s.duration_hours*60; return calcEff(sm,s.duration_hours*60); });
-      const stops=factoryShifts.map(s=>{ const log=logMap[dateStr]?.[s.id]; if(!log)return '—'; return calcStopMins(log.stops||[]); });
-      sum.push([d,dateStr,...effs,...stops,dayMins>0?calcEff(daySM,dayMins):'—',daySM||'—']);
-    }
-    const ws2=XLSX.utils.aoa_to_sheet(sum);
-    XLSX.utils.book_append_sheet(wb,ws2,'ملخص يومي');
-
-    XLSX.writeFile(wb,`gtech-${AR_MONTHS[dashMonth]}-${dashYear}.xlsx`);
-    showToast('✓ تم تصدير الإكسيل');
-  } catch(e){ showToast('خطأ في التصدير',true); console.error(e); }
-}
-
-// ============================================================
-// HELPERS
-// ============================================================
-function todayStr(){ return new Date().toISOString().split('T')[0]; }
-function formatDate(str){ if(!str)return ''; return new Date(str+'T12:00:00').toLocaleDateString('ar-SA',{weekday:'long',year:'numeric',month:'long',day:'numeric'}); }
-function calcMins(start,end){ if(!start||!end)return 0; const [sh,sm]=start.split(':').map(Number); const [eh,em]=end.split(':').map(Number); let m=(eh*60+em)-(sh*60+sm); if(m<0)m+=1440; return m>0?m:0; }
-function calcDurStr(start,end){ const m=calcMins(start,end); if(!m)return '--'; const h=Math.floor(m/60),mn=m%60; return h>0?`${h}س ${mn}د`:`${mn}د`; }
-function calcStopMins(stops){ return (stops||[]).reduce((acc,st)=>acc+calcMins(st.start_time,st.end_time),0); }
-function calcEff(sm,totalMins){ if(!totalMins)return 100; return Math.max(0,Math.min(100,Math.round(((totalMins-sm)/totalMins)*1000)/10)); }
-function effColor(eff){ if(eff>=90)return 'var(--green)'; if(eff>=75)return 'var(--amber)'; return 'var(--red)'; }
-function showToast(msg,isErr=false){ const t=document.getElementById('toast'); t.textContent=msg; t.className='show'+(isErr?' error':''); setTimeout(()=>t.className='',2800); }
-
-// ============================================================
-// INIT
-// ============================================================
-showScreen('landing');
+/* START */
+render();
 </script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
 </body>
 </html>
